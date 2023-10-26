@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--   pantalla MENU  -->
+    <dimen name="width_card">550dp</dimen>
+    <dimen name="height_card">250dp</dimen>
+
+    <dimen name="margin_card">20dp</dimen>
+
+</resources>

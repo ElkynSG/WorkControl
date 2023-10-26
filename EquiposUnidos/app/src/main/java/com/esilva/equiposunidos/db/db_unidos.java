@@ -18,6 +18,8 @@ public class db_unidos extends SQLiteOpenHelper {
     public static final String BASE_HUELLA3=     "medio";
     public static final String BASE_PERFIL=     "perfil";
     public static final String BASE_CARGO=      "cargo";
+    public static final String BASE_FOTO=      "foto";
+    public static final String BASE_ISENROLADO= "enrolado";
 
 
     public db_unidos(Context context, SQLiteDatabase.CursorFactory factory) {
@@ -31,6 +33,8 @@ public class db_unidos extends SQLiteOpenHelper {
                 BASE_NOMBRE     +" TEXT, " +
                 BASE_PERFIL     +" INTEGER, " +
                 BASE_CARGO      +" TEXT, " +
+                BASE_FOTO       +" TEXT, " +
+                BASE_ISENROLADO +" INTEGER, " +
                 BASE_HUELLA1    +" BLOB, " +
                 BASE_HUELLA2    +" BLOB, " +
                 BASE_HUELLA3    +" BLOB)";

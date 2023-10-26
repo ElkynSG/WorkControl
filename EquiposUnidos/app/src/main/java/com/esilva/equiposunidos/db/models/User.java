@@ -5,14 +5,35 @@ public class User {
     private String nombre;
     private int perfil;
     private String cargo;
+    private String foto;
+    private int isEnrolado;
     private byte[] huellaPulgar;
     private byte[] huellaIndice;
     private byte[] huellaMedio;
 
+
     public User() {
     }
+
     public User(int cedula) {
         this.cedula = cedula;
+    }
+
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public int getIsEnrolado() {
+        return isEnrolado;
+    }
+
+    public void setIsEnrolado(int isEnrolado) {
+        this.isEnrolado = isEnrolado;
     }
 
     public int getCedula() {

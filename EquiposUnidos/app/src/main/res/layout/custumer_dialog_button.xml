@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_fondo"
+    android:layout_gravity="center_horizontal"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:background="@drawable/shape_dialog">
+
+            <TextView
+                android:id="@+id/tvTitleDialogBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="SUCCESS!"
+                android:layout_gravity="center_horizontal"
+                android:background="#FFFFFF"
+                android:textColor="#888"
+                android:textSize="40sp"
+                android:textStyle="normal|bold" />
+
+
+            <TextView
+                android:id="@+id/tvMessageDialogBt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:text="Error"
+                android:background="#FFFFFF"
+                android:textColor="#888"
+                android:textSize="22sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_dialog_si"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
+                    android:text="SI"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/shape_button_dialog" />
+
+                <Button
+                    android:id="@+id/btn_dialog_no"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:layout_margin="20dp"
+                    android:text="NO"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/shape_button_dialog_rojo" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+</LinearLayout>

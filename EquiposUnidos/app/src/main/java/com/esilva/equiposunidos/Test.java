@@ -68,13 +68,13 @@ public class Test extends AppCompatActivity {
 
             Workbook workbook = new XSSFWorkbook(fis);
 
-            CellStyle borderStyle = workbook.createCellStyle();
+            /*CellStyle borderStyle = workbook.createCellStyle();
             borderStyle.setBorderTop(BorderStyle.THIN);
             borderStyle.setBorderBottom(BorderStyle.THIN);
             borderStyle.setBorderLeft(BorderStyle.THIN);
             borderStyle.setBorderRight(BorderStyle.THIN);
 
-
+*/
             int numberOfSheets = workbook.getNumberOfSheets();
             Log.d("DP_DLOG","leerPlantilla "+"nuSheet "+numberOfSheets);
 
