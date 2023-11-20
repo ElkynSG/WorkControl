@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_logo"
+    tools:context=".InspeccionPreoperacional.InpeccDataActivity">
+
+    <LinearLayout
+        android:id="@+id/layout0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTitleInspec"
+            android:layout_width="350dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="60dp"
+            android:gravity="center|bottom"
+            android:text="INSPECCION PREOPERACION\nEXCAVADORA"
+            android:textColor="@color/color_logo"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FECHA Y HORA"
+                android:textStyle="bold"
+                android:textColor="@color/color_logo"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/fechct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_logo"
+                android:text="30/04/2023  11:14:34"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imImaInspData"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/user_png" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDataInOper"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="OPERADOR:"/>
+
+                <EditText
+                    android:id="@+id/edDataInOper"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_editext"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/liCedulaInp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="CEDULA:"/>
+
+                <EditText
+                    android:id="@+id/edDataInCedula"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_editext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
+                android:background="#444"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="SUPERVISOR:"/>
+
+                <EditText
+                    android:id="@+id/edDataInSuper"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_editext"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:maxLength="30"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="HOROMETRO:"/>
+
+                <EditText
+                    android:id="@+id/edDataInHorom"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_editext"
+                    android:inputType="number"
+                    android:paddingStart="10dp"
+                    android:maxLength="20"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="LUGAR:"/>
+
+                <EditText
+                    android:id="@+id/edDataInLugar"
+                    android:layout_width="300dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_editext"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:maxLength="30"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="OBSERVACIONES:"/>
+
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edDataInObserva"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/shape_editext"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:singleLine="true" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btContInGuardar"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_selector"
+            android:text="INGRESAR"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btContInRegresa"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_selector"
+            android:text="REGRESAR"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btContInHome"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_selector"
+            android:text="HOME"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

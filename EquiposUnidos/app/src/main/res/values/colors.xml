@@ -11,10 +11,19 @@
     <color name="transparant">#00FFFFFF</color>
     <color name="azul_dialog">#3D71E9</color>
     <color name="rojo_dialog">#D8294A</color>
+    <color name="rojo">#ff0000</color>
+    <color name="verde">#00ff00</color>
+    <color name="naranja">#FD5B06</color>
     <color name="verde_dialog">#4CAF50</color>
 
     <color name="color_logo">#004164</color>
+    <color name="color_logo2">#7A004164</color>
+    <color name="color_logo_claro">#016398</color>
     <color name="color_logo_end">#0072AF</color>
+    <color name="color_logo_end_claro">#0091DF</color>
+    <color name="setting_manteni">#F0F9FC</color>
+    <color name="setting_user">#EDEDE7</color>
+    <color name="setting_report">#EFFFF9</color>
 
     <color name="snackbar_action">#ffff7663</color>
 </resources>

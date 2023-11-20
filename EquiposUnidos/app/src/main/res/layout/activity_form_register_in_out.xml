@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_logo"
+    tools:context=".RegistroInOut.FormRegisterInOutActivity">
+
+    <LinearLayout
+        android:id="@+id/layout0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTitleForm"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="REGISTRO DE ENTRADA"
+            android:gravity="center"
+            android:layout_marginEnd="80dp"
+            android:textColor="@color/color_logo"
+            android:textSize="25sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FECHA Y HORA"
+                android:textStyle="bold"
+                android:textColor="@color/color_logo"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/fecha_horaForm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_logo"
+                android:text="30/04/2023  11:14:34"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.47"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imImageForm"
+            android:layout_marginTop="10dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/user_png"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/color_logo"
+                android:textStyle="bold"
+                android:text="Nombre Completo:"/>
+
+            <TextView
+                android:id="@+id/tvNameForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold|italic"
+                android:text="Carlos Julio Silva Gonzalez"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="Cedula:"/>
+
+                <TextView
+                    android:id="@+id/tvDocumentForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:text="1234567890"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="Cargo:"/>
+
+                <TextView
+                    android:id="@+id/tvCargoForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:text="Operador de grua"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="Equipo a Operar:"/>
+
+                <Spinner
+                    android:id="@+id/spMachineForm"
+                    android:layout_width="300dp"
+                    android:backgroundTintMode="multiply"
+                    android:foreground="@drawable/shape_spinner"
+                    android:backgroundTint="#000"
+                    android:layout_height="40dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_logo"
+                    android:text="Actividad a Realizar:"/>
+
+                <Spinner
+                    android:id="@+id/spActivityForm"
+                    android:layout_width="300dp"
+                    android:backgroundTintMode="multiply"
+                    android:foreground="@drawable/shape_spinner"
+                    android:backgroundTint="#000"
+
+                    android:layout_height="40dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edCommentForm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.18"
+        android:textSize="25sp"
+        android:gravity="top"
+        android:padding="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_spinner"
+        android:text=""/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btFormEnviar"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="ENVIAR"/>
+
+        <Button
+            android:id="@+id/btFormCancelar"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="REGRESAR"/>
+
+
+    </LinearLayout>
+</LinearLayout>

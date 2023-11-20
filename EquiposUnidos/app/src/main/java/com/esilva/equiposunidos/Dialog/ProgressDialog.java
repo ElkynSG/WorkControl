@@ -31,6 +31,20 @@ public class ProgressDialog extends Dialog {
 
     }
 
+    public ProgressDialog(@NonNull Context context) {
+        super(context);
+        this.context = context;
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setBackgroundDrawableResource(R.color.transparant);
+        setCancelable(false);
+        setContentView(R.layout.dialog_progress);
+        textDialog = findViewById(R.id.textDialog);
+    }
+
+    public void setMessage(String msm){
+        textDialog.setText(msm);
+    }
+
     @Override
     public void dismiss() {
         super.dismiss();

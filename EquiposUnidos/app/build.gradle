@@ -38,6 +38,11 @@ dependencies {
     implementation 'org.apache.xmlbeans:xmlbeans:3.1.0'
     implementation 'stax:stax-api:1.0.1'
 
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    implementation 'com.airbnb.android:lottie:6.1.0'
+
+
     implementation project(path: ':libBioMini')
     implementation 'androidx.appcompat:appcompat:1.6.1'
 

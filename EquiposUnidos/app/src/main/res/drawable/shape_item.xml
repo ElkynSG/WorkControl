@@ -10,6 +10,6 @@
         android:gradientRadius="250"
         android:type="linear"
         />
-    <padding android:left="15dp" android:top="15dp"
-        android:right="15dp" android:bottom="15dp" />
+    <padding android:left="15dp" android:top="10dp"
+        android:right="15dp" android:bottom="10dp" />
 </shape>

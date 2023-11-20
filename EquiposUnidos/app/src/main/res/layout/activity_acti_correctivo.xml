@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_logo"
+    android:orientation="vertical"
+    tools:context=".Mantenimiento.ManteCaracterisActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imImageEquipoCorrec"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/user_png" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="DESCRIPCION DE LA TAREA"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:text="PRESENTO FALLA"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:text="OBSERVACIONES"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:background="@color/black"
+                       android:orientation="horizontal">
+
+                       <TextView
+                           android:layout_width="0dp"
+                           android:layout_height="match_parent"
+                           android:layout_weight="0.4"
+                           android:text="SISTEMA DE ALIMENTACION DE COMBUSTIBLE"
+                           android:textColor="@color/color_logo"
+                           android:textSize="13sp"
+                           android:paddingStart="10dp"
+                           android:gravity="center_vertical"
+                           android:layout_margin="1dp"
+                           android:background="@color/white"
+                           android:textStyle="bold" />
+                       <CheckBox
+                           android:id="@+id/cheCorrec1_1"
+                           android:layout_width="0dp"
+                           android:layout_height="match_parent"
+                           android:layout_margin="1dp"
+                           android:text="SI"
+                           android:background="@color/white"
+                           android:layout_weight="0.1"/>
+                       <CheckBox
+                           android:id="@+id/cheCorrec1_2"
+                           android:layout_width="0dp"
+                           android:layout_height="match_parent"
+                           android:layout_margin="1dp"
+                           android:text="NO"
+                           android:background="@color/white"
+                           android:layout_weight="0.1"/>
+                       <EditText
+                           android:id="@+id/edCorrec1"
+                           android:layout_width="0dp"
+                           android:layout_height="80dp"
+                           android:layout_margin="1dp"
+                           android:textSize="15sp"
+                           android:padding="5dp"
+                           android:background="@color/white"
+                           android:layout_weight="0.4"/>
+
+
+                   </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA DE ADMISION DE AIRE, TURBO"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec2_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec2_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec2"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="MOTOR Y/O COMPONENTES DE MOTOR"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec3_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec3_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec3"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA DE ENFRIAMIENTO, RADIADORES, MAGUERAS DE REFRIGERACION"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec4_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec4_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec4"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="13sp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA HIDRAULICO"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec5_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec5_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec5"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCorrecVolteo1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA DE LEVANTE Y VOLTEO "
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec6_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec6_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec6"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCorrecFinales2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SERVO-TRANSMISIÓN, EJES Y MANDOS FINALES"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec7_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec7_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec7"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCorrecLLantas3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="FRENOS, FRENO DE PARQUEO, LLANTAS"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec8_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec8_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec8"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCorrecDireccion4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA DE DIRECCIÓN"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec9_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec9_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec9"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA DE AIRE ACONDICIONADO"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec10_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec10_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec10"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="INSTRUMENTOS, CABINA, SILLA, VIDRIOS"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec11_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec11_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec11"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/black"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SISTEMA ELECTRICO"
+                            android:textColor="@color/color_logo"
+                            android:textSize="13sp"
+                            android:paddingStart="10dp"
+                            android:gravity="center_vertical"
+                            android:layout_margin="1dp"
+                            android:background="@color/white"
+                            android:textStyle="bold" />
+                        <CheckBox
+                            android:id="@+id/cheCorrec12_1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="SI"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <CheckBox
+                            android:id="@+id/cheCorrec12_2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:text="NO"
+                            android:background="@color/white"
+                            android:layout_weight="0.1"/>
+                        <EditText
+                            android:id="@+id/edCorrec12"
+                            android:layout_width="0dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="1dp"
+                            android:textSize="15sp"
+                            android:padding="5dp"
+                            android:background="@color/white"
+                            android:layout_weight="0.4"/>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btContiCorre"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_selector"
+            android:text="CONTINUAR"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btCorreRegresa"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_selector"
+            android:text="REGRESAR"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

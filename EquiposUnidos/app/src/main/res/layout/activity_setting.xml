@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/baseSetting"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -27,7 +28,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/btSettUsuario"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_marginStart="@dimen/margin_card"
             android:layout_marginTop="@dimen/margin_card"
             android:layout_marginEnd="@dimen/margin_card"
@@ -46,7 +47,7 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.2"
                     android:layout_gravity="left"
                     android:src="@drawable/user_png" />
 
@@ -70,9 +71,9 @@
             android:background="@color/black"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btSettUsuario"
+            android:id="@+id/btMantenimiento"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_marginStart="@dimen/margin_card"
             android:layout_marginTop="@dimen/margin_card"
             android:layout_marginEnd="@dimen/margin_card"
@@ -85,15 +86,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/shape_item"
+                android:background="@drawable/shape_item_config"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.2"
                     android:layout_gravity="left"
-                    android:src="@drawable/user_png" />
+                    android:src="@drawable/mantenimi_image" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -102,7 +103,7 @@
                     android:paddingLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:layout_gravity="center_vertical"
-                    android:text="Usuarios"
+                    android:text="Mantenimiento y Equipos"
                     android:textColor="#444"
                     android:textSize="20sp" />
 
@@ -115,9 +116,9 @@
             android:background="@color/black"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btSettUsuario"
+            android:id="@+id/btReport"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_marginStart="@dimen/margin_card"
             android:layout_marginTop="@dimen/margin_card"
             android:layout_marginEnd="@dimen/margin_card"
@@ -130,15 +131,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/shape_item"
+                android:background="@drawable/shape_item_report"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1"
+                    android:layout_weight="0.2"
                     android:layout_gravity="left"
-                    android:src="@drawable/user_png" />
+                    android:src="@drawable/reporte" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -147,7 +148,7 @@
                     android:paddingLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:layout_gravity="center_vertical"
-                    android:text="Usuarios"
+                    android:text="Reportes"
                     android:textColor="#444"
                     android:textSize="20sp" />
 

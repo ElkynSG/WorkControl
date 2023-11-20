@@ -2,4 +2,543 @@
     <string name="app_name">EquiposUnidos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--       CARGADO      -->
+    <array name="ca_general">
+        <item>Lavado del equipo</item>
+        <item>Engrase general del equipo incluyendo crucetas y cardanes (250 H)</item>
+        <item>Lubricación de accionador del capo (250 H)</item>
+        <item>Inspección de estructura del equipo (250 H)</item>
+        <item>Inspección de balde, cuchillas y protectores laterales (250H)</item>
+        <item>Inspección y ajuste de pernos en general (250 H)</item>
+        <item>Inspección al interior de la cabina (250 H)</item>
+        <item>Verificación de indicadores de tableros (250 H)</item>
+        <item>Verificación de estado de presión de llantas (250 H)</item>
+        <item>Comprobación de funcionamiento de aire acondicionado (250 H)</item>
+        <item>Inspección estado de cinturón de seguridad (250 H)</item>
+        <item>Inspección de ventanas, puertas, vidrios y espejos (250 H)</item>
+        <item>Limpieza de filtro del aire acondicionado (250 H)</item>
+        <item>Cambio de filtro de aire acondicionado y Limpeza mangueras de desague A/C (1000H)
+        </item>
+        <item>Revisión y/o mantenimiento del sistema de A/C (2000H)</item>
+    </array>
+    <array name="ca_sistemaConbustible">
+        <item>Cambio del filtro separador de agua de combustible (250 H)</item>
+        <item>Cambio del filtro secundario de combustible (250 H)</item>
+        <item>Purgado del sistema de combustible - (Bombín) (250 H)</item>
+    </array>
+    <array name="ca_sistemaAdmision">
+        <item>Limpieza y/o reemplazo de pre filtro de aire de motor (250 H)</item>
+        <item>Limpieza y/o reemplazo del filtro primario/secundario de aire de motor (250 H)</item>
+        <item>Inspección visual del turbo (250 H)</item>
+    </array>
+    <array name="ca_motor">
+        <item>Inspección de mangueras de aceite del motor (250 H)</item>
+        <item>Inspección y tensionado de Correas (si aplica) (250 H)</item>
+        <item>Cambio de aceite de motor y respectivo filtro (250 H)</item>
+        <item>Comprobación del nivel de aceite de motor (250 H)</item>
+        <item>Inspección del silenciador / exosto (250 H)</item>
+        <item>Inspección de estado de arranque, alternador y compresor de A/C (250 H)</item>
+    </array>
+    <array name="ca_sistemaEnfriamiento">
+        <item>Revise el nivel de refrIgerante del Motor (250H)</item>
+        <item>Inspección del estado del enfriador del motor (250 H)</item>
+        <item>Inspección del estado del enfriador del aceite hidraulico (250 H)</item>
+        <item>Inspección del estado del condensador de A/C (250 H)</item>
+        <item>Inspección del estado del enfriador de la servo transmisión (250 H)</item>
+    </array>
+    <array name="ca_sistemaHidraulico">
+        <item>Verificación del nivel de aceite hidraulico (250 H)</item>
+        <item>Lubricación / Inspección de pasadores y cilindros de levante (250 H)</item>
+        <item>Inspección de tubos y mangueras de cilindros hidraulicos (250 H)</item>
+        <item>Verificación de funcionamiento de controles de dirección, giro, palancas (250 H)
+        </item>
+        <item>Inspección de Bomba hidráulica principa, corrija fugas ( si aplica) (250 H)</item>
+        <item>Inspección de control hidráulico principal corrija fugas ( si aplica) (250 H)</item>
+        <item>Cambio de filtro primario y secundario de aceite hidráulico (3000 H)</item>
+        <item>Drenar y limpiar tanque hidráulico (3000 H)</item>
+        <item>Cambio del aceite del sistema hidráulico (3000 H)</item>
+    </array>
+    <array name="ca_sistemaArticulacion">
+        <item>Inspección de articulaciones (250 H)</item>
+        <item>Lubricación de los pines de la articulación central (250 H)</item>
+        <item>Inspección de tubos y mangueras (250 H)</item>
+        <item>Inspección de estado y ajuste de crucetas (250 H)</item>
+    </array>
+    <array name="ca_trasmision">
+        <item>Comprobación del nivel de la servotransmisión (250 H)</item>
+        <item>Muestra de aceite diferenciales y tapón magnético (1000 H)</item>
+        <item>Cambio del filtro y aceite de la servo transmisión (1000 H)</item>
+        <item>Cambio del aceite de los mandos finales y diferenciales (2000 H)</item>
+    </array>
+    <array name="ca_frenos">
+        <item>Verificación del freno de parqueo, calibre si es necesario (250 H)</item>
+        <item>Verificación del estado de freno de servicio (250 H)</item>
+    </array>
+    <array name="ca_sistemaDireccion">
+        <item>Lubricación de los pasadores del eje oscilante y cilindros de dirección (250 H)</item>
+        <item>Inspección y verificación de la existencia de fugas en el orbitrol (250 H)</item>
+    </array>
+    <array name="ca_sistemaElectrico">
+        <item>Comprobación funcionamiento del limpiaparabrisas (250 H)</item>
+        <item>Comprobación de luces de trabajo y luz estroboscópica (250 H)</item>
+        <item>Inspección de funcionamiento de monitor y cámara de retroceso (250 H)</item>
+        <item>Comprobación del funcionamiento del pito (250H)</item>
+        <item>Comprobación de funcionamiento de alarma de retroceso (250 H)</item>
+        <item>Verificación de fusibles, reemplazar los dañados (250 H)</item>
+        <item>Revisión de cables de batería y terminales (1000 H)</item>
+        <item>Verificación de estado de bateria con tester (1000 H)</item>
+    </array>
+    <!-- ============================================ -->
+
+    <!--       EXCAVADORA      -->
+    <array name="ex_general">
+        <item>Lavado del equipo</item>
+        <item>Engrase general del equipo (250 H)</item>
+        <item>Inspección de estructura del equipo (Bastidor, pluma, balde) (250 H)</item>
+        <item>Instalación de arandelas y/o retenedores en ariculaciones (si aplica) (250 H)</item>
+        <item>Inspección al interior de la cabina (250H)</item>
+        <item>Inspección de indicadores de tablero (250 H)</item>
+        <item>Comprobación del funcionamiento del A/C (250 H)</item>
+        <item>Inspección el estado de cinturón de seguridad (250 H)</item>
+        <item>Inspección de ventanas, vidrios, espejos, puertas, tapas laterales y capo (250 H)
+        </item>
+        <item>Limpieza del filtro del aire acondicionado (250 H)</item>
+        <item>Inpección del estado de barandas y puntos de apoyo (250 H)</item>
+        <item>Cambio del filtro del aire acondicionado (1000 H)</item>
+        <item>Revisión y /o mantenimiento del sistema de A/C (2000 H)</item>
+    </array>
+    <array name="ex_sistemaConbustible">
+        <item>Cambio de filtro separador de agua de combustible (250 H)</item>
+        <item>Cambio de filtro secundario de combustible (250 H)</item>
+        <item>Purgado del sistema de combustible - (Bombin) (250 H)</item>
+        <item>Inspección de mangueras del sistema de combustible (250 H)</item>
+    </array>
+    <array name="ex_sistemaAdmision">
+        <item>Limpieza y/o reemplazo de pre filtro de aire de motor (250 H)</item>
+        <item>Limpieza y/o reemplazo del filtro primario/secundario de aire de motor (250 H)</item>
+        <item>Inspección visual del turbo (250 H)</item>
+    </array>
+    <array name="ex_motor">
+        <item>Inspección de mangueras de aceite de motor (250 H)</item>
+        <item>Inspección y tensión de correas (Si aplica) (250 H)</item>
+        <item>Cambio de aceite de motor y respectivo filtro (250 H)</item>
+        <item>Comprobación del nivel de aceite de motor (250 H)</item>
+        <item>Inspección del silenciador/exosto (250 H)</item>
+        <item>Inspección de estado de arranque, alternador y compresor de A/C (250 H)</item>
+        <item>Revisión y/o ajuste de abrazadera de admision del motor (250 H)</item>
+        <item>Limpie manguera de desfogue de motor (250 H)</item>
+        <item>Revise y corrija si se evidencia fugas de aceite del motor (250 H)</item>
+        <item>Cambie el aceite del damper (1000 H)</item>
+        <item>Revisión y/o ajuste de los pernos del soporte del motor (2000 H)</item>
+    </array>
+    <array name="ex_sistemaEnfriamiento">
+        <item>Revise el nivel de refrigerante del motor (250 H)</item>
+        <item>Inspección del estado del enfriador del motor (250 H)</item>
+        <item>Inspección del estado del enfriador de aceite hidraulico (250 H)</item>
+        <item>Inspección del estado del condensador de A/C (250 H)</item>
+        <item>Inspección del estado del enfriador de combustible (250 H)</item>
+        <item>Inspección de mangueras del refrigerante, cambie y/o ajuste si aplica (250 H)</item>
+    </array>
+    <array name="ex_sistemaHidraulico">
+        <item>Verificación del nivel de aceite hidraulico (250 H)</item>
+        <item>Revisión de mangueras, acoples y tubos del sistema hidraulico (250 H)</item>
+        <item>Inspección de bomba hidraulica corrija fugas si aplica (250 H)</item>
+        <item>Inspección de control hidraulico corrija fugas si aplica (250 H)</item>
+        <item>Cambio del filtro respiradero del tanque hidraulico (1000 H)</item>
+        <item>Drenaje y limpieza del tanque hidraulico (3000 H)</item>
+        <item>Cambio de aceite de hidraulico y su respectivo filtro (3000 H)</item>
+    </array>
+    <array name="ex_sistemaGiro">
+        <item>Revisión de aceite de motor de giro (250 H)</item>
+        <item>Revisión de mangueras, acoples y tubos de motor de giro (250 H)</item>
+        <item>Revisión del funcionamiento de motor de giro y frenado del mismo (250 H)</item>
+        <item>Cambio de aceite de motor de giro (1000 H)</item>
+    </array>
+    <array name="ex_sistemaMandos">
+        <item>Inspección de zapatas, sprocket, tensora, carriles y tornilleria (250 H)</item>
+        <item>Revisión de motores de traslación, corrija fugas si aplica (250 H)</item>
+        <item>Tensión de cadenas si aplica (250 H)</item>
+        <item>Inpección de nivel de aceite de motores de traslacion, completar si aplica (1000 H)
+        </item>
+        <item>Cambio de aceite de motores de traslación (2000 H)</item>
+    </array>
+    <array name="ex_sistemaElectrico">
+        <item>Revisión de cables de bateria y terminales (250 H)</item>
+        <item>Comprobación funcionamiento del limpiaparabrisas (250 H)</item>
+        <item>Comprobación de funcionamiento de indicadores del tablero (250 H)</item>
+        <item>Comprobacion de luces de trabajo y luz estroboscopica (250 H)</item>
+        <item>Comprobacion de funcionamiento de monitor y camara de retroceso (250 H)</item>
+        <item>Comprobación del funcionamiento de alarma de retroceso (250 H)</item>
+        <item>Comprobacion de funcionamiento del pito (250 H)</item>
+        <item>Verificación del estado de fusibles, reemplazar los dañados (250 H)</item>
+        <item>Verificación estado debaterias con tester (1000 H)</item>
+    </array>
+    <!-- ============================================ -->
+
+    <!-- =TIPOS DE MANTENIMIENTO -->
+    <array name="tipo_mantenimiento">
+        <item>Mnto 250</item>
+        <item>Mnto 1000</item>
+        <item>Mnto 2000</item>
+        <item>Mnto 3000</item>
+        <item>Hallazgo Preoperacional</item>
+        <item>Correctivo</item>
+    </array>
+
+
+    <array name="aceite1">
+        <item></item>
+        <item>15W40</item>
+        <item>Hidraulico68</item>
+        <item>TO30</item>
+        <item>80w90</item>
+    </array>
+
+    <array name="aceite2">
+        <item></item>
+        <item>15W40</item>
+        <item>Hidraulico68</item>
+        <item>TO30</item>
+        <item>80w90</item>
+    </array>
+
+    <array name="aceite3">
+        <item></item>
+        <item>15W40</item>
+        <item>Hidraulico68</item>
+        <item>TO30</item>
+        <item>80w90</item>
+    </array>
+
+    <array name="aceiteMotor">
+        <item></item>
+        <item>B99</item>
+        <item>B7239</item>
+        <item>6736-51-5146</item>
+        <item>6742-01-4540</item>
+    </array>
+
+    <array name="filtroCombustiblePri">
+        <item></item>
+        <item>BF1399SP</item>
+        <item>SFC-89010</item>
+        <item>6754-71-6800</item>
+        <item>600-319-3750</item>
+    </array>
+
+    <array name="aceiteServo">
+        <item></item>
+        <item>PT9407</item>
+        <item>BT9422</item>
+    </array>
+
+    <array name="aceiteHidraPri">
+        <item></item>
+        <item>BT9353 MPG</item>
+        <item>400504-00227</item>
+        <item>207-60-71183</item>
+    </array>
+
+    <array name="aceiteHidraSeg">
+        <item></item>
+        <item>BT8309 MPG</item>
+        <item>PT9493 MPG</item>
+        <item>20Y-62-51691</item>
+    </array>
+
+    <array name="filtroCabina">
+        <item></item>
+        <item>PA3781</item>
+        <item>400402-00005B</item>
+        <item>CA3300</item>
+    </array>
+
+    <array name="filtroCombustibleSeg">
+        <item></item>
+        <item>BF7753</item>
+        <item>400504-00078</item>
+        <item>6754-71-6370</item>
+        <item>600-319-3750</item>
+    </array>
+
+    <array name="preFiltro">
+        <item></item>
+        <item>DA2450</item>
+    </array>
+
+    <array name="desIncrustante">
+        <item></item>
+        <item>Clean Shester S527</item>
+    </array>
+
+
+    <!-- INVENTARIO -->
+    <array name="title_inventario">
+        <item>FILTROS CATERPILLAR 966H</item>
+        <item>FILTROS DOOSAN DL320A</item>
+        <item>FILTROS KOMATSU PC200-8MO</item>
+        <item>FILTROS KOMATSU PC210 -10MO</item>
+        <item>LUBRICANTES Y MSICELANESO</item>
+    </array>
+
+    <array name="des_caterpila">
+        <item>F. Aceite Motor</item>
+        <item>F. Combustible</item>
+        <item>F. Combustible</item>
+        <item>F. Servo</item>
+        <item>F. Cabina</item>
+        <item>F. Hidráulico</item>
+        <item>F. Hidráulico</item>
+        <item>F. Aire Interno</item>
+        <item>F. Aire Externo</item>
+        <item>F. Prefiltro</item>
+    </array>
+    <array name="cod_caterpila">
+        <item>B99</item>
+        <item>BF1399SP</item>
+        <item>BF7753</item>
+        <item>PT9407</item>
+        <item>PA3781</item>
+        <item>BT9353 MPG</item>
+        <item>BT8309 MPG</item>
+        <item>RS3999</item>
+        <item>RS3998</item>
+        <item>DA2450</item>
+    </array>
+
+    <array name="des_doorsan">
+        <item>F. Aceite de Motor</item>
+        <item>F. Combustible Primario</item>
+        <item>F. Combustible</item>
+        <item>F. Servotransmision</item>
+        <item>F. Piloto</item>
+        <item>F. Hidraulico</item>
+        <item>F. Aire Cabina</item>
+        <item>F. Aire Interno</item>
+        <item>F. Aire Externo</item>
+        <item>F. Prefiltro</item>
+    </array>
+    <array name="cod_doorsan">
+        <item>B7239</item>
+        <item>400508-00063</item>
+        <item>400403-00126 BF7813</item>
+        <item>BT9422</item>
+        <item>PT9493-MPG</item>
+        <item>400504-00227</item>
+        <item>400402-00005B</item>
+        <item>RS3870</item>
+        <item>RS3871</item>
+        <item>DA2450</item>
+    </array>
+
+    <array name="des_komatsu1">
+        <item>F. Aceite Motor</item>
+        <item>F. Trampa Combustible</item>
+        <item>F. Combustible</item>
+        <item>F. Cabina Interno</item>
+        <item>F. Hidráulico Elemento</item>
+        <item>F. Respiradero Hudraulico</item>
+        <item>F. Piloto</item>
+        <item>F. Aire Interno</item>
+        <item>F. Aire Externo</item>
+    </array>
+    <array name="cod_komatsu1">
+        <item>6736-51-5146</item>
+        <item>6754-71-6800</item>
+        <item>6754-71-6370</item>
+        <item>CA3300</item>
+        <item>207-60-71183</item>
+        <item>421-60-35170</item>
+        <item>20Y-62-51691</item>
+        <item>RS3717</item>
+        <item>RS3517</item>
+    </array>
+
+    <array name="des_komatsu2">
+        <item>F. Aceite Motor</item>
+        <item>F. Trampa Combustible</item>
+        <item>F. Combustible</item>
+        <item>F. Cabina Interno</item>
+        <item>F. Hidráulico Elemento</item>
+        <item>F. Respiradero Hidraulic</item>
+        <item>F. Piloto</item>
+        <item>F. Aire Interno</item>
+        <item>F. Aire Externo</item>
+        <item>F. Refrigerante</item>
+    </array>
+    <array name="cod_komatsu2">
+        <item>6742-01-4540</item>
+        <item>600-319-3610</item>
+        <item>600-319-3750</item>
+        <item>CA3300</item>
+        <item>207-60-71183</item>
+        <item>421-60-35170</item>
+        <item>20Y-62-51691</item>
+        <item>RS3717</item>
+        <item>RS3517</item>
+        <item>600-411-5110</item>
+    </array>
+
+    <array name="aceites_mecelanios">
+        <item>Aceite 15W40</item>
+        <item>Aceite Hidráulico</item>
+        <item>Aceite Hidráulico</item>
+        <item>Aceite Mandos Finales</item>
+        <item>Desincrustante</item>
+        <item>Grasa</item>
+        <item>Refrigerante</item>
+        <item>Refrigerante</item>
+        <item>Waypall</item>
+    </array>
+    <array name="cod_aceites">
+        <item>15w40</item>
+        <item>ISO 68</item>
+        <item>TO30</item>
+        <item>80W90</item>
+        <item>S527</item>
+        <item>G-Litio</item>
+        <item>Motor</item>
+        <item>A/C R134</item>
+        <item>X70</item>
+    </array>
+
+    <!-- INSPECCION -->
+
+    <array name="inspec_excavadora">
+        <item>Bloqueo/etiquetado</item>
+        <item>Revisar nivel de liquido de refrigerante</item>
+        <item>Revisar nivel de Aceite de Motor</item>
+        <item>Estado y tensión de correas</item>
+        <item>Revisar fugas de aceite motor apagado</item>
+        <item>Fugas de combustible Apagado</item>
+        <item>Revisar nivel aceite motor de giro</item>
+        <item>Revisar mangueras hidráulicas y center</item>
+        <item>Estado de estribos y pasamanos</item>
+        <item>Revisión del nivel de aceite hidráulico</item>
+
+        <item>Revisión de fugas bomba hidráulica</item>
+        <item>Estado de Sprockets, Tensoras, Carriles</item>
+        <item>Estado de cadenas</item>
+        <item>Estado del Boom y mangueras</item>
+        <item>Engrasado general del equipo</item>
+        <item>Estado de Cucharon</item>
+        <item>Cambio de filtros de aire</item>
+        <item>Desbloqueo de Equipo</item>
+        <item>Estado del cinturón de seguridad</item>
+        <item>Estado de silla del operador</item>
+
+        <item>Encendido de maquina</item>
+        <item>Revisión de indicadores de tablero</item>
+        <item>Estado luces exploradoras cabina</item>
+        <item>Funcionamiento de Camara Retroceso</item>
+        <item>Revision de vidrios y espejos</item>
+        <item>Estado de Luces de Trabajo</item>
+        <item>Estado de luz Estroboscópica-(Baliza)</item>
+        <item>Verificar Funcionamiento de sistema de A/Acond</item>
+        <item>Estado de pito</item>
+        <item>Estado Alarma de reversa</item>
+
+        <item>Estado de sistema de Plumillas</item>
+        <item>Verificación y activación bloqueo hidráulico</item>
+        <item>Revisar fugas de aceite - Encendido</item>
+        <item>Revisar fugas de combustible - Encendido</item>
+        <item>Inspección alrededor de Equipo</item>
+        <item>Bajar el capo</item>
+        <item>Realizar limpieza de Cabina</item>
+    </array>
+
+    <array name="inspec_cargador">
+        <item>Bloqueo y Etiquetado</item>
+        <item>Niviel de Aceite Servo – Transmisión</item>
+        <item>Nivel aceite hidráulico</item>
+        <item>Nivel de liquido refrigerante</item>
+        <item>Nivel de Aceite de Motor</item>
+        <item>Estado y tensión de correas</item>
+        <item>Estado y sopleteo de Radiador</item>
+        <item>Fugas de combustible Apagado</item>
+        <item>Fugas de aceite Apagado</item>
+        <item>Estado de llantas, rines, pernos, balde</item>
+
+        <item>Estado de estribos y pasamanos</item>
+        <item>Estado de mangueras y cilindros</item>
+        <item>Revisión de ajuste de crucetas</item>
+        <item>Engrasado de pasadores de levante y centro</item>
+        <item>Cambio de Filtros de Aire de Motor</item>
+        <item>Desbloqueo del equipo</item>
+        <item>Estado del cinturón de seguridad</item>
+        <item>Estado de silla del operador</item>
+        <item>Encendido de maquina</item>
+        <item>Revisión de indicadores de tablero</item>
+
+        <item>Monitor y Cámara de retroceso</item>
+        <item>Vidrios y Espejos</item>
+        <item>Presión llantas Delant Izq:( ) Der:( )</item>
+        <item>Presión llantas Traser Izq:( ) Der:( )</item>
+        <item>Estado luces exploradoras cabina</item>
+        <item>Estado Luces de trabajo</item>
+        <item>Estado de direccionales</item>
+        <item>Estado luces de stop</item>
+        <item>Estado de luz Estroboscópica-(Baliza)</item>
+        <item>Verificar sistema de A/Acond</item>
+
+        <item>Funcionamiento de pito</item>
+        <item>Estado Alarma de reversa</item>
+        <item>Estado de sistema de Plumillas</item>
+        <item>Fugas de aceite – Encendido</item>
+        <item>Fugas de combustible – Encendido</item>
+        <item>Inspección alrededor de Equipo</item>
+        <item>Apagado de equipo</item>
+        <item>Bajar el capo</item>
+        <item>Retira Tacos</item>
+        <item>Encendido de equipo</item>
+
+        <item>Prueba frenos de servicio y de parqueo</item>
+        <item>Realizar limpieza de cabina</item>
+    </array>
+
+    <array name="inspec_vehiculo">
+        <item>Aplicar Freno de Paqueo</item>
+        <item>Colocar tacos de bloqueo</item>
+        <item>Levantar Capo</item>
+        <item>Revisar nivel de Refrigerante</item>
+        <item>Revisar nivel de Aceite de Motor</item>
+        <item>Revisar nivel liquido de frenos</item>
+        <item>Revisar Nivel de Aceite de la Dirección Hidráulica</item>
+        <item>Estado y tensión de correas</item>
+        <item>Revisar fugas de Aceite y combustible</item>
+        <item>Revisión de estado de llantas y Pernos</item>
+
+        <item>Revisión de carrocería y vidrios</item>
+        <item>Revisar cinturón de seguridad</item>
+        <item>Revisar de espejos retrovisores</item>
+        <item>Encendido del vehiculo</item>
+        <item>Revisar indicadores de tablero</item>
+        <item>Revisar funcionamiento de A/C</item>
+        <item>Revisar funcionamiento de luces de trabajo</item>
+        <item>Revisar funcionamiento de exploradoras</item>
+        <item>Revisar funcionamiento de luces estacionarias</item>
+        <item>Revisar funcionamiento de luces direccionales</item>
+
+        <item>Revisar funcionamiento de luces traseras</item>
+        <item>Revisar funcionamiento de luces de reversa</item>
+        <item>Revisar funcionamiento de luces de frenado</item>
+        <item>Revisar funcionamiento de Plumillas</item>
+        <item>Revisar funcionamiento de Pito</item>
+        <item>Revisar funcionamiento Alarma de Retroceso</item>
+        <item>Revisar Fugas de combustible - Encendido</item>
+        <item>Revisar Fugas de Aceite - Encendido</item>
+        <item>Bajar y cerrar el capo</item>
+        <item>Revisar llanta de repuesto</item>
+
+        <item>Retiro y revisión de estado de tacos</item>
+        <item>Realiza procedimiento funcionamiento de frenos</item>
+        <item>Funcionamiento de Freno de estacionamiento</item>
+        <item>Revisar Vigencia de SOAT</item>
+        <item>Revisar Vigencia Tecno mecánica (Si aplica)</item>
+        <item>Vigencia de extintor mencione mes y año de recarga</item>
+        <item>Cuenta con kit de carreteras</item>
+        <item>Cuenta con botiquín</item>
+        <item>Limpieza de la cabina</item>
+    </array>
 </resources>

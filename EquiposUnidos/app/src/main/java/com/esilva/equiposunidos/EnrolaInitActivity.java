@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Application;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,8 +19,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -27,12 +30,15 @@ import android.os.PowerManager;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esilva.equiposunidos.Dialog.CustumerDialog;
+import com.esilva.equiposunidos.application.UnidosApplication;
 import com.esilva.equiposunidos.db.AdminBaseDatos;
 import com.esilva.equiposunidos.db.models.User;
 import com.suprema.BioMiniFactory;
@@ -41,6 +47,7 @@ import com.suprema.IBioMiniDevice;
 import com.suprema.IUsbEventHandler;
 import com.suprema.util.Logger;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,9 +76,12 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
     private List<User> userEnrroled;
     private User userVerify;
     private Boolean isConected;
+    private Uri uri;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_enrola_init);
         isConected = false;
         setView();
@@ -109,6 +119,15 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
+    public void onBackPressed() {
+        if (mCurrentDevice != null && mCurrentDevice.isCapturing() == true) {
+            Toast.makeText(this,"En proceso de captura",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.verificaUser:
@@ -124,6 +143,7 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
                     }
                 }).start();
 */
+
                 doVerify();
                 break;
             default:
@@ -131,18 +151,25 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    private void userVerified(String name){
+    private void userVerified(){
 
+        uri = Uri.parse(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE+"/"+userVerify.getFoto());
+        File pathImage = new File(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE, userVerify.getFoto());
+        if(pathImage.exists() == false)
+            uri = Uri.parse(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE+"/fotico.png");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                custumerDialog = new CustumerDialog(EnrolaInitActivity.this,"SUCCESS!","Bienvenido !  "+name,false);
+
+                custumerDialog = new CustumerDialog(EnrolaInitActivity.this,"SUCCESS!","Bienvenido !  "+userVerify.getNombre(),false,false);
+                custumerDialog.setUriImage(uri);
                 custumerDialog.show();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         custumerDialog.dismiss();
+                        UnidosApplication.setUser(userVerify);
                         goNext();
                     }
                 },3000);
@@ -154,7 +181,7 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                custumerDialog = new CustumerDialog(EnrolaInitActivity.this,"FAIL!","Usuario NO verificado\nPruebe con otro dedo",true);
+                custumerDialog = new CustumerDialog(EnrolaInitActivity.this,"FAIL!","Usuario NO Verificado\nIntente con otro dedo",true,true);
                 custumerDialog.show();
 
                 new Handler().postDelayed(new Runnable() {
@@ -348,12 +375,14 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
                         break;
                     }
                 }
-                sendMsgToHandler(SET_TEXT_LOGVIEW,"Usuario "+userVerify.getNombre());
+
 
                 if(isMached){
-                    userVerified(userVerify.getNombre());
+                    sendMsgToHandler(SET_TEXT_LOGVIEW,"Usuario "+userVerify.getNombre());
+                    userVerified();
                 }else{
                     userNotVerified();
+                    return true;
                 }
 
             }
@@ -389,7 +418,8 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
             if (errorCode == IBioMiniDevice.ErrorCode.CTRL_ERR_IS_CAPTURING.value()) {
                 scrollBottom("Other capture function is running. abort capture function first!");
             } else if (errorCode == IBioMiniDevice.ErrorCode.CTRL_ERR_CAPTURE_ABORTED.value()) {
-                Logger.d("CTRL_ERR_CAPTURE_ABORTED occured.");
+                scrollBottom("CTRL_ERR_CAPTURE_ABORTED occured.");
+                //Logger.d("CTRL_ERR_CAPTURE_ABORTED occured.");
             } else if (errorCode == IBioMiniDevice.ErrorCode.CTRL_ERR_FAKE_FINGER.value()) {
                 scrollBottom("Fake Finger Detected");
                 if (mCurrentDevice != null && mCurrentDevice.getLfdLevel() > 0) {

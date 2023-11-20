@@ -2,14 +2,12 @@ package com.esilva.equiposunidos.Setting;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.esilva.equiposunidos.R;
 
@@ -32,6 +30,8 @@ public class UserFragment extends Fragment {
     public interface ItemListener{
         void OnClickCargar();
         void OnClickEnrolar();
+        void OnClickActividad();
+        void OnClickReporte();
     }
     private ItemListener listener;
     public UserFragment() {
@@ -70,6 +70,7 @@ public class UserFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
+
         CardView cargar = view.findViewById(R.id.registrarUsuarios);
         cargar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +83,20 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 listener.OnClickEnrolar();
+            }
+        });
+        CardView actividad = view.findViewById(R.id.cargarActividad);
+        actividad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.OnClickActividad();
+            }
+        });
+        CardView reporte = view.findViewById(R.id.operacionUsuario);
+        reporte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //listener.OnClickReporte();
             }
         });
 
@@ -98,7 +113,4 @@ public class UserFragment extends Fragment {
 
     }
 
-    public void setListener(ItemListener listener){
-        this.listener = listener;
-    }
 }

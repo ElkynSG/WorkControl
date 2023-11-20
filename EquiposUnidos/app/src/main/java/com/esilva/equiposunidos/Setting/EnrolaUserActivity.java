@@ -30,6 +30,8 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -85,6 +87,8 @@ public class EnrolaUserActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_enrola_user);
 
         setView();
@@ -234,14 +238,14 @@ public class EnrolaUserActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
 
-                custumerDialog = new CustumerDialog(this, "SUCCESS!", "Usuario enrolado con exito", false);
+                custumerDialog = new CustumerDialog(this, "SUCCESS!", "Usuario enrolado con exito", false,true);
             } else {
-                custumerDialog = new CustumerDialog(this, "FAIL!", "Usuario NO enrolado con exito", true);
+                custumerDialog = new CustumerDialog(this, "FAIL!", "Usuario NO enrolado con exito", true,true);
             }
             custumerDialog.show();
             adminBaseDatos.closeBaseDtos();
         }else{
-            new CustumerDialog(this, "SUCCESS!", "Hullas NO capturadas", true).show();
+            new CustumerDialog(this, "SUCCESS!", "Hullas NO capturadas", true,true).show();
         }
     }
 

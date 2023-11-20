@@ -33,7 +33,7 @@
                 android:textSize="20sp"/>
 
             <TextView
-                android:id="@+id/fecha_hora"
+                android:id="@+id/fecha_horaMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_logo"
@@ -90,7 +90,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_menu"
+                    android:background="@drawable/button_selector"
                     android:orientation="vertical">
 
                     <ImageView
@@ -113,7 +113,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btMantenimeinto"
+                android:id="@+id/btInventario"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -129,7 +129,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_menu"
+                    android:background="@drawable/button_selector"
                     android:orientation="vertical">
 
                     <ImageView
@@ -162,7 +162,7 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/btInventario"
+                android:id="@+id/btManteni"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
@@ -178,7 +178,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_menu"
+                    android:background="@drawable/button_selector"
                     android:orientation="vertical">
 
                     <ImageView
@@ -216,7 +216,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/shape_menu"
+                    android:background="@drawable/button_selector"
                     android:orientation="vertical">
 
                     <ImageView

@@ -25,17 +25,22 @@ import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.esilva.equiposunidos.Setting.SettingActivity;
+import com.esilva.equiposunidos.application.UnidosApplication;
 import com.esilva.equiposunidos.db.AdminBaseDatos;
+import com.esilva.equiposunidos.db.models.User;
 import com.esilva.equiposunidos.util.Util;
 import com.google.android.material.snackbar.Snackbar;
 import com.suprema.util.Logger;
 
 import java.io.File;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout inicio;
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         setView();
 
@@ -73,12 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             int PermisoStorageRead = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
             int PermisoStorageWrite = ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            if( PermisoStorageRead == PackageManager.PERMISSION_GRANTED && PermisoStorageWrite == PackageManager.PERMISSION_GRANTED){
+            int PermisoLocation = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
+            int PermisoLocationCourse = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION);
+            if( PermisoStorageRead == PackageManager.PERMISSION_GRANTED && PermisoStorageWrite == PackageManager.PERMISSION_GRANTED &&
+                    PermisoLocation == PackageManager.PERMISSION_GRANTED && PermisoLocationCourse == PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(this,"permiso staora otorgado",Toast.LENGTH_LONG);
             }else{
                 requestPermissions(new String[]{
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
 
                 },REQUEST_COD);
             }
@@ -120,15 +132,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.inicio:
-                if(verifyUser(view))
-                    startActivity(new Intent(this,EnrolaInitActivity.class));
+                /*if(verifyUser(view)) {
+                    Intent intent = new Intent(this, EnrolaInitActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }*/
+
+
+
+                AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
+                List<User> users = adminBaseDatos.usu_getAll();
+                adminBaseDatos.closeBaseDtos();
+                UnidosApplication.setUser(users.get(7));
+
+                Intent intent = new Intent(this, MenuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                /*startActivity(new Intent(this,SettingActivity.class));*/
                 break;
             default:
                 break;
         }
     }
-    private Boolean verifyUser(View view){
-        Boolean bRet = true;
+    private boolean verifyUser(View view){
+        boolean bRet = true;
         AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
         if(adminBaseDatos.usu_getAll() == null){
             Util.SnackbarCreate("Usuarios","Usuarios no registrado, por favor agregarlos", "Ir a Config",this, SettingActivity.class,view);

@@ -3,6 +3,7 @@ package com.esilva.equiposunidos.Dialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -20,13 +21,15 @@ public class CustumerDialog extends Dialog {
     private TextView tvMessage;
     private ImageView imaDialog;
     private Button btDialog;
-    Animation animation;
-    public CustumerDialog(@NonNull Context context,String title,String message, Boolean color) {
+    private Animation animation;
+    private Uri uriImage;
+    public CustumerDialog(@NonNull Context context,String title,String message, Boolean color,boolean isShowButton) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setBackgroundDrawableResource(R.color.transparant);
         setCancelable(false);
         setContentView(R.layout.custumer_dialog);
+        uriImage = null;
         tvTitle = findViewById(R.id.tvTitleDialog);
         tvTitle.setText(title);
         tvMessage = findViewById(R.id.tvMessageDialog);
@@ -42,18 +45,29 @@ public class CustumerDialog extends Dialog {
         animation = AnimationUtils.loadAnimation(context,R.anim.app_item_zoomin);
         imaDialog.setAnimation(animation);
 
-        btDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+        if(isShowButton) {
+            btDialog.setVisibility(View.VISIBLE);
+            btDialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dismiss();
+                }
+            });
+        }else {
+            btDialog.setVisibility(View.GONE);
+        }
 
     }
 
     @Override
     public void show() {
+        if(uriImage != null)
+            imaDialog.setImageURI(uriImage);
         super.show();
         imaDialog.startAnimation(animation);
+    }
+
+    public void setUriImage(Uri uriUmageIn){
+        this.uriImage = uriUmageIn;
     }
 }

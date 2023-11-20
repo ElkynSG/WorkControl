@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEE4"
+    android:background="@color/setting_user"
     tools:context=".Setting.UserFragment">
 
    <LinearLayout
@@ -102,6 +102,96 @@
                    android:gravity="left|center_vertical"
                    android:layout_gravity="center_vertical"
                    android:text="Enrolar usuarios"
+                   android:textColor="#444"
+                   android:textSize="20sp" />
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="0.1"
+                   android:src="@drawable/navig"/>
+
+           </LinearLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/operacionUsuario"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginStart="@dimen/margin_card"
+           android:layout_marginEnd="@dimen/margin_card"
+           android:layout_marginBottom="@dimen/margin_card"
+           android:backgroundTint="#fff"
+           android:foreground="?selectableItemBackground"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="10dp">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@drawable/shape_item"
+               android:orientation="horizontal">
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="0.1"
+                   android:layout_gravity="left"
+                   android:src="@drawable/user_mod" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.8"
+                   android:paddingLeft="10dp"
+                   android:gravity="left|center_vertical"
+                   android:layout_gravity="center_vertical"
+                   android:text="Operaciones con Usuario"
+                   android:textColor="#444"
+                   android:textSize="20sp" />
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="0.1"
+                   android:src="@drawable/navig"/>
+
+           </LinearLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/cargarActividad"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginStart="@dimen/margin_card"
+           android:layout_marginEnd="@dimen/margin_card"
+           android:layout_marginBottom="@dimen/margin_card"
+           android:backgroundTint="#fff"
+           android:foreground="?selectableItemBackground"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="10dp">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@drawable/shape_item"
+               android:orientation="horizontal">
+
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_height="match_parent"
+                   android:layout_weight="0.1"
+                   android:layout_gravity="left"
+                   android:src="@drawable/actividad" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.8"
+                   android:paddingLeft="10dp"
+                   android:gravity="left|center_vertical"
+                   android:layout_gravity="center_vertical"
+                   android:text="Cargar Actividades"
                    android:textColor="#444"
                    android:textSize="20sp" />
 

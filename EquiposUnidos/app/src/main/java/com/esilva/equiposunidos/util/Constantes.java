@@ -24,6 +24,31 @@ public class Constantes {
     public static final String FILE_REPORT = "EquiposUnidos/Reportes";
     public static final String FILE_IMAGE = "EquiposUnidos/Imagenes";
 
+    public static final int SHEET_USUARIOS = 0;
+    public static final int SHEET_ACTIVIDADES = 1;
+    public static final int SHEET_EQUIPOS = 2;
+    public static final int SHEET_TIPO_MANTENI = 3;
+    public static final int SHEET_LUGARES = 4;
+    public static final int SHEET_TECNICOS = 5;
+
+    public static final String VALUE_INTENT_TEXT = "MyLLaveText";
+    public static final String VALUE_INTENT_BOOLEAN = "MyLLaveBoolean";
+
+    public static final int PERFIL_NIVEL_1 = 1;
+    public static final int PERFIL_NIVEL_2 = 2;
+    public static final int PERFIL_NIVEL_3 = 3;
+    public static final int PERFIL_NIVEL_4 = 4;
+    public static final int PERFIL_NIVEL_5 = 5;
+    public static final int PERFIL_NIVEL_6 = 6;
+    public static final int PERFIL_NIVEL_7 = 7;
+    public static final int PERFIL_NIVEL_8 = 8;
+
+    public static final int EQUIPO_TIPO_CARGADOR = 0;
+    public static final int EQUIPO_TIPO_EXCAVADORA = 1;
+    public static final int EQUIPO_TIPO_OTRO = 2;
+
+    public static final String IMAGE_FIRMA = "firmaMante.png";
+
 
     /*   biometrica  */
     //basic event
