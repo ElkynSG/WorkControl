@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo_logo"
+    tools:context=".Inventario.InventarioActivity">
+
+    <LinearLayout
+        android:id="@+id/layout0"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTitleFormInventa"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/color_logo"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:layout_marginEnd="100dp"
+            android:layout_marginTop="35dp"
+            android:text="INVENTARIO ACTUAL"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FECHA Y HORA"
+                android:textStyle="bold"
+                android:textColor="@color/color_logo"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/fecha_horaInven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_logo"
+                android:text="30/04/2023  11:14:34"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:layout_marginEnd="5dp"
+        android:layout_marginStart="5dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.5"
+            android:background="@color/color_logo"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitu1_Inven"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="FILTROS CATERPILLAR 966H"
+                android:background="@color/white"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/color_logo"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="Descripcion"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="Codigo"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv1Cantidad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:text="Cantidad"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:paddingStart="10dp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listInve1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+        <View
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="52dp"
+            android:layout_marginBottom="15dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.5"
+            android:layout_marginBottom="10dp"
+            android:background="@color/color_logo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitu2_Inven"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="FILTROS CATERPILLAR 966H"
+                android:background="@color/white"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/color_logo"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="Descripcion"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:text="Codigo"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv2Cantidad"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:text="Cantidad"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin="1dp"
+                    android:background="@color/color_logo"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listInve2"
+                android:layout_marginEnd="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btInvenConti"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"
+            android:text="CONTINUAR"/>
+
+        <Button
+            android:id="@+id/btInvenRegresar"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"
+            android:text="REGRESAR"/>
+
+        <Button
+            android:id="@+id/btInvenHome"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:background="@drawable/button_selector"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="home"/>
+    </LinearLayout>
+
+</LinearLayout>

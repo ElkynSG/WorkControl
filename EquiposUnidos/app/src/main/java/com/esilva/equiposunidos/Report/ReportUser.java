@@ -24,6 +24,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ReportUser {
@@ -51,6 +54,7 @@ public class ReportUser {
     private AdminBaseDatos adminBaseDatos;
 
     public static final String TEMPLATE_USER = "template_user.xlsx";
+    public static final String ROUTE_FILE_USER = "RegistroUsuarios";
     public ReportUser(Context context) {
         this.context = context;
     }
@@ -90,7 +94,7 @@ public class ReportUser {
 
     private void createFile() {
         String[] fechaHora = Util.getFechaHoraCom();
-        rutaFile = FILE_REPORT+"/"+fechaHora[3];
+        rutaFile = FILE_REPORT+"/"+ROUTE_FILE_USER+"/"+fechaHora[3];
         numDia = Integer.valueOf(fechaHora[2]);
         File directorio2 = new File(Environment.getExternalStorageDirectory(), rutaFile);
         if (!directorio2.exists()) {
@@ -100,7 +104,7 @@ public class ReportUser {
 
     private void createFileOld() {
         String[] fechaHora = Util.getFechaOldCom();
-        rutaFile = FILE_REPORT+"/"+fechaHora[3];
+        rutaFile = FILE_REPORT+"/"+ROUTE_FILE_USER+"/"+fechaHora[3];
         File directorio2 = new File(Environment.getExternalStorageDirectory(), rutaFile);
         if (!directorio2.exists()) {
             directorio2.mkdirs();
@@ -159,7 +163,7 @@ public class ReportUser {
 
             Workbook workbook = new XSSFWorkbook(fis);
 
-            Sheet sheet = workbook.getSheetAt(1);  // Accede a la primera hoja
+            Sheet sheet = workbook.getSheetAt(0);  // Accede a la primera hoja
 
             rowNum = sheet.getRow(5);
             cell = rowNum.getCell(4);
@@ -282,8 +286,8 @@ public class ReportUser {
 
                 FileInputStream fis = new FileInputStream(template);
                 Workbook workbook = new XSSFWorkbook(fis);
-                Sheet sheet = workbook.getSheetAt(1);  // Accede a la primera hoja
-                workbook.setSheetName(1,user.getNombre());
+                Sheet sheet = workbook.getSheetAt(0);  // Accede a la primera hoja
+                workbook.setSheetName(0,user.getNombre());
 
                 rowNum = sheet.getRow(5);
                 cell = rowNum.getCell(4);
@@ -376,6 +380,9 @@ public class ReportUser {
                 }
 
                 File path2 = new File(Environment.getExternalStorageDirectory(), rutaFile+"/"+getNameFile());
+                if(path2.exists())
+                    path2.delete();
+
                 try {
                     FileOutputStream outputStream = new FileOutputStream(path2);
                     workbook.write(outputStream);
@@ -419,7 +426,21 @@ public class ReportUser {
     }
     private String getNameFile(){
         String st[] = user.getNombre().split(" ",-1);
-        return fechaMes+"_"+ st[0]+"_"+String.valueOf(user.getCedula())+".xlsx";
+        return st[0]+"_"+String.valueOf(user.getCedula())+".xlsx";
+    }
+
+
+    public boolean clearDataOld(){
+        adminBaseDatos = new AdminBaseDatos(context);
+        Calendar calendarTresMesesAtras = Calendar.getInstance();
+        calendarTresMesesAtras.add(Calendar.MONTH, -3);
+        Date fechaTresMesesAtras = calendarTresMesesAtras.getTime();
+
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fechaTresMesesAtrasFormateada = formatoFecha.format(fechaTresMesesAtras);
+        boolean b = adminBaseDatos.usu_deleteeMonthBefore(fechaTresMesesAtrasFormateada);
+        Log.d("DP_DLOG","clearDataOld "+"usu_deleteeMonthBefore "+b);
+        return b;
     }
 
 }

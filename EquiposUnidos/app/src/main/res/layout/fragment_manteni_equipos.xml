@@ -177,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_item_config"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -194,7 +194,7 @@
                     android:paddingLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:layout_gravity="center_vertical"
-                    android:text="Carga de listas Tecnicos de Mantenimiento"
+                    android:text="Carga de listas Tecnicos y supervisores"
                     android:textColor="#444"
                     android:textSize="20sp" />
 

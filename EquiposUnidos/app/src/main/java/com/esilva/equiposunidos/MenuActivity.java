@@ -27,11 +27,15 @@ import com.esilva.equiposunidos.Mantenimiento.TipoManteniActivity;
 import com.esilva.equiposunidos.RegistroInOut.RegisterInOutActivity;
 import com.esilva.equiposunidos.Setting.SettingActivity;
 import com.esilva.equiposunidos.application.UnidosApplication;
+import com.esilva.equiposunidos.db.AdminBaseDatos;
+import com.esilva.equiposunidos.db.models.Equipos;
 import com.esilva.equiposunidos.db.models.User;
+import com.esilva.equiposunidos.util.Util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -117,25 +121,28 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.settings:
-                startActivity(new Intent(MenuActivity.this, SettingActivity.class));
-                break;
-            case R.id.btIngreso:
-                startActivity(new Intent(MenuActivity.this, RegisterInOutActivity.class));
-                break;
-            case R.id.btManteni:
-                startActivity(new Intent(MenuActivity.this, TipoManteniActivity.class));
-                break;
-            case R.id.btInventario:
-                startActivity(new Intent(MenuActivity.this, MenuInventarioActivity.class));
-                break;
-            case R.id.btInspeccion:
-                startActivity(new Intent(MenuActivity.this, MenuInspeccionActivity.class));
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id ==  R.id.settings) {
+            startActivity(new Intent(MenuActivity.this, SettingActivity.class));
         }
+        else if( id == R.id.btIngreso) {
+            if (checkConfig(view))
+                startActivity(new Intent(MenuActivity.this, RegisterInOutActivity.class));
+        }
+        else if( id == R.id.btManteni) {
+            if (checkConfig(view))
+                startActivity(new Intent(MenuActivity.this, TipoManteniActivity.class));
+        }
+        else if( id == R.id.btInventario) {
+            if (checkConfig(view))
+                startActivity(new Intent(MenuActivity.this, MenuInventarioActivity.class));
+        }
+        else if( id == R.id.btInspeccion) {
+            if (checkConfig(view))
+                startActivity(new Intent(MenuActivity.this, MenuInspeccionActivity.class));
+        }
+
     }
 
     @Override
@@ -175,4 +182,32 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
+
+    private boolean checkConfig(View view){
+        AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
+        List<String> lugares;
+        List<Equipos> ListEquipo;
+        List<String> listTecnicos;
+        ListEquipo = adminBaseDatos.equi_getAll();
+
+        if(ListEquipo  == null || ListEquipo.isEmpty()){
+            Util.SnackbarCreate("Equipos","Lista de equipos NO cargados", "Ir a Splash",this, MainActivity.class,view);
+            return false;
+        }
+
+        lugares = adminBaseDatos.luga_getAll();
+        if(lugares  == null || lugares.isEmpty()){
+            Util.SnackbarCreate("Lugares","Lista de lugares NO cargados", "Ir a Splash",this, MainActivity.class,view);
+            return false;
+        }
+
+        listTecnicos = adminBaseDatos.tec_getAll();
+        if(listTecnicos  == null || listTecnicos.isEmpty()){
+            Util.SnackbarCreate("Tecnicos","Lista de tecnicos NO cargados", "Ir a Splash",this, MainActivity.class,view);
+            return false;
+        }
+        return true;
+    }
+
+
 }

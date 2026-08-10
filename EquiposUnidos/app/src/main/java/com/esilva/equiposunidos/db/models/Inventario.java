@@ -22,7 +22,19 @@ public class Inventario {
         description = strDescrip;
         codigo = strCodigo;
         cantidad = "";
+    }
 
+    public Inventario(String strDescrip,String strCodigo,String strCantidad){
+        isTitle = false;
+        if(strDescrip == null){
+            description = "";
+            codigo = "";
+            cantidad = "";
+        }else {
+            description = strDescrip;
+            codigo = strCodigo;
+            cantidad = strCantidad;
+        }
     }
 
     public boolean isTitle() {

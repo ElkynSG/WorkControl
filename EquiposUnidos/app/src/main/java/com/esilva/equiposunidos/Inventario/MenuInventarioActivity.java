@@ -53,24 +53,28 @@ public class MenuInventarioActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch (view.getId()){
-            case R.id.btIngresosInv:
-                intent = new Intent(this, FormInventarioActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.btSalidasInv:
-                //intent = new Intent(this,FormRegisterInOutActivity.class);
-                //startActivity(intent);
-                break;
-            case R.id.btInvenReport:
+        int id = view.getId();
 
-                break;
-            case R.id.btInventariRegreso:
-                onBackPressed();
-                break;
-            default:
-                break;
+        if( id ==  R.id.btIngresosInv) {
+            intent = new Intent(this, FormInventarioActivity.class);
+            intent.putExtra(VALUE_INTENT_TEXT, "INVENTARIO - ENTRADA");
+            intent.putExtra(VALUE_INTENT_BOOLEAN, true);
+            startActivity(intent);
         }
+        else if( id == R.id.btSalidasInv) {
+            intent = new Intent(this, FormInventarioActivity.class);
+            intent.putExtra(VALUE_INTENT_TEXT, "INVENTARIO - SALIDA");
+            intent.putExtra(VALUE_INTENT_BOOLEAN, false);
+            startActivity(intent);
+        }
+        else if( id == R.id.btInvenReport) {
+            intent = new Intent(this, InventarioActivity.class);
+            startActivity(intent);
+        }
+        else if( id == R.id.btInventariRegreso) {
+            onBackPressed();
+        }
+
     }
 
     @Override

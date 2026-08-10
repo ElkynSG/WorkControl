@@ -14,10 +14,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="20dp"
+        android:gravity="bottom|right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_logo"
+            android:textSize="18sp"
+            android:textStyle="italic"
+
+            android:text="Version:"/>
+    </LinearLayout>
 
 
 

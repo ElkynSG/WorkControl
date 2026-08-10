@@ -15,10 +15,13 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,20 +32,23 @@ import com.esilva.equiposunidos.Mantenimiento.InsumosActivity;
 import com.esilva.equiposunidos.R;
 import com.esilva.equiposunidos.Report.ReportInspeccion;
 import com.esilva.equiposunidos.application.UnidosApplication;
+import com.esilva.equiposunidos.db.AdminBaseDatos;
 import com.esilva.equiposunidos.db.models.Equipos;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class InpeccDataActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView imageView;
     private TextView tvTitle,tvOper,tvFecha;
-    private EditText edOper,edCedula,edSuper,edObservaciones,edHorome,edLugar;
+    private EditText edCedula,edObservaciones,edHorome;
     private Button btGuardar,btRegresar,btHome;
     private LinearLayout liCedula;
+    private Spinner spLugar,spOper,spSuper;
 
     private Equipos equipos;
     private String stOperador,stCedula,stSupervisor,stHorometro,stLugar,stObservacion;
@@ -50,6 +56,8 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
     private ProgressDialog progressDialog;
     private CustumerDialog custumerDialog;
     private boolean isHora;
+    private  List<String> lugares;
+    private  List<String> tecnicos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +67,10 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
         equipos = UnidosApplication.getEquipo();
         progressDialog = new ProgressDialog(this,"Generando Reporte");
+        AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
+        lugares = adminBaseDatos.luga_getAll();
+        tecnicos = adminBaseDatos.tec_getAll();
+        adminBaseDatos.closeBaseDtos();
 
         setView();
     }
@@ -88,13 +100,56 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         }
 
         tvOper = findViewById(R.id.tvDataInOper);
+        spOper = findViewById(R.id.spDataInOper);
+        ArrayAdapter<String> adapter0 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tecnicos);
+        adapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spOper.setAdapter(adapter0);
+        spOper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                stOperador = tecnicos.get(i);
+            }
 
-        edOper = findViewById(R.id.edDataInOper);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         edCedula = findViewById(R.id.edDataInCedula);
-        edSuper = findViewById(R.id.edDataInSuper);
+        spSuper = findViewById(R.id.spDataInSuper);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tecnicos);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spSuper.setAdapter(adapter1);
+        spSuper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                stSupervisor = tecnicos.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         edObservaciones = findViewById(R.id.edDataInObserva);
         edHorome = findViewById(R.id.edDataInHorom);
-        edLugar = findViewById(R.id.edDataInLugar);
+        spLugar = findViewById(R.id.spDataInLugar);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lugares);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spLugar.setAdapter(adapter);
+        spLugar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                stLugar = lugares.get(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
 
         btGuardar = findViewById(R.id.btContInGuardar);
@@ -109,54 +164,52 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btContInGuardar:
-                if(validarData()){
-                    btGuardar.setEnabled(false);
-                    btRegresar.setEnabled(false);
-                    btHome.setEnabled(false);
-                    progressDialog.show();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ReportInspeccion reportInspeccion = new ReportInspeccion(InpeccDataActivity.this);
-                            reportInspeccion.setCedula(stCedula);
-                            reportInspeccion.setHorometro(stHorometro);
-                            reportInspeccion.setLugar(stLugar);
-                            reportInspeccion.setObservacion(stObservacion);
-                            reportInspeccion.setSupervisor(stSupervisor);
-                            reportInspeccion.setOperador(stOperador);
-                            boolean b = reportInspeccion.buildReport();
-                            showResult(b);
-                        }
-                    }).start();
-                }else{
-                    Toast.makeText(this,"Por favor diligencie todos los datos",Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.btContInRegresa:
+        int id = view.getId();
+        if (id == R.id.btContInGuardar)
+        {
+
+        }
+
+        if (id == R.id.btContInGuardar) {
+            if (validarData()) {
                 btGuardar.setEnabled(false);
                 btRegresar.setEnabled(false);
                 btHome.setEnabled(false);
-                onBackPressed();
-                break;
-            case R.id.btContInHome:
-                btGuardar.setEnabled(false);
-                btRegresar.setEnabled(false);
-                btHome.setEnabled(false);
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-                break;
-            default:
-                break;
+                progressDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ReportInspeccion reportInspeccion = new ReportInspeccion(InpeccDataActivity.this);
+                        reportInspeccion.setCedula(stCedula);
+                        reportInspeccion.setHorometro(stHorometro);
+                        reportInspeccion.setLugar(stLugar);
+                        reportInspeccion.setObservacion(stObservacion);
+                        reportInspeccion.setSupervisor(stSupervisor);
+                        reportInspeccion.setOperador(stOperador);
+                        boolean b = reportInspeccion.buildReport();
+                        showResult(b);
+                    }
+                }).start();
+            } else {
+                Toast.makeText(this, "Por favor diligencie todos los datos", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.btContInRegresa) {
+            btGuardar.setEnabled(false);
+            btRegresar.setEnabled(false);
+            btHome.setEnabled(false);
+            onBackPressed();
+        }
+        else if (id == R.id.btContInHome) {
+            btGuardar.setEnabled(false);
+            btRegresar.setEnabled(false);
+            btHome.setEnabled(false);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
     }
 
     private boolean validarData() {
         stObservacion = edObservaciones.getText().toString();
-        stOperador = edOper.getText().toString();
-        if (stOperador.isEmpty())
-            return false;
 
         if(equipos.getTipo() == EQUIPO_TIPO_OTRO){
             stCedula = edCedula.getText().toString().trim();
@@ -164,16 +217,8 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
                 return false;
         }
 
-        stSupervisor = edSuper.getText().toString();
-        if (stSupervisor.isEmpty())
-            return false;
-
         stHorometro = edHorome.getText().toString();
         if (stHorometro.isEmpty())
-            return false;
-
-        stLugar = edLugar.getText().toString();
-        if (stLugar.isEmpty())
             return false;
 
         return true;

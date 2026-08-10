@@ -191,31 +191,30 @@ public class EnrolaUserActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btPulgar:
-                idFinger = FINGER_PULDAR;
-                tvLog.setText(null);
-                doEnrollment();
-                break;
-            case R.id.btIndice:
-                idFinger = FINGER_INDICE;
-                tvLog.setText(null);
-                doEnrollment();
-                break;
-            case R.id.btMedio:
-                idFinger = FINGER_MEDIO;
-                tvLog.setText(null);
-                doEnrollment();
-                break;
-            case R.id.btRegresar:
-                finish();
-                break;
-            case R.id.btEnrolar:
-                SaveUser();
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id == R.id.btPulgar) {
+            idFinger = FINGER_PULDAR;
+            tvLog.setText(null);
+            doEnrollment();
         }
+        else if( id == R.id.btIndice) {
+            idFinger = FINGER_INDICE;
+            tvLog.setText(null);
+            doEnrollment();
+        }
+        else if( id == R.id.btMedio) {
+            idFinger = FINGER_MEDIO;
+            tvLog.setText(null);
+            doEnrollment();
+        }
+        else if( id == R.id.btRegresar) {
+            finish();
+        }
+        else if( id == R.id.btEnrolar) {
+            SaveUser();
+        }
+
     }
 
     private void SaveUser() {

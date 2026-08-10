@@ -97,15 +97,14 @@
                     android:textColor="@color/color_logo"
                     android:text="OPERADOR:"/>
 
-                <EditText
-                    android:id="@+id/edDataInOper"
+
+                <Spinner
+                    android:id="@+id/spDataInOper"
                     android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_editext"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:paddingStart="10dp"
-                    android:singleLine="true" />
+                    android:backgroundTintMode="multiply"
+                    android:foreground="@drawable/shape_spinner"
+                    android:backgroundTint="#000"
+                    android:layout_height="40dp" />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/liCedulaInp"
@@ -154,15 +153,13 @@
                     android:textColor="@color/color_logo"
                     android:text="SUPERVISOR:"/>
 
-                <EditText
-                    android:id="@+id/edDataInSuper"
+                <Spinner
+                    android:id="@+id/spDataInSuper"
                     android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_editext"
-                    android:inputType="text"
-                    android:paddingStart="10dp"
-                    android:maxLength="30"
-                    android:singleLine="true" />
+                    android:backgroundTintMode="multiply"
+                    android:foreground="@drawable/shape_spinner"
+                    android:backgroundTint="#000"
+                    android:layout_height="40dp" />
 
             </LinearLayout>
             <LinearLayout
@@ -204,15 +201,13 @@
                     android:textColor="@color/color_logo"
                     android:text="LUGAR:"/>
 
-                <EditText
-                    android:id="@+id/edDataInLugar"
+                <Spinner
+                    android:id="@+id/spDataInLugar"
                     android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/shape_editext"
-                    android:inputType="text"
-                    android:paddingStart="10dp"
-                    android:maxLength="30"
-                    android:singleLine="true" />
+                    android:backgroundTintMode="multiply"
+                    android:foreground="@drawable/shape_spinner"
+                    android:backgroundTint="#000"
+                    android:layout_height="40dp" />
 
             </LinearLayout>
             <LinearLayout

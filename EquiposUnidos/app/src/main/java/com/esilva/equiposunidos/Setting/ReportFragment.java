@@ -93,6 +93,25 @@ public class ReportFragment extends Fragment {
             }
         });
 
+        CardView clearData = view.findViewById(R.id.clearData);
+
+        clearData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog.setMessage("Limpiando datos");
+                progressDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ReportUser reportUser = new ReportUser(getContext());
+                        boolean b = reportUser.clearDataOld();
+                        showResultClear(b);
+                    }
+                }).start();
+
+            }
+        });
+
         return view;
     }
 
@@ -107,6 +126,23 @@ public class ReportFragment extends Fragment {
                     custumerDialog = new CustumerDialog(context,"SUCCESS!","Reportes generado correctamente",!result,true);
                 else
                     custumerDialog = new CustumerDialog(context,"FAIL!","Error generado el Reporte",!result,true);
+                custumerDialog.show();
+            }
+        });
+
+    }
+
+    private void showResultClear(boolean result){
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(progressDialog!=null)
+                    progressDialog.dismiss();
+                CustumerDialog custumerDialog;
+                if(result)
+                    custumerDialog = new CustumerDialog(context,"SUCCESS!","Datos limpiados correctamente",!result,true);
+                else
+                    custumerDialog = new CustumerDialog(context,"FAIL!","Error limpiando datos",!result,true);
                 custumerDialog.show();
             }
         });

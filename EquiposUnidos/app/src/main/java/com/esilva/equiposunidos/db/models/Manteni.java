@@ -3,6 +3,7 @@ package com.esilva.equiposunidos.db.models;
 public class Manteni {
     private String descrition;
     private boolean bSI;
+    private boolean bNO;
     private boolean bNA;
     private boolean bTitle;
     private String comentario;
@@ -14,6 +15,14 @@ public class Manteni {
     public Manteni(String descrition, boolean bTitle) {
         this.descrition = descrition;
         this.bTitle = bTitle;
+    }
+
+    public boolean isbNO() {
+        return bNO;
+    }
+
+    public void setbNO(boolean bNO) {
+        this.bNO = bNO;
     }
 
     public Manteni(String descrition) {

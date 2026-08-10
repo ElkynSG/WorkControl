@@ -21,23 +21,74 @@
             android:background="@color/white"
             android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/che1List"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_margin="1dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"/>
+        <CheckBox
+            android:id="@+id/che1List"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_margin="1dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
 
-            <CheckBox
-                android:id="@+id/che2List"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_margin="1dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"/>
+        <CheckBox
+            android:id="@+id/che2List"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_margin="1dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+
+        <CheckBox
+            android:id="@+id/che3List"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_margin="1dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/tv1List"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_logo"
+            android:textColor="@color/white"
+            android:layout_margin="1dp"
+            android:gravity="left"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:paddingStart="7dp"
+            android:visibility="gone"
+            android:text="SI"/>
+
+        <TextView
+            android:id="@+id/tv2List"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_logo"
+            android:textColor="@color/white"
+            android:layout_margin="1dp"
+            android:paddingStart="7dp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:text="NO"/>
+
+        <TextView
+            android:id="@+id/tv3List"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_logo"
+            android:textColor="@color/white"
+            android:layout_margin="1dp"
+            android:paddingStart="7dp"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:text="N/A"/>
 
 
 </LinearLayout>

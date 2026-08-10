@@ -12,6 +12,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.esilva.equiposunidos.db.models.Equipos;
+import com.esilva.equiposunidos.db.models.Historial;
+import com.esilva.equiposunidos.db.models.InventarioAceite;
+import com.esilva.equiposunidos.db.models.InventarioCaterpila;
+import com.esilva.equiposunidos.db.models.InventarioDoorsan;
+import com.esilva.equiposunidos.db.models.InventarioKomatsu1;
+import com.esilva.equiposunidos.db.models.InventarioKomatsu2;
+import com.esilva.equiposunidos.db.models.InventarioMicelanio;
 import com.esilva.equiposunidos.db.models.Registros;
 import com.esilva.equiposunidos.db.models.User;
 
@@ -152,9 +159,20 @@ public class AdminBaseDatos {
     public void usu_deleteUsers(){
         BaseDeDatos.delete(TABLE_USUARIO,null,null);
     }
-    public void usu_deleteByUser(int cedula){
+    public int usu_deleteByUser(int cedula){
+        return BaseDeDatos.delete(TABLE_USUARIO,USU_CEDULA + " = ?",new String[] { String.valueOf(cedula) });
+    }
+    public boolean usu_deleteeMonthBefore(String date){
 
-        BaseDeDatos.delete(TABLE_USUARIO,USU_CEDULA + " = ?",new String[] { String.valueOf(cedula) });
+        String sentenciaSQL = "DELETE FROM " +TABLE_IN_OUT +" WHERE "+REG_FECHA_IN+" < ?";
+        String[] argumentos = {date};
+
+        try {
+            BaseDeDatos.execSQL(sentenciaSQL, argumentos);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
     public Boolean usu_isExistUsers(){
         try {
@@ -693,7 +711,609 @@ public class AdminBaseDatos {
         return true;
     }
     ////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    // TODO Tabla INVENTARIO
+    public InventarioCaterpila cat_get(){
+        InventarioCaterpila caterpila = new InventarioCaterpila();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_CATERPILA,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                caterpila.setId(fila.getInt(1));
+                caterpila.setfAceiteMotor(fila.getInt(2));
+                caterpila.setfCombustibleBF13(fila.getInt(3));
+                caterpila.setfCombustibleBF77(fila.getInt(4));
+                caterpila.setfServo(fila.getInt(5));
+                caterpila.setfCabina(fila.getInt(6));
+                caterpila.setfHidrailicoBT93(fila.getInt(7));
+                caterpila.setfHidrailicoBT83(fila.getInt(8));
+                caterpila.setfAireInterno(fila.getInt(9));
+                caterpila.setfAireExterno(fila.getInt(10));
+                caterpila.setfPrefijo(fila.getInt(11));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return caterpila;
+    }
+    public long cat_insert(InventarioCaterpila caterpila){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(CAT_ID, caterpila.getId());
+            registro.put(CAT_ACEITE_MOTOR, caterpila.getfAceiteMotor());
+            registro.put(CAT_COMB_BF13, caterpila.getfCombustibleBF13());
+            registro.put(CAT_COMB_BF77, caterpila.getfCombustibleBF77());
+            registro.put(CAT_SERVO, caterpila.getfServo());
+            registro.put(CAT_CABINA, caterpila.getfCabina());
+            registro.put(CAT_HIDRA_BT93, caterpila.getfHidrailicoBT93());
+            registro.put(CAT_HIDRA_BT83, caterpila.getfHidrailicoBT83());
+            registro.put(CAT_AIRE_INTER, caterpila.getfAireInterno());
+            registro.put(CAT_AIRE_EXTER, caterpila.getfAireExterno());
+            registro.put(CAT_PREFIJO, caterpila.getfPrefijo());
+            return BaseDeDatos.insert(TABLE_CATERPILA,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean cat_update(InventarioCaterpila caterpila){
+        try {
+            String sentence = "UPDATE "+ TABLE_CATERPILA+" SET "+
+                        CAT_ACEITE_MOTOR+   "=?,"+
+                        CAT_COMB_BF13+      "=?,"+
+                        CAT_COMB_BF77+      "=?,"+
+                        CAT_SERVO+          "=?,"+
+                        CAT_CABINA+         "=?,"+
+                        CAT_HIDRA_BT93+     "=?,"+
+                        CAT_HIDRA_BT83+     "=?,"+
+                        CAT_AIRE_INTER+     "=?,"+
+                        CAT_AIRE_EXTER+     "=?,"+
+                        CAT_PREFIJO+        "=?"+
+                    " WHERE "+ CAT_ID+"="+String.valueOf(caterpila.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
 
+            BaseDeDatos.execSQL(sentence, new Object[]{caterpila.getfAceiteMotor(), caterpila.getfCombustibleBF13(),caterpila.getfCombustibleBF77(),
+                                                       caterpila.getfServo(),       caterpila.getfCabina(),         caterpila.getfHidrailicoBT93(),caterpila.getfHidrailicoBT83(),
+                                                       caterpila.getfAireInterno(), caterpila.getfAireExterno(),    caterpila.getfPrefijo()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void cat_delete(){
+        BaseDeDatos.delete(TABLE_CATERPILA,null,null);
+    }
+    public Boolean cat_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_CATERPILA,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public InventarioDoorsan door_get(){
+        InventarioDoorsan doorsan = new InventarioDoorsan();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_DOORSAN,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                doorsan.setId(fila.getInt(1));
+                doorsan.setfAceiteMotor(fila.getInt(2));
+                doorsan.setfCombustible4005(fila.getInt(3));
+                doorsan.setfCombustible4004(fila.getInt(4));
+                doorsan.setfServoTrasmision(fila.getInt(5));
+                doorsan.setfPiloto(fila.getInt(6));
+                doorsan.setfHidrailico(fila.getInt(7));
+                doorsan.setfAireCabina(fila.getInt(8));
+                doorsan.setfAireInterno(fila.getInt(9));
+                doorsan.setfAireExterno(fila.getInt(10));
+                doorsan.setfPrefijo(fila.getInt(11));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return doorsan;
+    }
+    public long door_insert(InventarioDoorsan doorsan){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(DOOR_ID,            doorsan.getId());
+            registro.put(DOOR_ACEITE_MOTOR,  doorsan.getfAceiteMotor());
+            registro.put(DOOR_CONB_4005,     doorsan.getfCombustible4005());
+            registro.put(DOOR_CONB_4004,     doorsan.getfCombustible4004());
+            registro.put(DOOR_SERVO,         doorsan.getfServoTrasmision());
+            registro.put(DOOR_PILOTO,        doorsan.getfPiloto());
+            registro.put(DOOR_HIDRAILI,      doorsan.getfHidrailico());
+            registro.put(DOOR_AIRE_CABI,     doorsan.getfAireCabina());
+            registro.put(DOOR_AIRE_INTER,    doorsan.getfAireInterno());
+            registro.put(DOOR_AIRE_INTER,    doorsan.getfAireExterno());
+            registro.put(DOOR_PREFIJO,       doorsan.getfPrefijo());
+            return BaseDeDatos.insert(TABLE_DOORSAN,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean door_update(InventarioDoorsan doorsan){
+        try {
+            String sentence = "UPDATE "+ TABLE_DOORSAN+" SET "+
+                    DOOR_ACEITE_MOTOR+   "=?,"+
+                    DOOR_CONB_4005+      "=?,"+
+                    DOOR_CONB_4004+      "=?,"+
+                    DOOR_SERVO+          "=?,"+
+                    DOOR_PILOTO+         "=?,"+
+                    DOOR_HIDRAILI+       "=?,"+
+                    DOOR_AIRE_CABI+      "=?,"+
+                    DOOR_AIRE_INTER+     "=?,"+
+                    DOOR_AIRE_EXTER+     "=?,"+
+                    DOOR_PREFIJO+        "=?"+
+                    " WHERE "+ DOOR_ID+"="+String.valueOf(doorsan.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
+
+            BaseDeDatos.execSQL(sentence, new Object[]{doorsan.getfAceiteMotor(), doorsan.getfCombustible4005(),doorsan.getfCombustible4004(),
+                                                       doorsan.getfServoTrasmision(),       doorsan.getfPiloto(),         doorsan.getfHidrailico(),
+                                                       doorsan.getfAireCabina(), doorsan.getfAireInterno(), doorsan.getfAireExterno(),
+                                                       doorsan.getfPrefijo()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void door_delete(){
+        BaseDeDatos.delete(TABLE_DOORSAN,null,null);
+    }
+    public Boolean door_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_DOORSAN,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public InventarioKomatsu1 komat1_get(){
+        InventarioKomatsu1 komatsu = new InventarioKomatsu1();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_KOMAT_01,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                komatsu.setId(fila.getInt(1));
+                komatsu.setfAceiteMotor(fila.getInt(2));
+                komatsu.setfTrampaCombustible(fila.getInt(3));
+                komatsu.setfCombustible(fila.getInt(4));
+                komatsu.setfCabina(fila.getInt(5));
+                komatsu.setfHidraulico(fila.getInt(6));
+                komatsu.setfRespiradero(fila.getInt(7));
+                komatsu.setfPiloto(fila.getInt(8));
+                komatsu.setfAireInterno(fila.getInt(9));
+                komatsu.setfAireExterno(fila.getInt(10));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return komatsu;
+    }
+    public long komat1_insert(InventarioKomatsu1 komatsu1){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(KOMA1_ID,        komatsu1.getId());
+            registro.put(KOMA1_MOTOR,     komatsu1.getfAceiteMotor());
+            registro.put(KOMA1_TRMPA,     komatsu1.getfTrampaCombustible());
+            registro.put(KOMA1_COMBUS,    komatsu1.getfCombustible());
+            registro.put(KOMA1_CABINA,    komatsu1.getfCabina());
+            registro.put(KOMA1_HIDRAU,    komatsu1.getfHidraulico());
+            registro.put(KOMA1_RESPIR,    komatsu1.getfRespiradero());
+            registro.put(KOMA1_PILOTO,    komatsu1.getfPiloto());
+            registro.put(KOMA1_INTER,     komatsu1.getfAireInterno());
+            registro.put(KOMA1_EXTERN,    komatsu1.getfAireExterno());
+            return BaseDeDatos.insert(TABLE_KOMAT_01,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean komat1_update(InventarioKomatsu1 komatsu1){
+        try {
+            String sentence = "UPDATE "+ TABLE_KOMAT_01+" SET "+
+                    KOMA1_MOTOR+   "=?,"+
+                    KOMA1_TRMPA+   "=?,"+
+                    KOMA1_COMBUS+  "=?,"+
+                    KOMA1_CABINA+  "=?,"+
+                    KOMA1_HIDRAU+  "=?,"+
+                    KOMA1_RESPIR+  "=?,"+
+                    KOMA1_PILOTO+  "=?,"+
+                    KOMA1_INTER+   "=?,"+
+                    KOMA1_EXTERN+  "=?"+
+                    " WHERE "+ KOMA1_ID+"="+String.valueOf(komatsu1.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
+
+            BaseDeDatos.execSQL(sentence, new Object[]{komatsu1.getfAceiteMotor(), komatsu1.getfTrampaCombustible(),komatsu1.getfCombustible(),
+                                                    komatsu1.getfCabina(),       komatsu1.getfHidraulico(),         komatsu1.getfRespiradero(),
+                                                    komatsu1.getfPiloto(), komatsu1.getfAireInterno(), komatsu1.getfAireExterno()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void komat1_delete(){
+        BaseDeDatos.delete(TABLE_KOMAT_01,null,null);
+    }
+    public Boolean komat1_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_KOMAT_01,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public InventarioKomatsu2 komat2_get(){
+        InventarioKomatsu2 komatsu = new InventarioKomatsu2();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_KOMAT_2,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                komatsu.setId(fila.getInt(1));
+                komatsu.setfAceiteMotor(fila.getInt(2));
+                komatsu.setfTrampaCombustible(fila.getInt(3));
+                komatsu.setfCombustible(fila.getInt(4));
+                komatsu.setfCabina(fila.getInt(5));
+                komatsu.setfHidraulico(fila.getInt(6));
+                komatsu.setfRespiradero(fila.getInt(7));
+                komatsu.setfPiloto(fila.getInt(8));
+                komatsu.setfAireInterno(fila.getInt(9));
+                komatsu.setfAireExterno(fila.getInt(10));
+                komatsu.setfRefregerante(fila.getInt(11));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return komatsu;
+    }
+    public long komat2_insert(InventarioKomatsu2 komatsu2){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(KOMA2_ID,     komatsu2.getId());
+            registro.put(KOMA2_MOTOR,  komatsu2.getfAceiteMotor());
+            registro.put(KOMA2_TRMPA,  komatsu2.getfTrampaCombustible());
+            registro.put(KOMA2_COMBUS, komatsu2.getfCombustible());
+            registro.put(KOMA2_CABINA, komatsu2.getfCabina());
+            registro.put(KOMA2_HIDRAU, komatsu2.getfHidraulico());
+            registro.put(KOMA2_RESPIR, komatsu2.getfRespiradero());
+            registro.put(KOMA2_PILOTO, komatsu2.getfPiloto());
+            registro.put(KOMA2_INTER,  komatsu2.getfAireInterno());
+            registro.put(KOMA2_EXTERN, komatsu2.getfAireExterno());
+            registro.put(KOMA2_REFRIG, komatsu2.getfRefregerante());
+            return BaseDeDatos.insert(TABLE_KOMAT_2,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean komat2_update(InventarioKomatsu2 komatsu2){
+        try {
+            String sentence = "UPDATE "+ TABLE_KOMAT_2+" SET "+
+                    KOMA2_MOTOR+   "=?,"+
+                    KOMA2_TRMPA+   "=?,"+
+                    KOMA2_COMBUS+  "=?,"+
+                    KOMA2_CABINA+  "=?,"+
+                    KOMA2_HIDRAU+  "=?,"+
+                    KOMA2_RESPIR+  "=?,"+
+                    KOMA2_PILOTO+  "=?,"+
+                    KOMA2_INTER+   "=?,"+
+                    KOMA2_EXTERN+  "=?,"+
+                    KOMA2_REFRIG+  "=?"+
+                    " WHERE "+ KOMA2_ID+"="+String.valueOf(komatsu2.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
+
+            BaseDeDatos.execSQL(sentence, new Object[]{komatsu2.getfAceiteMotor(), komatsu2.getfTrampaCombustible(),komatsu2.getfCombustible(),
+                                                        komatsu2.getfCabina(),       komatsu2.getfHidraulico(),         komatsu2.getfRespiradero(),
+                                                        komatsu2.getfPiloto(), komatsu2.getfAireInterno(), komatsu2.getfAireExterno(),
+                                                        komatsu2.getfRefregerante()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void komat2_delete(){
+        BaseDeDatos.delete(TABLE_KOMAT_2,null,null);
+    }
+    public Boolean komat2_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_KOMAT_2,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public InventarioAceite aceite_get(){
+        InventarioAceite aceite = new InventarioAceite();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_ACEITES,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                aceite.setId(fila.getInt(1));
+                aceite.setA15W40(fila.getInt(2));
+                aceite.setIso68(fila.getInt(3));
+                aceite.setTo30(fila.getInt(4));
+                aceite.setA80W90(fila.getInt(5));
+                aceite.setS527(fila.getInt(6));
+                aceite.setG_Litio(fila.getInt(7));
+                aceite.setMotor(fila.getInt(8));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return aceite;
+    }
+    public long aceite_insert(InventarioAceite aceite){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(ACEI_ID,     aceite.getId());
+            registro.put(ACEI_A15W40,  aceite.getA15W40());
+            registro.put(ACEI_ISO68,  aceite.getIso68());
+            registro.put(ACEI_TO30, aceite.getTo30());
+            registro.put(ACEI_A80W90, aceite.getA80W90());
+            registro.put(ACEI_S527, aceite.getS527());
+            registro.put(ACEI_G_LITIO, aceite.getG_Litio());
+            registro.put(ACEI_MOTOR, aceite.getMotor());
+            return BaseDeDatos.insert(TABLE_ACEITES,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean aceite_update(InventarioAceite aceite){
+        try {
+            String sentence = "UPDATE "+ TABLE_ACEITES+" SET "+
+                    ACEI_A15W40+   "=?,"+
+                    ACEI_ISO68+    "=?,"+
+                    ACEI_TO30+     "=?,"+
+                    ACEI_A80W90+   "=?,"+
+                    ACEI_S527+     "=?,"+
+                    ACEI_G_LITIO+  "=?,"+
+                    ACEI_MOTOR+    "=?"+
+                    " WHERE "+ ACEI_ID+"="+String.valueOf(aceite.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
+
+            BaseDeDatos.execSQL(sentence, new Object[]{aceite.getA15W40(), aceite.getIso68(),aceite.getTo30(),
+                                                        aceite.getA80W90(),       aceite.getS527(),         aceite.getG_Litio(),
+                                                        aceite.getMotor()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void aceite_delete(){
+        BaseDeDatos.delete(TABLE_ACEITES,null,null);
+    }
+    public Boolean aceite_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_ACEITES,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public InventarioMicelanio micelanio_get(){
+        InventarioMicelanio micelanio = new InventarioMicelanio();
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_MICELANIO,null);
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                micelanio.setId(fila.getInt(1));
+                micelanio.setAC_R134(fila.getInt(2));
+                micelanio.setX70(fila.getInt(3));
+                break;
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return micelanio;
+    }
+    public long mice_insert(InventarioMicelanio micelanio){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(MICEL_ID,     micelanio.getId());
+            registro.put(MICEL_AC_R134, micelanio.getAC_R134());
+            registro.put(MICEL_X70,  micelanio.getX70());
+            return BaseDeDatos.insert(TABLE_MICELANIO,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public boolean mice_update(InventarioMicelanio micelanio){
+        try {
+            String sentence = "UPDATE "+ TABLE_MICELANIO+" SET "+
+                    MICEL_AC_R134+   "=?,"+
+                    MICEL_X70+       "=?"+
+                    " WHERE "+ MICEL_ID+"="+String.valueOf(micelanio.getId());
+            Log.d("DP_DLOG","reg_update "+"sentende "+sentence);
+
+            BaseDeDatos.execSQL(sentence, new Object[]{micelanio.getAC_R134(), micelanio.getX70()});
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    public void mice_delete(){
+        BaseDeDatos.delete(TABLE_MICELANIO,null,null);
+    }
+    public Boolean mice_isExistTec(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_MICELANIO,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+
+    public void initInventario(){
+        if(!cat_isExistTec()){
+            InventarioCaterpila inventarioCaterpila = new InventarioCaterpila();
+            cat_insert(inventarioCaterpila);
+        }
+        if(!door_isExistTec()){
+            InventarioDoorsan inventarioDoorsan = new InventarioDoorsan();
+            door_insert(inventarioDoorsan);
+        }
+        if(!komat1_isExistTec()){
+            InventarioKomatsu1 inventarioKomatsu1 = new InventarioKomatsu1();
+            komat1_insert(inventarioKomatsu1);
+        }
+        if(!komat2_isExistTec()){
+            InventarioKomatsu2 inventarioKomatsu2 = new InventarioKomatsu2();
+            komat2_insert(inventarioKomatsu2);
+        }
+        if(!aceite_isExistTec()){
+            InventarioAceite inventarioAceite = new InventarioAceite();
+            aceite_insert(inventarioAceite);
+        }
+        if(!mice_isExistTec()){
+            InventarioMicelanio inventarioMicelanio = new InventarioMicelanio();
+            mice_insert(inventarioMicelanio);
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////
+    public List<Historial> getAll10_histo(){
+        List<Historial> history = new ArrayList<>();
+        String[] columnas = {NUM_ITEMS, HIS_IS_ADD,HIS_FECHA, HIS_USER,HIS_ITEMS};
+        String orderBy = "ID" + " DESC";
+        String limit = "10";
+        try {
+            Cursor fila = BaseDeDatos.query(TABLE_HISTORIAL, columnas, null, null, null, null, orderBy, limit);
+
+            if(fila == null )
+                return null;
+            if(!fila.moveToFirst())
+                return null;
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                Historial historial = new Historial();
+                historial.setNumItems(fila.getInt(0));
+                historial.setAdd(fila.getInt(1)>0?true:false);
+                historial.setFecha(fila.getString(2));
+                historial.setUser(fila.getString(3));
+                historial.setData(fila.getString(4));
+
+                history.add(historial);
+            }
+        }catch (Exception e){
+            return null;
+        }
+        return history;
+    }
+    private long insert_histo(Historial historial){
+        try {
+            ContentValues registro = new ContentValues();
+            registro.put(NUM_ITEMS,     historial.getNumItems());
+            registro.put(HIS_IS_ADD,    historial.isAdd()?1:0);
+            registro.put(HIS_FECHA, historial.getFecha());
+            registro.put(HIS_USER,  historial.getUser());
+            registro.put(HIS_ITEMS,  historial.getData());
+            return BaseDeDatos.insert(TABLE_HISTORIAL,null,registro);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public void history_delete(){
+        BaseDeDatos.delete(TABLE_HISTORIAL,null,null);
+    }
+    public Boolean history_isExist(){
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_HISTORIAL,null);
+            if(fila == null )
+                return false;
+            if(!fila.moveToFirst())
+                return false;
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+    private int countHistory(){
+        String consulta = "SELECT COUNT(*) FROM "+TABLE_HISTORIAL;
+        Cursor cursor = BaseDeDatos.rawQuery(consulta, null);
+        int numeroDeRegistros = 0;
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                numeroDeRegistros = cursor.getInt(0);
+            }
+
+            cursor.close();
+        }
+        return numeroDeRegistros;
+    }
+
+    public long history_insert(Historial historial){
+        long ret=0;
+        int conta = countHistory();
+
+        if(conta>10){
+            insert_histo(historial);
+            List<Historial> all_histo = getAll10_histo();
+            history_delete();
+            for (Historial historial1:all_histo) {
+                ret = insert_histo(historial1);
+            }
+        }else {
+            return insert_histo(historial);
+        }
+        return ret;
+    }
 
     public void closeBaseDtos(){
         BaseDeDatos.close();

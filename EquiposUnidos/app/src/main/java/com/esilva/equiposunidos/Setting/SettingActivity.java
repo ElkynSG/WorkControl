@@ -20,11 +20,13 @@ import com.esilva.equiposunidos.Dialog.CustumerDialog;
 import com.esilva.equiposunidos.Dialog.CustumerDialogButton;
 import com.esilva.equiposunidos.Dialog.ProgressDialog;
 import com.esilva.equiposunidos.R;
+import com.esilva.equiposunidos.Report.ReportUser;
 import com.esilva.equiposunidos.db.AdminBaseDatos;
 import com.esilva.equiposunidos.db.models.Equipos;
 import com.esilva.equiposunidos.db.models.User;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -82,47 +84,62 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btSettUsuario:
-                if(fregCurrent != fragmentUsuarios) {
-                    baseSetting.setBackgroundColor(getColor(R.color.setting_user));
-                    transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_setting,fragmentUsuarios)
-                            .commit();
-                    transaction.addToBackStack(null);
-                    fregCurrent = fragmentUsuarios;
-                }
-                break;
-            case R.id.btMantenimiento:
-                if(fregCurrent != fragMantenimiento) {
-                    baseSetting.setBackgroundColor(getColor(R.color.setting_manteni));
+        int id = view.getId();
 
-                    transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_setting,fragMantenimiento)
-                            .commit();
-                    transaction.addToBackStack(null);
-                    fregCurrent = fragMantenimiento;
-
-                }
-                break;
-            case R.id.btReport:
-                if(fregCurrent != fragReport) {
-                    baseSetting.setBackgroundColor(getColor(R.color.setting_report));
-
-                    transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_setting,fragReport)
-                            .commit();
-                    transaction.addToBackStack(null);
-                    fregCurrent = fragReport;
-
-                }
-                break;
-            default:
-                break;
+        if( id == R.id.btSettUsuario) {
+            if (fregCurrent != fragmentUsuarios) {
+                baseSetting.setBackgroundColor(getColor(R.color.setting_user));
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_setting, fragmentUsuarios)
+                        .commit();
+                transaction.addToBackStack(null);
+                fregCurrent = fragmentUsuarios;
+            }
         }
+        else if( id == R.id.btMantenimiento) {
+            if (fregCurrent != fragMantenimiento) {
+                baseSetting.setBackgroundColor(getColor(R.color.setting_manteni));
+
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_setting, fragMantenimiento)
+                        .commit();
+                transaction.addToBackStack(null);
+                fregCurrent = fragMantenimiento;
+
+            }
+        }
+        else if( id == R.id.btReport) {
+            if (fregCurrent != fragReport) {
+                baseSetting.setBackgroundColor(getColor(R.color.setting_report));
+
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_setting, fragReport)
+                        .commit();
+                transaction.addToBackStack(null);
+                fregCurrent = fragReport;
+
+            }
+        }
+
     }
 
+    private String getDataCell(Cell cell){
+            String result;
+            switch (cell.getCellType()) {
+                case STRING:
+                    result = cell.getStringCellValue();
+                    break;
+                case NUMERIC:
+                    DataFormatter formatter = new DataFormatter();
+                    result = formatter.formatCellValue(cell);
+                    break;
+                default:
+                    result = "";
+                    break;
+            }
 
+        return result;
+    }
     /**************************   carga de usuarios   ***********************/
 
     private void showResult(Boolean isOK,String datos){
@@ -149,7 +166,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            adminBaseDatos.usu_deleteUsers();
+                            //adminBaseDatos.usu_deleteUsers();
                             chargeUser();
                         }
                     }).start();
@@ -176,7 +193,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -186,8 +203,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+            //String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
+            //int num = Integer.valueOf(strnum[0]);
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
             String Perfil;
 
@@ -197,14 +215,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 User user = new User();
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                user.setNombre(cell.getStringCellValue());
+                user.setNombre(getDataCell(cell));
                 Log.d("DP_DLOG","Nombre "+user.getNombre());
                 count++;
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                double numericValue = cell.getNumericCellValue();
-                int longValue = (int) numericValue;
+                int longValue;
+                longValue = Integer.valueOf(getDataCell(cell));
                 user.setCedula(longValue);
                 String cedula = String.valueOf(longValue);
                 Log.d("DP_DLOG","cedula "+cedula);
@@ -212,13 +230,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                user.setCargo(cell.getStringCellValue());
+                user.setCargo(getDataCell(cell));
                 Log.d("DP_DLOG","cargo "+user.getCargo());
                 count++;
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                Perfil = cell.getStringCellValue();
+                Perfil = getDataCell(cell);
+                Log.d("DP_DLOG","Perfil "+Perfil);
                 int perf;
                 if(Perfil.equals(PER_SUPER))
                     user.setPerfil(PERFIL_SUPERADMIN);
@@ -241,13 +260,14 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                user.setFoto(cell.getStringCellValue());
+                user.setFoto(getDataCell(cell));
                 Log.d("DP_DLOG","Foto "+user.getFoto());
 
 
                 Log.d("DP_DLOG","------------------------------------");
                 count+=3;
-                adminBaseDatos.usu_insert(user);
+                long result = adminBaseDatos.usu_insert(user);
+                Log.d("DP_DLOG","result "+result);
             }
         bRet = true;
         } catch (FileNotFoundException e) {
@@ -283,7 +303,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -293,8 +313,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
             String Perfil;
 
@@ -304,7 +324,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 String activity;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                activity = cell.getStringCellValue();
+                activity = getDataCell(cell);
                 Log.d("DP_DLOG","activity "+activity);
                 count++;
 
@@ -364,7 +384,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void OnClickReporte() {
+    public void OnClickOperUser() {
 
     }
 
@@ -386,7 +406,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -396,8 +416,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
 
 
@@ -407,57 +426,57 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setNombre(cell.getStringCellValue());
+                equipo.setNombre(getDataCell(cell));
                 Log.d("DP_DLOG","Nombre "+equipo.getNombre());
                 count++;
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setNumeroRegistro(cell.getStringCellValue());
+                equipo.setNumeroRegistro(getDataCell(cell));
                 Log.d("DP_DLOG","registro "+equipo.getNumeroRegistro());
                 count++;
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setEquipo(cell.getStringCellValue());
+                equipo.setEquipo(getDataCell(cell));
                 Log.d("DP_DLOG","equipo "+ equipo.getEquipo());
                 count++;
 
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setNumeroMotor(cell.getStringCellValue());
+                equipo.setNumeroMotor(getDataCell(cell));
                 Log.d("DP_DLOG","numero motor "+equipo.getNumeroMotor());
 
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setNumeroSerie(cell.getStringCellValue());
+                equipo.setNumeroSerie(getDataCell(cell));
                 Log.d("DP_DLOG","numero serie "+equipo.getNumeroSerie());
 
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setPropietario(cell.getStringCellValue());
+                equipo.setPropietario(getDataCell(cell));
                 Log.d("DP_DLOG","pripietario "+equipo.getPropietario());
 
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setPlaca(cell.getStringCellValue());
+                equipo.setPlaca(getDataCell(cell));
                 Log.d("DP_DLOG","placa "+equipo.getPlaca());
 
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                String strnum2[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-                int num2 = Integer.valueOf(strnum2[0]);
+                //String strnum2[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
+                int num2 = Integer.valueOf(getDataCell(cell));
                 equipo.setTipo(num2);
                 Log.d("DP_DLOG","TIPO "+equipo.getTipo());
 
                 count++;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                equipo.setFoto(cell.getStringCellValue());
+                equipo.setFoto(getDataCell(cell));
                 Log.d("DP_DLOG","Foto "+equipo.getFoto());
 
 
@@ -523,7 +542,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -533,8 +552,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+            //String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
             String Perfil;
 
@@ -544,7 +563,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 String activity;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                activity = cell.getStringCellValue();
+                activity = getDataCell(cell);
                 Log.d("DP_DLOG","activity "+activity);
                 count++;
 
@@ -609,7 +628,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -619,8 +638,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+            //String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
             String Perfil;
 
@@ -630,7 +649,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 String activity;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                activity = cell.getStringCellValue();
+                activity = getDataCell(cell);
                 Log.d("DP_DLOG","activity "+activity);
                 count++;
 
@@ -695,7 +714,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         Row rowNum;
         Cell cell;
         try {
-            File path = new File(Environment.getExternalStorageDirectory(), "COLABORADORES.xlsx");
+            File path = new File(Environment.getExternalStorageDirectory(), PACKAGE_FILE_0);
 
             FileInputStream fis = new FileInputStream(path);
 
@@ -705,24 +724,23 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
             rowNum = sheet.getRow(1);
             cell = rowNum.getCell(1);
-            String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
-            int num = Integer.valueOf(strnum[0]);
+            //String strnum[] = String.valueOf(cell.getNumericCellValue()).replace(".","-").split("-");
+            int num = Integer.valueOf(getDataCell(cell));
             int count=3;
-            String Perfil;
 
 
             Log.d("DP_DLOG","------------------------------------");
             for (int i=0;i<num;i++){
-                String activity;
+                String nombre;
                 rowNum = sheet.getRow(count);
                 cell = rowNum.getCell(1);
-                activity = cell.getStringCellValue();
-                Log.d("DP_DLOG","activity "+activity);
+                nombre = getDataCell(cell);
+                Log.d("DP_DLOG","nombre "+nombre);
                 count++;
 
                 Log.d("DP_DLOG","------------------------------------");
 
-                adminBaseDatos.tec_insert(activity);
+                adminBaseDatos.tec_insert(nombre);
             }
             bRet = true;
         } catch (FileNotFoundException e) {

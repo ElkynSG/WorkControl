@@ -96,28 +96,27 @@ public class ManteCaracterisActivity extends AppCompatActivity implements View.O
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btManteContiCarac:
-                if(verifyData()) {
-                    dataManteni.setATS(true);
-                    dataManteni.setKitDerrames(true);
-                    dataManteni.setBloqueoEtiquetado(true);
-                    dataManteni.setConsecutivo(stConsecutivo);
-                    dataManteni.setHorometro(stHorometro);
-                    dataManteni.setHorometroProx(stHorometroProx);
-                    UnidosApplication.setDataManteni(dataManteni);
-                    if(dataManteni.getTipoManteni().contains("Correctivo"))
-                        startActivity(new Intent(this,ActiCorrectivoActivity.class));
-                    else
-                        startActivity(new Intent(this,ActiPreventivaActivity.class));
-                }
-                break;
-            case R.id.btManteRegresa:
-                onBackPressed();
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id ==  R.id.btManteContiCarac) {
+            if (verifyData()) {
+                dataManteni.setATS(true);
+                dataManteni.setKitDerrames(true);
+                dataManteni.setBloqueoEtiquetado(true);
+                dataManteni.setConsecutivo(stConsecutivo);
+                dataManteni.setHorometro(stHorometro);
+                dataManteni.setHorometroProx(stHorometroProx);
+                UnidosApplication.setDataManteni(dataManteni);
+                if (dataManteni.getTipoManteni().contains("Correctivo"))
+                    startActivity(new Intent(this, ActiCorrectivoActivity.class));
+                else
+                    startActivity(new Intent(this, ActiPreventivaActivity.class));
+            }
         }
+        else if( id == R.id.btManteRegresa) {
+            onBackPressed();
+        }
+
     }
 
     @Override

@@ -55,25 +55,22 @@ public class InventarioAdapter extends BaseAdapter {
 
         convertView = mInflater.inflate(R.layout.listview_invent, null);
 
-        TextView descrip = (TextView) convertView.findViewById(R.id.descripList);
-        TextView codigo = (TextView) convertView.findViewById(R.id.codigoList);
-        EditText cantidad = (EditText) convertView.findViewById(R.id.edCantidad);
+        TextView descrip = (TextView) convertView.findViewById(R.id.tvInvenDescrip);
+        TextView codigo = (TextView) convertView.findViewById(R.id.tvInvenCodigo);
+        TextView cantidad = (TextView) convertView.findViewById(R.id.tvInvenCant);
 
 
         descrip.setText(mList.get(position).getDescription());
         codigo.setText(mList.get(position).getCodigo());
-
-
+        cantidad.setText(mList.get(position).getCantidad());
 
         return convertView;
-
     }
 
 
-    public void addArray(String[] arrayDescrip,String[] arrayCodigo){
-       // mList.add(new Inventario(true));
+    public void addArray(String[] arrayDescrip,String[] arrayCodigo,String[] arrayCantidad){
         for (int i=0;i<arrayDescrip.length;i++) {
-            mList.add(new Inventario(arrayDescrip[i],arrayCodigo[i]));
+            mList.add(new Inventario(arrayDescrip[i],arrayCodigo[i],arrayCantidad[i]));
         }
     }
 

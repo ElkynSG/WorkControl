@@ -70,7 +70,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/enrolarUsuarios"
+            android:id="@+id/clearData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/margin_card"
@@ -92,7 +92,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.1"
                     android:layout_gravity="left"
-                    android:src="@drawable/huella" />
+                    android:src="@drawable/limpiar" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -101,7 +101,7 @@
                     android:paddingLeft="10dp"
                     android:gravity="left|center_vertical"
                     android:layout_gravity="center_vertical"
-                    android:text="Mantenimiento"
+                    android:text="Limpiar datos de registros"
                     android:textColor="#444"
                     android:textSize="20sp" />
 
@@ -124,6 +124,7 @@
             android:backgroundTint="#fff"
             android:foreground="?selectableItemBackground"
             app:cardCornerRadius="15dp"
+            android:visibility="gone"
             app:cardElevation="10dp">
 
             <LinearLayout
@@ -169,6 +170,7 @@
             android:backgroundTint="#fff"
             android:foreground="?selectableItemBackground"
             app:cardCornerRadius="15dp"
+            android:visibility="gone"
             app:cardElevation="10dp">
 
             <LinearLayout

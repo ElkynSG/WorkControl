@@ -368,22 +368,20 @@ public class ActiCorrectivoActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btContiCorre:
-                if(verifyCheck()) {
-                    saveDataManteni();
-                    UnidosApplication.setListManteni(listMante);
-                    startActivity(new Intent(this, InsumosActivity.class));
-                }else
-                    Toast.makeText(this,"Complete la revision, Por favor",Toast.LENGTH_LONG).show();
-                break;
-            case R.id.btCorreRegresa:
-                onBackPressed();
-                break;
-            default:
-                break;
+        int id = view.getId();
 
+        if( id ==  R.id.btContiCorre) {
+            if (verifyCheck()) {
+                saveDataManteni();
+                UnidosApplication.setListManteni(listMante);
+                startActivity(new Intent(this, InsumosActivity.class));
+            } else
+                Toast.makeText(this, "Complete la revision, Por favor", Toast.LENGTH_LONG).show();
         }
+        else if( id == R.id.btCorreRegresa) {
+            onBackPressed();
+        }
+
     }
     private void addList(boolean isSI, String comment){
         Manteni temp1 = new Manteni();

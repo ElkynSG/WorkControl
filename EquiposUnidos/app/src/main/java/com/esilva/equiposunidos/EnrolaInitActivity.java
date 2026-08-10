@@ -129,12 +129,13 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.verificaUser:
-                if (mCurrentDevice != null && mCurrentDevice.isCapturing() == true) {
-                   Toast.makeText(this,"En proceso de captura",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        int id = view.getId();
+        if(id == R.id.verificaUser)
+        {
+            if (mCurrentDevice != null && mCurrentDevice.isCapturing() == true) {
+                Toast.makeText(this,"En proceso de captura",Toast.LENGTH_SHORT).show();
+                return;
+            }
 /*
                 new Thread(new Runnable() {
                     @Override
@@ -144,11 +145,9 @@ public class EnrolaInitActivity extends AppCompatActivity implements View.OnClic
                 }).start();
 */
 
-                doVerify();
-                break;
-            default:
-                break;
+            doVerify();
         }
+
     }
 
     private void userVerified(){

@@ -79,26 +79,24 @@ public class VehiculoInspActivity extends AppCompatActivity  implements View.OnC
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btContiVehic:
-                if (validaData()) {
-                    btContiInspec.setEnabled(false);
-                    btRegresaInsp.setEnabled(false);
-                    UnidosApplication.setListInspeccion(inspeccionAdapter.getmList());
-                    startActivity(new Intent(this, InpeccDataActivity.class));
-                }else{
-                    Toast.makeText(this,"Por favor diligencie todos los datos",Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.btRegresaVehic:
+        int id = view.getId();
+
+        if(id == R.id.btContiVehic) {
+            if (validaData()) {
                 btContiInspec.setEnabled(false);
                 btRegresaInsp.setEnabled(false);
-                onBackPressed();
-                break;
-            default:
-                break;
-
+                UnidosApplication.setListInspeccion(inspeccionAdapter.getmList());
+                startActivity(new Intent(this, InpeccDataActivity.class));
+            } else {
+                Toast.makeText(this, "Por favor diligencie todos los datos", Toast.LENGTH_SHORT).show();
+            }
         }
+        else if(id ==  R.id.btRegresaVehic) {
+            btContiInspec.setEnabled(false);
+            btRegresaInsp.setEnabled(false);
+            onBackPressed();
+        }
+
     }
 
     private boolean validaData(){

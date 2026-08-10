@@ -55,10 +55,17 @@ public class ManteAdapter extends BaseAdapter {
         convertView = mInflater.inflate(R.layout.listview_mante, null);
 
         TextView descrip = (TextView) convertView.findViewById(R.id.descriptionList);
+
+        TextView tv1 = (TextView) convertView.findViewById(R.id.tv1List);
+        TextView tv2 = (TextView) convertView.findViewById(R.id.tv2List);
+        TextView tv3 = (TextView) convertView.findViewById(R.id.tv3List);
+
         CheckBox cheSI = (CheckBox) convertView.findViewById(R.id.che1List);
-        CheckBox cheNA = (CheckBox) convertView.findViewById(R.id.che2List);
+        CheckBox cheNO = (CheckBox) convertView.findViewById(R.id.che2List);
+        CheckBox cheNA = (CheckBox) convertView.findViewById(R.id.che3List);
 
         cheSI.setChecked(mList.get(position).isbSI());
+        cheNO.setChecked(mList.get(position).isbNO());
         cheNA.setChecked(mList.get(position).isbNA());
 
         descrip.setText(mList.get(position).getDescrition());
@@ -67,21 +74,27 @@ public class ManteAdapter extends BaseAdapter {
             descrip.setTextColor(mContext.getColor(R.color.white));
             descrip.setTextSize(20);
             cheSI.setVisibility(View.GONE);
+            cheNO.setVisibility(View.GONE);
             cheNA.setVisibility(View.GONE);
+            tv1.setVisibility(View.VISIBLE);
+            tv2.setVisibility(View.VISIBLE);
+            tv3.setVisibility(View.VISIBLE);
         }
         //cheSI.setChecked(mList.get(position).isbSI());
         //cheNA.setChecked(mList.get(position).isbNA());
 
-        cheNA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        cheNO.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     Manteni manteni = mList.get(position);
                     cheSI.setChecked(false);
-                    manteni.setbNA(true);
+                    cheNA.setChecked(false);
+                    manteni.setbNO(true);
                     manteni.setbSI(false);
+                    manteni.setbNA(false);
                     mList.set(position,manteni);
-                    Log.d("DP_DLOG","onCheckedChanged "+"pos na "+position);
+                    Log.d("DP_DLOG","onCheckedChanged "+"pos no "+position);
                 }
             }
         });
@@ -91,11 +104,29 @@ public class ManteAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     Manteni manteni = mList.get(position);
+                    cheNO.setChecked(false);
                     cheNA.setChecked(false);
-                    manteni.setbNA(false);
+                    manteni.setbNO(false);
                     manteni.setbSI(true);
+                    manteni.setbNA(false);
                     mList.set(position,manteni);
                     Log.d("DP_DLOG","onCheckedChanged "+"pos si "+position);
+                }
+            }
+        });
+
+        cheNA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    Manteni manteni = mList.get(position);
+                    cheSI.setChecked(false);
+                    cheNO.setChecked(false);
+                    manteni.setbNO(false);
+                    manteni.setbSI(false);
+                    manteni.setbNA(true);
+                    mList.set(position,manteni);
+                    Log.d("DP_DLOG","onCheckedChanged "+"pos na "+position);
                 }
             }
         });

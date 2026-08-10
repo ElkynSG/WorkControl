@@ -97,21 +97,20 @@ public class ActiPreventivaActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btContiActi:
-                listItemsMante = generalAdapter.getmList();
-                if(verifyCheck()) {
-                    UnidosApplication.setListManteni(listItemsMante);
-                    startActivity(new Intent(this, InsumosActivity.class));
-                }else
-                    Toast.makeText(this,"Complete la revision, Por favor",Toast.LENGTH_LONG).show();
-                break;
-            case R.id.btActiRegresa:
-                onBackPressed();
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id ==  R.id.btContiActi) {
+            listItemsMante = generalAdapter.getmList();
+            if (verifyCheck()) {
+                UnidosApplication.setListManteni(listItemsMante);
+                startActivity(new Intent(this, InsumosActivity.class));
+            } else
+                Toast.makeText(this, "Complete la revision, Por favor", Toast.LENGTH_LONG).show();
         }
+        else if( id == R.id.btActiRegresa) {
+            onBackPressed();
+        }
+
     }
 
     @Override
@@ -123,7 +122,7 @@ public class ActiPreventivaActivity extends AppCompatActivity implements View.On
         boolean bRet = true;
         for(Manteni ma:listItemsMante) {
             if(!ma.isbTitle()) {
-                if (!ma.isbNA() && !ma.isbSI()) {
+                if (!ma.isbNA() && !ma.isbSI() && !ma.isbNO()) {
                     return false;
                 }
             }

@@ -81,26 +81,24 @@ public class ExcavadoraInspActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btContiInspeExca:
-                if (validaData()) {
-                    btContiInspec.setEnabled(false);
-                    btRegresaInsp.setEnabled(false);
-                    UnidosApplication.setListInspeccion(inspeccionAdapter.getmList());
-                    startActivity(new Intent(this, InpeccDataActivity.class));
-                }else{
-                    Toast.makeText(this,"Por favor diligencie todos los datos",Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case R.id.btRegresaExca:
+        int id = view.getId();
+        if(id == R.id.btContiInspeExca)
+        {
+            if (validaData()) {
                 btContiInspec.setEnabled(false);
                 btRegresaInsp.setEnabled(false);
-                onBackPressed();
-                break;
-            default:
-                break;
-
+                UnidosApplication.setListInspeccion(inspeccionAdapter.getmList());
+                startActivity(new Intent(this, InpeccDataActivity.class));
+            }else{
+                Toast.makeText(this,"Por favor diligencie todos los datos",Toast.LENGTH_SHORT).show();
+            }
+        }else if(id == R.id.btRegresaExca)
+        {
+            btContiInspec.setEnabled(false);
+            btRegresaInsp.setEnabled(false);
+            onBackPressed();
         }
+
     }
 
     private boolean validaData(){

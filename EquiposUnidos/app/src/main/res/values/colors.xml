@@ -15,6 +15,10 @@
     <color name="verde">#00ff00</color>
     <color name="naranja">#FD5B06</color>
     <color name="verde_dialog">#4CAF50</color>
+    <color name="verde_bt">#83D801</color>
+    <color name="verde_bt_press">#67AA02</color>
+    <color name="verde_br_os">#67AA07</color>
+    <color name="verde_br_os_press">#4B7A07</color>
 
     <color name="color_logo">#004164</color>
     <color name="color_logo2">#7A004164</color>

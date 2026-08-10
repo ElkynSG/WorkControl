@@ -51,26 +51,25 @@ public class RegisterInOutActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch (view.getId()){
-            case R.id.btRegistroIn:
-                intent = new Intent(this,FormRegisterInOutActivity.class);
-                intent.putExtra(VALUE_INTENT_TEXT,"REGISTRO DE ENTRADA");
-                intent.putExtra(VALUE_INTENT_BOOLEAN,true);
-                startActivity(intent);
-                break;
-            case R.id.btRegistroOut:
-                intent = new Intent(this,FormRegisterInOutActivity.class);
-                intent.putExtra(VALUE_INTENT_TEXT,"REGISTRO DE SALIDA");
-                intent.putExtra(VALUE_INTENT_BOOLEAN,false);
-                startActivity(intent);
-                break;
-            case R.id.btRegistroRegreso:
-                isHora =false;
-                onBackPressed();
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id == R.id.btRegistroIn) {
+            intent = new Intent(this, FormRegisterInOutActivity.class);
+            intent.putExtra(VALUE_INTENT_TEXT, "REGISTRO DE ENTRADA");
+            intent.putExtra(VALUE_INTENT_BOOLEAN, true);
+            startActivity(intent);
         }
+        else if( id == R.id.btRegistroOut) {
+            intent = new Intent(this, FormRegisterInOutActivity.class);
+            intent.putExtra(VALUE_INTENT_TEXT, "REGISTRO DE SALIDA");
+            intent.putExtra(VALUE_INTENT_BOOLEAN, false);
+            startActivity(intent);
+        }
+        else if( id == R.id.btRegistroRegreso) {
+            isHora = false;
+            onBackPressed();
+        }
+
     }
 
     @Override

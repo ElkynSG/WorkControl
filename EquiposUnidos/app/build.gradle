@@ -10,11 +10,13 @@ android {
         applicationId "com.esilva.equiposunidos"
         minSdk 26
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.01.02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+
 
     buildTypes {
         release {
@@ -30,11 +32,15 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     implementation 'org.apache.poi:poi:5.2.4'
-    implementation 'org.apache.poi:poi-ooxml:5.2.4'
+    implementation('org.apache.poi:poi-ooxml:5.2.4') {
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'xml-apis', module: 'xml-apis'
+    }
     implementation 'org.apache.xmlbeans:xmlbeans:3.1.0'
     implementation 'stax:stax-api:1.0.1'
 

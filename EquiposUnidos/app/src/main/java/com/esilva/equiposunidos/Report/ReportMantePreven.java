@@ -177,6 +177,8 @@ public class ReportMantePreven {
                 if(!mto.isbTitle()) {
                     if (mto.isbSI())
                         cell1.setCellValue("SI");
+                    else if(mto.isbNO())
+                        cell1.setCellValue("NO");
                     else
                         cell1.setCellValue("NA");
                 }

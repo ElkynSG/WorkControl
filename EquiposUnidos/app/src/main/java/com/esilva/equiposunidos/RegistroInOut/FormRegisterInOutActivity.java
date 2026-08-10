@@ -152,18 +152,17 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btFormEnviar:
-                btEnviarForm.setEnabled(false);
-                guardarRegistro();
-                break;
-            case R.id.btFormCancelar:
-                startActivity(new Intent(this, MainActivity.class));
-                this.finish();
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id == R.id.btFormEnviar) {
+            btEnviarForm.setEnabled(false);
+            guardarRegistro();
         }
+        else if( id == R.id.btFormCancelar) {
+            startActivity(new Intent(this, MainActivity.class));
+            this.finish();
+        }
+
     }
 
     private void guardarRegistro(){
@@ -271,35 +270,6 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
         else
             showError(4);
 
-    }
-
-    private void rellenaRegistros(String fecha,int iniDia,int finDia) {
-        // yyyy-MM-dd HH:mm:ss
-        String fechaSplit = fecha.replace(' ','-');
-        String[] temp = fechaSplit.split("-",-1);
-        for(int i=iniDia+1;i<finDia;i++){
-            Registros register = new Registros();
-            register.setDia("--");
-            register.setCedula(userVerify.getCedula());
-
-            register.setActividad_in("---");
-            register.setActividad_out("---");
-            register.setEquipo_in("---");
-            register.setEquipo_out("---");
-            register.setComentario_in("---");
-            register.setComentario_out("---");
-            register.setLongitud_in("0.0");
-            register.setLongitud_out("0.0");
-            register.setLatitud_in("0.0");
-            register.setLatitud_out("0.0");
-            register.setDia_mes(i);
-
-            String tfe = temp[0]+"-"+temp[1]+"-"+String.format("%02d", i);
-            register.setFecha_in(tfe+" 00:00:00");
-            register.setFecha_out(tfe+" 00:00:00");
-
-            adminBaseDatos.reg_insertAll(register);
-        }
     }
 
     private void messageOK(){

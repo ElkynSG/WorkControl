@@ -98,37 +98,34 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btManteConti:
-                UnidosApplication.setDataManteni(dataManteni);
-                startActivity(new Intent(this,ManteCaracterisActivity.class));
-                break;
-            case R.id.btManteCance:
-                startActivity(new Intent(this, MainActivity.class));
-                break;
-            default:
-                break;
+        int id = view.getId();
+
+        if( id ==  R.id.btManteConti) {
+            UnidosApplication.setDataManteni(dataManteni);
+            startActivity(new Intent(this, ManteCaracterisActivity.class));
+        }
+        else if( id == R.id.btManteCance) {
+            startActivity(new Intent(this, MainActivity.class));
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()){
-            case R.id.spTypeMante:
-                dataManteni.setTipoManteni(mantenimientos[i]);
-                break;
-            case R.id.spEquipo:
-                for (Equipos eq:ListEquipo) {
-                    if(eq.getNombre().equals(equipos.get(i)))
-                        UnidosApplication.setEquipo(eq);
-                }
-                break;
-            case R.id.spLugarMante:
-                dataManteni.setLugarMante(lugares.get(i));
-                break;
-            default:
-                break;
+        int id = adapterView.getId();
+
+        if( id ==  R.id.spTypeMante) {
+            dataManteni.setTipoManteni(mantenimientos[i]);
         }
+        else if( id == R.id.spEquipo) {
+            for (Equipos eq : ListEquipo) {
+                if (eq.getNombre().equals(equipos.get(i)))
+                    UnidosApplication.setEquipo(eq);
+            }
+        }
+        else if( id == R.id.spLugarMante) {
+            dataManteni.setLugarMante(lugares.get(i));
+        }
+
     }
 
     @Override

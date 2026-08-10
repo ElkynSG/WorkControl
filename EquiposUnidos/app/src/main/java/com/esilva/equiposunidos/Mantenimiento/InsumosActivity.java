@@ -116,30 +116,29 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btInsumoEnviar:
-                getDataInsumos();
-                if(!verifyData()){
-                    Toast.makeText(this,"Por favor verifique datos",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(!isFirma){
-                    Toast.makeText(this,"Por favor asegurese de firmar",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if(UnidosApplication.getDataManteni().getTipoManteni().contains("Correctivo")) {
-                    generarReporte();
-                }else{
-                    generarReportPreven();
-                }
+        int id = view.getId();
 
-                break;
-            case R.id.btInsumoRegresa:
-                onBackPressed();
-                break;
-            default:
-                break;
+        if( id ==  R.id.btInsumoEnviar) {
+            getDataInsumos();
+            if (!verifyData()) {
+                Toast.makeText(this, "Por favor verifique datos", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (!isFirma) {
+                Toast.makeText(this, "Por favor asegurese de firmar", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (UnidosApplication.getDataManteni().getTipoManteni().contains("Correctivo")) {
+                generarReporte();
+            } else {
+                generarReportPreven();
+            }
+
         }
+        else if( id == R.id.btInsumoRegresa) {
+            onBackPressed();
+        }
+
     }
 
     private void getDataInsumos(){

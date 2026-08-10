@@ -3,6 +3,11 @@ package com.esilva.equiposunidos.util;
 public class Constantes {
     public static final int version = 2;
 
+    public static final String CHANNEL_NOTIFICATION = "201";
+    public static final int re_hora =   23;
+    public static final int re_minu =   30;
+    public static final int re_seg =    0;
+
     public static final String PER_SUPER =          "Superadministrador";
     public static final String PER_MANTE =          "Lider mantenimiento";
     public static final String PER_OPER1=           "Operador nivel 1";
@@ -20,6 +25,7 @@ public class Constantes {
     public static final int PERFIL_SUPER_NIVEL_2 =  6;
     public static final int PERFIL_AXILIAR =        7;
 
+    public static final String PACKAGE_FILE_0 = "EquiposUnidos/COLABORADORES.xlsx";
     public static final String PACKAGE_FILE = "EquiposUnidos";
     public static final String FILE_REPORT = "EquiposUnidos/Reportes";
     public static final String FILE_IMAGE = "EquiposUnidos/Imagenes";

@@ -29,6 +29,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esilva.equiposunidos.Setting.SettingActivity;
@@ -44,6 +45,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private LinearLayout inicio;
+    private TextView versiontv;
 
     private final int REQUEST_COD = 200;
     private PowerManager.WakeLock mWakeLock = null;
@@ -57,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setView();
 
 
-
         solicitarPermisos();
         requestWakeLock();
         initUsbListener();
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setView() {
         inicio = findViewById(R.id.inicio);
         inicio.setOnClickListener(this);
+        versiontv = findViewById(R.id.tvVersion);
+        versiontv.setText("Version: "+Util.getVersionName(this));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -130,30 +133,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.inicio:
-                /*if(verifyUser(view)) {
-                    Intent intent = new Intent(this, EnrolaInitActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }*/
+        int id = view.getId();
 
-
-
-                AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
-                List<User> users = adminBaseDatos.usu_getAll();
-                adminBaseDatos.closeBaseDtos();
-                UnidosApplication.setUser(users.get(7));
-
-                Intent intent = new Intent(this, MenuActivity.class);
+        if( id == R.id.inicio) {
+            if (verifyUser(view)) {
+                Intent intent = new Intent(this, EnrolaInitActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
 
-                /*startActivity(new Intent(this,SettingActivity.class));*/
-                break;
-            default:
-                break;
+
+/*
+
+            AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
+            List<User> users = adminBaseDatos.usu_getAll();
+            adminBaseDatos.closeBaseDtos();
+            UnidosApplication.setUser(users.get(5));
+
+            Intent intent = new Intent(this, MenuActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+*/
+            /*startActivity(new Intent(this,SettingActivity.class));*/
         }
+
     }
     private boolean verifyUser(View view){
         boolean bRet = true;

@@ -1,7 +1,9 @@
 package com.esilva.equiposunidos.Setting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +11,14 @@ import android.view.ViewGroup;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.esilva.equiposunidos.Dialog.CustumerDialog;
+import com.esilva.equiposunidos.Dialog.DialogBorrarUser;
+import com.esilva.equiposunidos.Dialog.DialogCreateUser;
+import com.esilva.equiposunidos.MainActivity;
 import com.esilva.equiposunidos.R;
+import com.esilva.equiposunidos.RegistroInOut.FormRegisterInOutActivity;
+import com.esilva.equiposunidos.db.AdminBaseDatos;
+import com.esilva.equiposunidos.db.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,17 +35,21 @@ public class UserFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private boolean state;
 
     public interface ItemListener{
         void OnClickCargar();
         void OnClickEnrolar();
         void OnClickActividad();
-        void OnClickReporte();
+        void OnClickOperUser();
     }
     private ItemListener listener;
     public UserFragment() {
+        state = true;
         // Required empty public constructor
     }
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -71,10 +84,53 @@ public class UserFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_user, container, false);
 
+        View view1 =  view.findViewById(R.id.view1);
+        View view2 =  view.findViewById(R.id.view2);
+        CardView btCrear = view.findViewById(R.id.usuarioCrear);
+        btCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogCreateUser dialogCreateUser = new DialogCreateUser(getContext());
+                dialogCreateUser.setOnClickListener(new DialogCreateUser.LisenerDailog() {
+                    @Override
+                    public void OnClickSI(User user) {
+                        AdminBaseDatos adminBaseDatos = new AdminBaseDatos(getContext());
+                        long l = adminBaseDatos.usu_insert(user);
+                        if(l>0){
+                            messageOK(true);
+                        }else{
+                            messageOK(false);
+                        }
+                    }
+
+                });
+                dialogCreateUser.show();
+                //listener.OnClickOperUser();
+            }
+        });
+        CardView btBorrar = view.findViewById(R.id.usuarioBorrar);
+        btBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogBorrarUser dialogBorrarUser = new DialogBorrarUser(getContext());
+                dialogBorrarUser.setOnClickListener(new DialogBorrarUser.LisenerDailog() {
+                    @Override
+                    public void OnClickSI(boolean isOK) {
+                        messageOKBorra(isOK);
+                    }
+                });
+                dialogBorrarUser.show();
+            }
+        });
+
         CardView cargar = view.findViewById(R.id.registrarUsuarios);
         cargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btCrear.setVisibility(View.GONE);
+                btBorrar.setVisibility(View.GONE);
+                view1.setVisibility(View.GONE);
+                view2.setVisibility(View.GONE);
                 listener.OnClickCargar();
             }
         });
@@ -82,6 +138,10 @@ public class UserFragment extends Fragment {
         enrolar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btCrear.setVisibility(View.GONE);
+                btBorrar.setVisibility(View.GONE);
+                view1.setVisibility(View.GONE);
+                view2.setVisibility(View.GONE);
                 listener.OnClickEnrolar();
             }
         });
@@ -89,16 +149,37 @@ public class UserFragment extends Fragment {
         actividad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btCrear.setVisibility(View.GONE);
+                btBorrar.setVisibility(View.GONE);
+                view1.setVisibility(View.GONE);
+                view2.setVisibility(View.GONE);
                 listener.OnClickActividad();
             }
         });
+
+
+
         CardView reporte = view.findViewById(R.id.operacionUsuario);
         reporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //listener.OnClickReporte();
+                if(state) {
+                    btCrear.setVisibility(View.VISIBLE);
+                    btBorrar.setVisibility(View.VISIBLE);
+                    view1.setVisibility(View.VISIBLE);
+                    view2.setVisibility(View.VISIBLE);
+                    state=false;
+                }else{
+                    btCrear.setVisibility(View.GONE);
+                    btBorrar.setVisibility(View.GONE);
+                    view1.setVisibility(View.GONE);
+                    view2.setVisibility(View.GONE);
+                    state=true;
+                }
             }
         });
+
+
 
         return view;
     }
@@ -112,5 +193,46 @@ public class UserFragment extends Fragment {
         }
 
     }
+
+    private void messageOK(boolean isOK){
+        CustumerDialog custumerDialog;
+        if(isOK)
+            custumerDialog = new CustumerDialog(getContext(),"SUCCESS!", "Usuario creado",false,false);
+        else
+            custumerDialog = new CustumerDialog(getContext(),"FAIL!", "Error Creando usuario",true,false);
+
+        custumerDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                custumerDialog.dismiss();
+                //startActivity(new Intent(FormRegisterInOutActivity.this, MainActivity.class));
+
+            }
+        },2000);
+    }
+
+    private void messageOKBorra(boolean isOK){
+        CustumerDialog custumerDialog;
+        if(isOK)
+            custumerDialog = new CustumerDialog(getContext(),"SUCCESS!", "Usuario borrado",false,false);
+        else
+            custumerDialog = new CustumerDialog(getContext(),"FAIL!", "Error Borrando usuario",true,false);
+
+        custumerDialog.show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                custumerDialog.dismiss();
+                //startActivity(new Intent(FormRegisterInOutActivity.this, MainActivity.class));
+
+            }
+        },2000);
+    }
+
+
+
 
 }
