@@ -33,3 +33,6 @@ google-services.json
 *.hprof
 
 SDK/
+Entregas/
+EquiposUnidos/app/release/
+EquiposUnidos/gradle
