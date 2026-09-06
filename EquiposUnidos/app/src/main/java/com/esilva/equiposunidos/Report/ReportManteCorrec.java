@@ -301,7 +301,7 @@ public class ReportManteCorrec {
 
             if(!insumos.getObservaciones().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
-                cell1 = rowNum.getCell(2);      // C76
+                cell1 = rowNum.getCell(1);      // C76
                 cell1.setCellValue(insumos.getObservaciones());
             }
 

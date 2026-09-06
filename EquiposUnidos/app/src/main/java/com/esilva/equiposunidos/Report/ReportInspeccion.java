@@ -158,11 +158,9 @@ public class ReportInspeccion {
         Cell cellM1;
         Cell cellPare1;
         Cell cellB2;
-        Cell cellM2;
-        Cell cellPare2;
-        Cell cellB3;
-        Cell cellM3;
-        Cell cellPare3;
+        Cell cellPresion1;
+        Cell cellPresion2;
+
         FileInputStream fis = null;
 
         CellStyle styleRojo;
@@ -225,6 +223,7 @@ public class ReportInspeccion {
 
             conta+=4;
 
+            int columPresion = 6;
             int colum = 0;
             int[] columnas = new int[]{3,9,13};
             conta = 12;
@@ -240,6 +239,16 @@ public class ReportInspeccion {
                         cellPare1.setCellValue("OK");
                         cellPare1.setCellStyle(styleVerde);
                     }
+                    if(colum == 1){
+                        if(conta == 20){
+                            cellPresion1 = rowNum.getCell(6);
+                            cellPresion1.setCellValue(" Presion llantas Delan. Izq:( "+inspec.getStIzq()+" ) Der:( "+inspec.getStDer()+" )");
+                        }
+                        if(conta == 21){
+                            cellPresion1 = rowNum.getCell(6);
+                            cellPresion1.setCellValue(" Presion llantas Trase. Izq:( "+inspec.getStIzq()+" ) Der:( "+inspec.getStDer()+" )");
+                        }
+                    }
                 }else {
                     cellM1 = rowNum.getCell(columnas[colum]+1);
                     cellM1.setCellValue("X");
@@ -250,6 +259,17 @@ public class ReportInspeccion {
                     }else{
                         cellPare1.setCellValue("OBS");
                         cellPare1.setCellStyle(styleNaranja);
+                    }
+
+                    if(colum == 1){
+                        if(conta == 20){
+                            cellPresion1 = rowNum.getCell(6);
+                            cellPresion1.setCellValue(" Presion llantas Delan. Izq:( "+inspec.getStIzq()+" ) Der:( "+inspec.getStDer()+" )");
+                        }
+                        if(conta == 21){
+                            cellPresion1 = rowNum.getCell(6);
+                            cellPresion1.setCellValue(" Presion llantas Trase. Izq:( "+inspec.getStIzq()+" ) Der:( "+inspec.getStDer()+" )");
+                        }
                     }
                 }
 

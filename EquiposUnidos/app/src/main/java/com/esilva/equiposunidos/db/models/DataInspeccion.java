@@ -10,7 +10,8 @@ public class DataInspeccion {
     private String stPare;
     private boolean isCheckRojo;
     private int color;
-
+    private String stDer;
+    private String stIzq;
     public DataInspeccion(){
 
     }
@@ -72,5 +73,21 @@ public class DataInspeccion {
 
     public void setCheckRojo(boolean checkRojo) {
         isCheckRojo = checkRojo;
+    }
+
+    public String getStDer() {
+        return stDer;
+    }
+
+    public void setStDer(String stDer) {
+        this.stDer = stDer;
+    }
+
+    public String getStIzq() {
+        return stIzq;
+    }
+
+    public void setStIzq(String stIzq) {
+        this.stIzq = stIzq;
     }
 }

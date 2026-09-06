@@ -107,6 +107,11 @@ public class CargadorInspActivity extends AppCompatActivity implements View.OnCl
             if (!ma.isPosB() && !ma.isPosM()) {
                 return false;
             }
+            if(ma.getDescription().contains("Presión llantas")){
+                if(ma.getStIzq() == null || ma.getStDer() == null || ma.getStIzq().isEmpty() || ma.getStDer().isEmpty()){
+                    return false;
+                }
+            }
 
         }
         return bRet;

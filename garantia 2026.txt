@@ -1,0 +1,14 @@
+bug equipos unidos
+
+*1*-campos en inventario a 2 digitos
+*2*-cambio de palabra INSPECCION PREOPERACION  a INSPECCION PREOPERACIONAL
+*3*-Se ingresa presion de llantas en inspeccion preoperacional y se agrega en el reporte
+*4*-Se puede ingrear datos numericos con decimales en Horometro de inspeccion preoperacional
+*5*-Se puede ingrear datos numericos con decimales en Horometro de Mantenimiento
+*6*-En mantenimiento se implementa el boton regresar para devolverse al menu
+*7*-Aplicacion como launcher y creacion de cajon de aplicaciones
+*8*-Verificado, cuando se cargan nuevamente los usuarios, no se borra el enrolamiento, llave la cedula, si se ingresa una  nueva lo inserta
+*9*-En registro de entrada y salida se agrega en equipo a operar, N/A sin necesidad de agregar en el excel
+*10*-Se agrega en el filtro de mantenimiento volqueta, ahora queda (excavadora,cargador,volqueta)
+*11*-Solucion en el reporte de mantenimiento en las cantidades de insumo, no se estaban mostrando
+*12*-se agrega nuevamente el item para cargar los tipos de mantenimiento.

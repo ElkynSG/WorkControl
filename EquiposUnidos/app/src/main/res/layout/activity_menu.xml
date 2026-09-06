@@ -230,7 +230,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.8"
                         android:gravity="center"
-                        android:text="INSPECCION PREOPERACION"
+                        android:text="INSPECCION PREOPERACIONAL"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
 

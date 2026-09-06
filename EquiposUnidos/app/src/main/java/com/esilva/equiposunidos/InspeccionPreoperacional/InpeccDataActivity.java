@@ -90,11 +90,11 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         tvOper = findViewById(R.id.tvDataInOper);
 
         if(equipos.getTipo() == EQUIPO_TIPO_CARGADOR)
-            tvTitle.setText("INSPECCION PREOPERACION\nCARGADOR");
+            tvTitle.setText("INSPECCION PREOPERACIONAL\nCARGADOR");
         else if(equipos.getTipo() == EQUIPO_TIPO_EXCAVADORA)
-            tvTitle.setText("INSPECCION PREOPERACION\nEXCAVADORA");
+            tvTitle.setText("INSPECCION PREOPERACIONAL\nEXCAVADORA");
         else {
-            tvTitle.setText("INSPECCION PREOPERACION\nVEHICULO");
+            tvTitle.setText("INSPECCION PREOPERACIONAL\nVEHICULO");
             tvOper.setText("Nombre del conductor:");
             liCedula.setVisibility(View.VISIBLE);
         }
@@ -165,10 +165,6 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.btContInGuardar)
-        {
-
-        }
 
         if (id == R.id.btContInGuardar) {
             if (validarData()) {

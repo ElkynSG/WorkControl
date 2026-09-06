@@ -89,6 +89,7 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
         for (Equipos eq:equipos) {
             machine.add(eq.getEquipo());
         }
+        machine.add("N/A");
         activities = adminBaseDatos.act_getAll();
         setView();
     }

@@ -51,7 +51,8 @@ public class Constantes {
 
     public static final int EQUIPO_TIPO_CARGADOR = 0;
     public static final int EQUIPO_TIPO_EXCAVADORA = 1;
-    public static final int EQUIPO_TIPO_OTRO = 2;
+    public static final int EQUIPO_TIPO_VOLQUETA = 2;
+    public static final int EQUIPO_TIPO_OTRO = 3;
 
     public static final String IMAGE_FIRMA = "firmaMante.png";
 

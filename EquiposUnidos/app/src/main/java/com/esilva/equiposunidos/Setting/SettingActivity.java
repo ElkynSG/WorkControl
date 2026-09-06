@@ -6,7 +6,11 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -14,6 +18,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.esilva.equiposunidos.Dialog.CustumerDialog;
@@ -36,6 +41,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.esilva.equiposunidos.util.Constantes.*;
@@ -46,7 +52,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     private FragmentTransaction transaction;
 
     private LinearLayout baseSetting;
-    private CardView btChargeUser,btChargeManten,btReport;
+    private CardView btChargeUser,btChargeManten,btReport,btApp;
     private Fragment fragmentUsuarios, fragMantenimiento, fragReport, fregCurrent;
     private ProgressDialog progressDialog;
     private AdminBaseDatos adminBaseDatos;
@@ -70,6 +76,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         btChargeManten.setOnClickListener(this);
         btReport = findViewById(R.id.btReport);
         btReport.setOnClickListener(this);
+
+        btApp = findViewById(R.id.btnAplicaciones);
+        btApp.setOnClickListener(this);
 
         fragmentUsuarios = new UserFragment();
         fragMantenimiento = new ManteniEquiposFragment();
@@ -119,6 +128,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 fregCurrent = fragReport;
 
             }
+        }
+        else if(id == R.id.btnAplicaciones){
+            mostrarCajonAplicaciones();
         }
 
     }
@@ -795,5 +807,95 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
     /************************************************************************/
 
+    private void getApps(){
+        PackageManager packageManager = getPackageManager();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> aplicaciones = packageManager.queryIntentActivities(intent, 0);
+
+
+
+
+
+
+    }
+
+
+    private void mostrarCajonAplicaciones() {
+
+        Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(R.layout.dialog_app_drawer);
+
+        GridView gridAplicaciones =
+                dialog.findViewById(R.id.gridAplicaciones);
+
+        ArrayList<AppInfo> aplicaciones = new ArrayList<>();
+
+        PackageManager packageManager = getPackageManager();
+
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> lista =
+                packageManager.queryIntentActivities(intent, 0);
+
+        for (ResolveInfo info : lista) {
+
+            String nombre =
+                    info.loadLabel(packageManager).toString();
+
+            Drawable icono =
+                    info.loadIcon(packageManager);
+
+            String paquete =
+                    info.activityInfo.packageName;
+
+            aplicaciones.add(
+                    new AppInfo(nombre, icono, paquete)
+            );
+        }
+
+        AppAdapter adapter =
+                new AppAdapter(this, aplicaciones);
+
+        gridAplicaciones.setAdapter(adapter);
+
+        gridAplicaciones.setOnItemClickListener(
+                (parent, view, position, id) -> {
+
+                    AppInfo app =
+                            aplicaciones.get(position);
+
+                    Intent launchIntent =
+                            getPackageManager()
+                                    .getLaunchIntentForPackage(app.paquete);
+
+                    if (launchIntent != null) {
+
+                        dialog.dismiss();
+
+                        startActivity(launchIntent);
+                    }
+                });
+
+        dialog.show();
+
+        Window window = dialog.getWindow();
+
+        if (window != null) {
+
+            window.setBackgroundDrawableResource(
+                    android.R.color.transparent
+            );
+
+            window.setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+            );
+        }
+    }
 
 }

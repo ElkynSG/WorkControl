@@ -142,19 +142,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
 
-
 /*
 
+            ///////////////////////    solo para depurar   /////////////////////
             AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
             List<User> users = adminBaseDatos.usu_getAll();
             adminBaseDatos.closeBaseDtos();
-            UnidosApplication.setUser(users.get(5));
+            UnidosApplication.setUser(users.get(4));
 
             Intent intent = new Intent(this, MenuActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-*/
+
             /*startActivity(new Intent(this,SettingActivity.class));*/
+
+
+            ////////////////////////////////////////////////////////////////////
         }
 
     }
@@ -168,6 +171,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(adminBaseDatos.usu_getAll_Enrroled() == null) {
             Util.SnackbarCreate("Usuarios","Usuarios no Enrolados, por favor Enrolar", "Ir a Config",this,SettingActivity.class,view);
+            return false;
+        }
+
+        if(adminBaseDatos.mante_getAll() == null) {
+            Util.SnackbarCreate("Mantenimiento","Tipos de mantenimiento no agregados", "Ir a Config",this,SettingActivity.class,view);
+            return false;
+        }
+
+        if(adminBaseDatos.equi_getAll() == null) {
+            Util.SnackbarCreate("Equipos","Equipos no agregados", "Ir a Config",this,SettingActivity.class,view);
+            return false;
+        }
+
+        if(adminBaseDatos.luga_getAll() == null) {
+            Util.SnackbarCreate("Lugares","Lugares no agregados", "Ir a Config",this,SettingActivity.class,view);
             return false;
         }
 
@@ -185,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initUsbListener() {
         Log.d("DP_DLOG","initUsbListener "+"inicia");
         //scrollBottom("initUsbListener "+"inicia");
-        PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+        PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_IMMUTABLE);
 
         this.registerReceiver(mUsbReceiver, new IntentFilter(ACTION_USB_PERMISSION));
         //IntentFilter attachfilter = new IntentFilter(UsbManager.ACTION_USB_DEVICE_ATTACHED);

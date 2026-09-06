@@ -2,6 +2,7 @@ package com.esilva.equiposunidos.Mantenimiento;
 
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_CARGADOR;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_EXCAVADORA;
+import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_VOLQUETA;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -71,8 +72,9 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
 
         tvTecnico.setText(userVerify.getNombre());
 
-        //mantenimientos = adminBaseDatos.mante_getAll();
-        mantenimientos = getResources().getStringArray(R.array.tipo_mantenimiento);
+        List<String> mante = adminBaseDatos.mante_getAll();
+        mantenimientos = mante.toArray(new String[0]);
+        //mantenimientos = getResources().getStringArray(R.array.tipo_mantenimiento);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mantenimientos);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTypeMante.setAdapter(adapter1);
@@ -81,7 +83,7 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
         ListEquipo = adminBaseDatos.equi_getAll();
         equipos = new ArrayList<String>();
         for (Equipos stt:ListEquipo) {
-            if(stt.getTipo() == EQUIPO_TIPO_CARGADOR || stt.getTipo() == EQUIPO_TIPO_EXCAVADORA)
+            if(stt.getTipo() == EQUIPO_TIPO_CARGADOR || stt.getTipo() == EQUIPO_TIPO_EXCAVADORA || stt.getTipo() == EQUIPO_TIPO_VOLQUETA)
                 equipos.add(stt.getNombre());
         }
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, equipos);
@@ -105,7 +107,8 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
             startActivity(new Intent(this, ManteCaracterisActivity.class));
         }
         else if( id == R.id.btManteCance) {
-            startActivity(new Intent(this, MainActivity.class));
+            onBackPressed();
+            //startActivity(new Intent(this, M.class));
         }
     }
 

@@ -2,6 +2,8 @@ package com.esilva.equiposunidos.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.esilva.equiposunidos.R;
@@ -23,7 +27,6 @@ public class InspeccionAdapter extends BaseAdapter {
     private List<DataInspeccion> mList;
     private int selected = -1;
     private LayoutInflater mInflater;
-    private String[] descriptionList;
 
     public InspeccionAdapter(Context pContext) {
         this.mContext = pContext;
@@ -57,12 +60,21 @@ public class InspeccionAdapter extends BaseAdapter {
         TextView msg = (TextView) convertView.findViewById(R.id.tvMsgList);
         CheckBox che_B = (CheckBox) convertView.findViewById(R.id.cheList1);
         CheckBox che_M = (CheckBox) convertView.findViewById(R.id.cheList2);
+        LinearLayout lyPresion = (LinearLayout) convertView.findViewById(R.id.lyPresion);
+        EditText edPresionIzq = (EditText) convertView.findViewById(R.id.edPresionIzq);
+        EditText edPresionDer = (EditText) convertView.findViewById(R.id.edPresionDer);
 
         che_B.setChecked(mList.get(position).isPosB());
         che_M.setChecked(mList.get(position).isPosM());
 
         msg.setText(mList.get(position).getStPare());
         descrip.setText(mList.get(position).getDescription());
+
+        if(mList.get(position).getDescription().contains("Presión llantas")){
+            lyPresion.setVisibility(View.VISIBLE);
+            edPresionIzq.setText(mList.get(position).getStIzq());
+            edPresionDer.setText(mList.get(position).getStDer());
+        }
 
         if(mList.get(position).isCheckRojo()){
             msg.setBackgroundColor(mContext.getColor(mList.get(position).getColor()==2?R.color.rojo:R.color.verde));
@@ -73,6 +85,40 @@ public class InspeccionAdapter extends BaseAdapter {
 
             }
         }
+
+        edPresionIzq.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mList.get(position).setStIzq(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        edPresionDer.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                mList.get(position).setStDer(charSequence.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         che_B.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -190,111 +190,111 @@ public class ReportMantePreven {
 
             // insumos
 
-            if(!insumos.getAceite_1().isEmpty()) {
+            if(!insumos.getCant_aceite_1().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getAceite_1());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_aceite_1());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_aceite_1());
             }
             conta++;
 
-            if(!insumos.getAceite_2().isEmpty()) {
+            if(!insumos.getCant_aceite_2().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getAceite_2());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_aceite_2());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_aceite_2());
             }
             conta++;
 
-            if(!insumos.getAceite_3().isEmpty()) {
+            if(!insumos.getCant_aceite_3().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getAceite_3());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_aceite_3());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_aceite_3());
             }
             conta++;
 
-            if(!insumos.getFiltroMotor().isEmpty()) {
+            if(!insumos.getCant_filtroMotor().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroMotor());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroMotor());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroMotor());
             }
             conta++;
 
-            if(!insumos.getFiltroCombuPri().isEmpty()) {
+            if(!insumos.getCant_filtroCombuPri().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroCombuPri());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroCombuPri());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroCombuPri());
             }
             conta++;
 
-            if(!insumos.getFiltroCombuSeg().isEmpty()) {
+            if(!insumos.getCant_filtroCombuSeg().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroCombuSeg());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroCombuSeg());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroCombuSeg());
             }
             conta++;
 
-            if(!insumos.getFiltroServoMotor().isEmpty()) {
+            if(!insumos.getCant_filtroServoMotor().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroServoMotor());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroServoMotor());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroServoMotor());
             }
             conta++;
 
-            if(!insumos.getFiltroHidraPri().isEmpty()) {
+            if(!insumos.getCant_filtroHidraPri().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroHidraPri());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroHidraPri());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroHidraPri());
             }
             conta++;
 
-            if(!insumos.getFiltroHidraSeg().isEmpty()) {
+            if(!insumos.getCant_filtroHidraSeg().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroHidraSeg());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroHidraSeg());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroHidraSeg());
             }
             conta++;
 
-            if(!insumos.getFiltroAC().isEmpty()) {
+            if(!insumos.getCant_filtroAC().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getFiltroAC());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_filtroAC());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_filtroAC());
             }
             conta++;
 
-            if(!insumos.getPreFiltro().isEmpty()) {
+            if(!insumos.getCant_preFiltro().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getPreFiltro());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_preFiltro());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_preFiltro());
             }
             conta++;
 
-            if(!insumos.getDesincrustante().isEmpty()) {
+            if(!insumos.getCant_desincrustante().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
                 cell1 = rowNum.getCell(2);      // C76
                 cell1.setCellValue(insumos.getDesincrustante());
-                cell1 = rowNum.getCell(5);      // E76
-                cell1.setCellValue("Cantidad: " + insumos.getCant_desincrustante());
+                cell1 = rowNum.getCell(8);      // E76
+                cell1.setCellValue(insumos.getCant_desincrustante());
             }
             conta++;
 
@@ -314,7 +314,7 @@ public class ReportMantePreven {
 
             if(!insumos.getObservaciones().isEmpty()) {
                 rowNum = sheet.getRow(conta);                   // FILA 76
-                cell1 = rowNum.getCell(2);      // C76
+                cell1 = rowNum.getCell(1);      // C76
                 cell1.setCellValue(insumos.getObservaciones());
             }
             conta+=3;
