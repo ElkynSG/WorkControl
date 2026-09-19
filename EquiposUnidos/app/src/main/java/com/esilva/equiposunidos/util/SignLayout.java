@@ -38,10 +38,12 @@ public class SignLayout {
     private Signature mSignature;
     private Bitmap mBitmap = null;
     private Context context;
+    private String firmaName;
 
     public SignLayout(LinearLayout signCanvas, Context context) {
         this.signCanvas = signCanvas;
         this.context = context;
+        firmaName = IMAGE_FIRMA;
         addSignLayoutToCanvas();
     }
 
@@ -71,6 +73,10 @@ public class SignLayout {
         return mSignature.isCanvasUsed();
     }
 
+    public void setNameFirma(String name){
+        this.firmaName = name;
+    }
+
     /**
      * Encodes the given file
      * @param fileName File name of the signature picture
@@ -78,7 +84,7 @@ public class SignLayout {
      */
     public boolean encodeSign(){
 
-        File signatureFile = new File(context.getFilesDir(), IMAGE_FIRMA);
+        File signatureFile = new File(context.getFilesDir(), firmaName);
 
         if(signatureFile.exists()) {
             signatureFile.delete();

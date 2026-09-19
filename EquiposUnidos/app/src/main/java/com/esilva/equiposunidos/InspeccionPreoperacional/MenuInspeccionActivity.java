@@ -2,6 +2,7 @@ package com.esilva.equiposunidos.InspeccionPreoperacional;
 
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_CARGADOR;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_EXCAVADORA;
+import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_VOLQUETA;
 import static com.esilva.equiposunidos.util.Constantes.FILE_IMAGE;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +42,9 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
     private List<Equipos> equipos;
     private int idEquipo;
     private boolean isHora;
+    private RelativeLayout reMaq_1,reMaq_2,reMaq_3,reMaq_4,reMaq_5;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,8 +58,31 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
 
     }
 
+    private void animateBoxIn(View view) {
+        view.bringToFront(); // Evita que las casillas adyacentes la solapen
+
+        view.animate()
+                .scaleX(1.25f)
+                .scaleY(1.25f)
+                .setDuration(100)
+                .setInterpolator(new android.view.animation.OvershootInterpolator())
+                .withEndAction(() -> {
+                    //viewOut = viewIn;
+
+                    view.animate()
+                            .scaleX(1.00f)
+                            .scaleY(1.00f)
+                            .setDuration(200)
+                            .start();
+                })
+                .start();
+    }
+
+
     private void setView() {
         fecha_horaInspec = findViewById(R.id.fecha_horaInspec);
+
+
         tvMaq1 = findViewById(R.id.tvMaq1);
         tvMaq2 = findViewById(R.id.tvMaq2);
         tvMaq3 = findViewById(R.id.tvMaq3);
@@ -166,9 +193,10 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
     @Override
     public void onClick(View view) {
         int id = view.getId();
-
+       // animateBoxOut();
             if(id == R.id.imaMaq1) {
                 imaMaq1.setBackground(getResources().getDrawable(R.drawable.shape_maq));
+                animateBoxIn(imaMaq1);
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq4.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -182,6 +210,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
             }
             else if(id == R.id.imaMaq2) {
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
+                animateBoxIn(imaMaq2);
                 imaMaq2.setBackground(getResources().getDrawable(R.drawable.shape_maq));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq4.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -194,6 +223,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 1;
             }
             else if(id == R.id.imaMaq3) {
+                animateBoxIn(imaMaq3);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackground(getResources().getDrawable(R.drawable.shape_maq));
@@ -207,6 +237,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 2;
             }
             else if(id == R.id.imaMaq4) {
+                animateBoxIn(imaMaq4);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -220,6 +251,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 3;
             }
             else if(id ==  R.id.imaMaq5) {
+                animateBoxIn(imaMaq5);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -233,6 +265,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 4;
             }
             else if(id ==  R.id.imaMaq6) {
+                animateBoxIn(imaMaq6);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -246,6 +279,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 5;
             }
             else if(id ==  R.id.imaMaq7){
+                animateBoxIn(imaMaq7);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -259,6 +293,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 6;
             }
             else if(id ==  R.id.imaMaq8){
+                animateBoxIn(imaMaq8);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -272,6 +307,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 7;
             }
             else if(id ==  R.id.imaMaq9){
+                animateBoxIn(imaMaq9);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -285,6 +321,7 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                 idEquipo = 8;
             }
             else if(id ==  R.id.imaMaq10){
+                animateBoxIn(imaMaq10);
                 imaMaq1.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq2.setBackgroundColor(getResources().getColor(R.color.transparant));
                 imaMaq3.setBackgroundColor(getResources().getColor(R.color.transparant));
@@ -306,6 +343,8 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
                         startActivity(new Intent(MenuInspeccionActivity.this,CargadorInspActivity.class));
                     else if(equipos.get(idEquipo).getTipo() == EQUIPO_TIPO_EXCAVADORA)
                         startActivity(new Intent(MenuInspeccionActivity.this,ExcavadoraInspActivity.class));
+                    else if(equipos.get(idEquipo).getTipo() == EQUIPO_TIPO_VOLQUETA)
+                        startActivity(new Intent(MenuInspeccionActivity.this,VolquetaInspActivity.class));
                     else
                         startActivity(new Intent(MenuInspeccionActivity.this,VehiculoInspActivity.class));
 

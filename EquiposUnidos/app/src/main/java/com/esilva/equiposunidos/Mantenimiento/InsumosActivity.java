@@ -1,6 +1,7 @@
 package com.esilva.equiposunidos.Mantenimiento;
 
 import static com.esilva.equiposunidos.util.Constantes.FILE_IMAGE;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_FIRMA;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -103,7 +104,7 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
                 dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
                     @Override
                     public void saveImageOK() {
-                        Uri uri = Uri.parse(getFilesDir()+"/firmaMante.png");
+                        Uri uri = Uri.parse(getFilesDir()+IMAGE_FIRMA);
                         btFirma.setImageURI(uri);
                         btFirma.setEnabled(false);
                         isFirma = true;

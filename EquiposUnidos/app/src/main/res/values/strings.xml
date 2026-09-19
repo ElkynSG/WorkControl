@@ -567,4 +567,50 @@
         <item>Cuenta con botiquín</item>
         <item>Limpieza de la cabina</item>
     </array>
+
+    <array name="inspec_volqueta">
+        <item>Bloqueo y Etiquetado</item>
+        <item>Nivel aceite de motor</item>
+        <item>Nivel de Aceite de la Dirección</item>
+        <item>Tensión de correas</item>
+        <item>Niveles de aceite hidráulico</item>
+        <item>Revisión nivel de refrigerante</item>
+        <item>Revisión de Hojas de muelles delanteros y traseros</item>
+        <item>Tanque de combustible (abrazadera soportes)</item>
+        <item>Revisión de chasis</item>
+        <item>Revisión de ganchos y compuerta</item>
+        <item>Revisión de estribos y pasamanos</item>
+        <item>Estado de llantas (de repuesto) rines , pernos</item>
+        <item>Drenaje de tanques</item>
+        <item>Desbloqueo del vehículo</item>
+        <item>Encendido del vehículo</item>
+
+        <item>Revisión fugas de aceite</item>
+        <item>Revisión fugas de ACPM</item>
+        <item>Cerrar Capo</item>
+        <item>Estado del cinturón de seguridad</item>
+        <item>Estado de silla de conductor </item>
+        <item>Funcionamiento de Pedales y caja de cambio</item>
+        <item>Estado de espejos Ganso y tipo 5 </item>
+        <item>Estado de vidrios y espejos laterales</item>
+        <item>Estado Funcionamiento de Plumillas</item>
+        <item>Estado de luces de trabajo y Baliza</item>
+        <item>Estado luces de Stop, luces de reverso</item>
+        <item>Estado funcionamiento de Direccionales</item>
+        <item>Estado de indicadores de tablero</item>
+        <item>Funcionamiento de Aire acondicionado </item>
+        <item>Estado funcionamiento del pito </item>
+
+        <item>Estado del monitor y cámara de retroceso</item>
+        <item>Estado funcionamiento Alarma de Reverso</item>
+        <item>Levantamiento de volco</item>
+        <item>Inspección visual de humedad gato Hidráulico</item>
+        <item>Descenso de volco</item>
+        <item>Apagar el vehiculo y aplicar freno de parqueo</item>
+        <item>Retirar tacos</item>
+        <item>Encender vehículo</item>
+        <item>Realizar prueba de frenos de servicio</item>
+        <item>Revisar funcionamiento freno de Parqueo</item>
+
+    </array>
 </resources>

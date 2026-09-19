@@ -36,6 +36,7 @@ import java.util.List;
 public class ReportManteCorrec {
     public static int REPORT_TYPE_CARGADOR=0;
     public static int REPORT_TYPE_EXCAVADORA=1;
+    public static int REPORT_TYPE_VOLQUETA=2;
     private File template;
     private Context context;
 

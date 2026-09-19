@@ -55,6 +55,8 @@ public class DialogFirma extends Dialog {
             }
         });
 
+
+
         btDialogClean = findViewById(R.id.btnFirmaClean);
         btDialogClean.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +83,10 @@ public class DialogFirma extends Dialog {
     }
     public void setListenerDialog(ListenerDialog listener){
         this.listenerDialog = listener;
+    }
+
+    public void setNameFile(String nameFile){
+        singLayout.setNameFirma(nameFile);
     }
 
 }

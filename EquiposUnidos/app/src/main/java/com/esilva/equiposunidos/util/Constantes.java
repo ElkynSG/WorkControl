@@ -55,6 +55,8 @@ public class Constantes {
     public static final int EQUIPO_TIPO_OTRO = 3;
 
     public static final String IMAGE_FIRMA = "firmaMante.png";
+    public static final String IMAGE_FIRMA_TEC = "firmaTec.png";
+    public static final String IMAGE_FIRMA_SUPER = "firmaSuper.png";
 
 
     /*   biometrica  */

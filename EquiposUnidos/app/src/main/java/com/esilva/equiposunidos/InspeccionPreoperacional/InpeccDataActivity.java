@@ -3,7 +3,10 @@ package com.esilva.equiposunidos.InspeccionPreoperacional;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_CARGADOR;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_EXCAVADORA;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_OTRO;
+import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_VOLQUETA;
 import static com.esilva.equiposunidos.util.Constantes.FILE_IMAGE;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_FIRMA_SUPER;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_FIRMA_TEC;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esilva.equiposunidos.Dialog.CustumerDialog;
+import com.esilva.equiposunidos.Dialog.DialogFirma;
 import com.esilva.equiposunidos.Dialog.ProgressDialog;
 import com.esilva.equiposunidos.MainActivity;
 import com.esilva.equiposunidos.Mantenimiento.InsumosActivity;
@@ -34,30 +38,36 @@ import com.esilva.equiposunidos.Report.ReportInspeccion;
 import com.esilva.equiposunidos.application.UnidosApplication;
 import com.esilva.equiposunidos.db.AdminBaseDatos;
 import com.esilva.equiposunidos.db.models.Equipos;
+import com.esilva.equiposunidos.db.models.User;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class InpeccDataActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView imageView;
-    private TextView tvTitle,tvOper,tvFecha;
-    private EditText edCedula,edObservaciones,edHorome;
+    private ImageView imageView,btTecnico,btSupervisor;
+    private TextView tvTitle,tvOper,tvFecha,edCedula;
+    private EditText edObservaciones,edHorome;
     private Button btGuardar,btRegresar,btHome;
     private LinearLayout liCedula;
-    private Spinner spLugar,spOper,spSuper;
+    private Spinner spLugar,spSuper;
+    private TextView tvOperador,tvCedulaSuper,tvHorometro;
 
     private Equipos equipos;
-    private String stOperador,stCedula,stSupervisor,stHorometro,stLugar,stObservacion;
+    private String stOperador,stCedula,stCedulaSuper,stSupervisor,stHorometro,stLugar,stObservacion;
 
     private ProgressDialog progressDialog;
     private CustumerDialog custumerDialog;
     private boolean isHora;
     private  List<String> lugares;
     private  List<String> tecnicos;
+    private  List<User> tecnicosUser;
+    private boolean isFirmaTec = false;
+    private boolean isFirmaSuper = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +79,11 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         progressDialog = new ProgressDialog(this,"Generando Reporte");
         AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
         lugares = adminBaseDatos.luga_getAll();
-        tecnicos = adminBaseDatos.tec_getAll();
+        tecnicosUser = adminBaseDatos.user_getSupervisores();
+        tecnicos = new ArrayList<String>();
+        for (User user : tecnicosUser) {
+            tecnicos.add(user.getNombre());
+        }
         adminBaseDatos.closeBaseDtos();
 
         setView();
@@ -88,36 +102,34 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
         tvTitle = findViewById(R.id.tvTitleInspec);
         tvOper = findViewById(R.id.tvDataInOper);
+        tvHorometro = findViewById(R.id.tvHorometro);
 
         if(equipos.getTipo() == EQUIPO_TIPO_CARGADOR)
             tvTitle.setText("INSPECCION PREOPERACIONAL\nCARGADOR");
         else if(equipos.getTipo() == EQUIPO_TIPO_EXCAVADORA)
             tvTitle.setText("INSPECCION PREOPERACIONAL\nEXCAVADORA");
+        else if(equipos.getTipo() == EQUIPO_TIPO_VOLQUETA)
+            tvTitle.setText("INSPECCION PREOPERACIONAL\nVOLQUETA");
         else {
             tvTitle.setText("INSPECCION PREOPERACIONAL\nVEHICULO");
             tvOper.setText("Nombre del conductor:");
-            liCedula.setVisibility(View.VISIBLE);
+            tvHorometro.setText("Kilometraje:");
         }
 
         tvOper = findViewById(R.id.tvDataInOper);
-        spOper = findViewById(R.id.spDataInOper);
-        ArrayAdapter<String> adapter0 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tecnicos);
-        adapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spOper.setAdapter(adapter0);
-        spOper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                stOperador = tecnicos.get(i);
-            }
+        tvOperador = findViewById(R.id.spDataInOper);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        stOperador = UnidosApplication.getUser().getNombre();
+        stCedula = String.valueOf(UnidosApplication.getUser().getCedula());
+        tvOperador.setText(stOperador);
 
         edCedula = findViewById(R.id.edDataInCedula);
+        edCedula.setText(stCedula);
+
         spSuper = findViewById(R.id.spDataInSuper);
+        tvCedulaSuper = findViewById(R.id.tvCedulaSuper);
+        stCedulaSuper = String.valueOf(tecnicosUser.get(0).getCedula());
+        tvCedulaSuper.setText(stCedulaSuper);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tecnicos);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spSuper.setAdapter(adapter1);
@@ -125,6 +137,8 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 stSupervisor = tecnicos.get(i);
+                stCedulaSuper = String.valueOf(tecnicosUser.get(i).getCedula());
+                tvCedulaSuper.setText(stCedulaSuper);
             }
 
             @Override
@@ -132,6 +146,8 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+
         edObservaciones = findViewById(R.id.edDataInObserva);
         edHorome = findViewById(R.id.edDataInHorom);
         spLugar = findViewById(R.id.spDataInLugar);
@@ -160,6 +176,12 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
         btHome = findViewById(R.id.btContInHome);
         btHome.setOnClickListener(this);
+
+        btTecnico = findViewById(R.id.btTecnico);
+        btTecnico.setOnClickListener(this);
+
+        btSupervisor = findViewById(R.id.btSupervisor);
+        btSupervisor.setOnClickListener(this);
     }
 
     @Override
@@ -177,11 +199,14 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
                     public void run() {
                         ReportInspeccion reportInspeccion = new ReportInspeccion(InpeccDataActivity.this);
                         reportInspeccion.setCedula(stCedula);
+                        reportInspeccion.setCedulaSuper(stCedulaSuper);
                         reportInspeccion.setHorometro(stHorometro);
                         reportInspeccion.setLugar(stLugar);
                         reportInspeccion.setObservacion(stObservacion);
                         reportInspeccion.setSupervisor(stSupervisor);
                         reportInspeccion.setOperador(stOperador);
+                        reportInspeccion.setFirmaTecnico(isFirmaTec);
+                        reportInspeccion.setFirmaSuper(isFirmaSuper);
                         boolean b = reportInspeccion.buildReport();
                         showResult(b);
                     }
@@ -202,22 +227,43 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+        else if (id == R.id.btTecnico) {
+            DialogFirma dialogFirma = new DialogFirma(InpeccDataActivity.this);
+            dialogFirma.setNameFile(IMAGE_FIRMA_TEC);
+            dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
+                @Override
+                public void saveImageOK() {
+                    Uri uri = Uri.parse(getFilesDir()+"/"+IMAGE_FIRMA_TEC);
+                    btTecnico.setImageURI(uri);
+                    btTecnico.setEnabled(false);
+                    isFirmaTec = true;
+                }
+            });
+            dialogFirma.show();
+        }
+        else if (id == R.id.btSupervisor) {
+            DialogFirma dialogFirma = new DialogFirma(InpeccDataActivity.this);
+            dialogFirma.setNameFile(IMAGE_FIRMA_SUPER);
+            dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
+                @Override
+                public void saveImageOK() {
+                    Uri uri = Uri.parse(getFilesDir()+"/"+IMAGE_FIRMA_SUPER);
+                    btSupervisor.setImageURI(uri);
+                    btSupervisor.setEnabled(false);
+                    isFirmaSuper = true;
+                }
+            });
+            dialogFirma.show();
+        }
     }
 
     private boolean validarData() {
         stObservacion = edObservaciones.getText().toString();
-
-        if(equipos.getTipo() == EQUIPO_TIPO_OTRO){
-            stCedula = edCedula.getText().toString().trim();
-            if (stCedula.isEmpty())
-                return false;
-        }
-
-        stHorometro = edHorome.getText().toString();
-        if (stHorometro.isEmpty())
+        if(!isFirmaTec) {
             return false;
-
-        return true;
+        }
+        stHorometro = edHorome.getText().toString();
+        return !stHorometro.isEmpty();
     }
 
     private void showResult(boolean result){

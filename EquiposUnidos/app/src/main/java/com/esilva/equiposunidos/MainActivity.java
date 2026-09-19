@@ -136,13 +136,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = view.getId();
 
         if( id == R.id.inicio) {
-            if (verifyUser(view)) {
+           /*if (verifyUser(view)) {
                 Intent intent = new Intent(this, EnrolaInitActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-            }
+            }*/
 
-/*
+
 
             ///////////////////////    solo para depurar   /////////////////////
             AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
@@ -254,4 +254,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     };
 
+    @Override
+    public void onBackPressed() {
+
+    }
 }

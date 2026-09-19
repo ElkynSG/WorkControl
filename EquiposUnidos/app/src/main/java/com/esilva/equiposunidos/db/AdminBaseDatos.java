@@ -94,6 +94,61 @@ public class AdminBaseDatos {
         return true;
 
     }
+
+    public List<String> user_getAll_string(){
+        List<String> user = new ArrayList<String>();
+
+        try {
+            Cursor fila = BaseDeDatos.rawQuery("SELECT * FROM "+ TABLE_USUARIO,null);
+
+            if(fila == null )
+                return null;
+
+            if(!fila.moveToFirst())
+                return null;
+
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                user.add(fila.getString(1));
+            }
+        }catch (Exception e){
+            return null;
+        }
+
+        return user;
+    }
+
+    public List<User> user_getSupervisores(){
+        List<User> user = new ArrayList<User>();
+
+        try {
+            Cursor fila = BaseDeDatos.rawQuery(
+                    "SELECT * FROM " + TABLE_USUARIO +
+                            " WHERE " +USU_CARGO+ " IN  (?, ?, ?, ?)",
+                    new String[]{"Gerente", "Lider de Mantenimiento","Coordinadora HSEQ","Inspector HSEQ"}
+            );
+
+            if(fila == null )
+                return null;
+
+            if(!fila.moveToFirst())
+                return null;
+
+            for(fila.moveToFirst(); !fila.isAfterLast(); fila.moveToNext()){
+                User numItem = new User();
+                numItem.setCedula(fila.getInt(0));
+                numItem.setNombre(fila.getString(1));
+                numItem.setPerfil(fila.getInt(2));
+                numItem.setCargo(fila.getString(3));
+                user.add(numItem);
+            }
+
+            fila.close();
+        }catch (Exception e){
+            return null;
+        }
+
+        return user;
+    }
     public List<User> usu_getAll(){
         List<User> usuarios = new ArrayList<User>();
 
