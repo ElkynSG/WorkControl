@@ -24,6 +24,7 @@ public class DialogFirma extends Dialog {
     private Button btDialogSave,btDialogClean,btDialogCAncel;
     private LinearLayout firma;
     private SignLayout singLayout;
+    private TextView stTitle;
 
     private ListenerDialog listenerDialog;
 
@@ -37,6 +38,8 @@ public class DialogFirma extends Dialog {
         getWindow().setBackgroundDrawableResource(R.color.transparant);
         setCancelable(false);
         setContentView(R.layout.dialog_firma);
+
+        stTitle = findViewById(R.id.tvTitleDialogBt);
 
         firma = findViewById(R.id.canvaFirma);
         singLayout = new SignLayout(firma,context);
@@ -87,6 +90,10 @@ public class DialogFirma extends Dialog {
 
     public void setNameFile(String nameFile){
         singLayout.setNameFirma(nameFile);
+    }
+
+    public void setTitle(String titulo){
+        stTitle.setText(titulo);
     }
 
 }

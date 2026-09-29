@@ -1,7 +1,13 @@
 package com.esilva.equiposunidos.Mantenimiento;
 
+import static com.esilva.equiposunidos.Report.ReportMantePreven.REPORT_TYPE_VOLQUETA;
+import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_VOLQUETA;
 import static com.esilva.equiposunidos.util.Constantes.FILE_IMAGE;
 import static com.esilva.equiposunidos.util.Constantes.IMAGE_FIRMA;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_MANTE_1;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_MANTE_2;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_MANTE_3;
+import static com.esilva.equiposunidos.util.Constantes.IMAGE_MANTE_4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,12 +17,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esilva.equiposunidos.Dialog.CustumerDialog;
@@ -24,14 +29,15 @@ import com.esilva.equiposunidos.Dialog.DialogFirma;
 import com.esilva.equiposunidos.Dialog.ProgressDialog;
 import com.esilva.equiposunidos.MainActivity;
 import com.esilva.equiposunidos.R;
-import com.esilva.equiposunidos.RegistroInOut.FormRegisterInOutActivity;
 import com.esilva.equiposunidos.Report.ReportManteCorrec;
 import com.esilva.equiposunidos.Report.ReportMantePreven;
 import com.esilva.equiposunidos.application.UnidosApplication;
 import com.esilva.equiposunidos.db.models.Equipos;
 import com.esilva.equiposunidos.db.models.Insumos;
+import com.esilva.equiposunidos.util.CameraDialogFragment;
 
 import java.io.File;
+
 
 public class InsumosActivity extends AppCompatActivity implements View.OnClickListener {
     private Spinner sp1Insumo,sp2Insumo,sp3Insumo,sp4Insumo,sp5Insumo,sp6Insumo,sp7Insumo,sp8Insumo,sp9Insumo,sp10Insumo,sp11Insumo,sp12Insumo;
@@ -39,26 +45,53 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
     private EditText edRepuestos,edOtros,edObservaciones;
     private ImageView btFirma,imaView;
     private Button btEnviar,btRegresa;
+    private TextView tvVolqueta;
 
     private Insumos insumos;
     private boolean isFirma=false;
     private Equipos equiposs;
+    private ImageView ima1,ima2,ima3,ima4;
 
     private ProgressDialog progressDialog;
     private CustumerDialog custumerDialog;
     private boolean result;
+    private String[] comments;
+    private boolean isFoto1,isFoto2,isFoto3,isFoto4;
+    CameraDialogFragment dialog = new CameraDialogFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insumos);
-        setView();
         equiposs = UnidosApplication.getEquipo();
+        comments = new String[4];
+        isFoto1 = false;
+        isFoto2 = false;
+        isFoto3 = false;
+        isFoto4 = false;
+        setView();
+
         progressDialog = new ProgressDialog(this,"Generando Reporte");
         insumos = new Insumos();
     }
 
     private void setView() {
         imaView = findViewById(R.id.imImageEquipoIns);
+        ima1 = findViewById(R.id.ima1);
+        ima2 = findViewById(R.id.ima2);
+        ima3 = findViewById(R.id.ima3);
+        ima4 = findViewById(R.id.ima4);
+
+        ima1.setOnClickListener(this);
+        ima2.setOnClickListener(this);
+        ima3.setOnClickListener(this);
+        ima4.setOnClickListener(this);
+
+
+
+        tvVolqueta = findViewById(R.id.tvVolqueta);
+        if(equiposs.getTipo() == EQUIPO_TIPO_VOLQUETA){
+            tvVolqueta.setText("Filtro de trasnmision");
+        }
 
 
         sp1Insumo =findViewById(R.id.sp1Insumo);
@@ -101,10 +134,11 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View view) {
                 DialogFirma dialogFirma = new DialogFirma(InsumosActivity.this);
+                dialogFirma.setTitle("Firma tecnico responsable");
                 dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
                     @Override
                     public void saveImageOK() {
-                        Uri uri = Uri.parse(getFilesDir()+IMAGE_FIRMA);
+                        Uri uri = Uri.parse(getFilesDir()+"/"+IMAGE_FIRMA);
                         btFirma.setImageURI(uri);
                         btFirma.setEnabled(false);
                         isFirma = true;
@@ -138,6 +172,60 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
         }
         else if( id == R.id.btInsumoRegresa) {
             onBackPressed();
+        }else if(id == R.id.ima1){
+
+            dialog.setNameFhoto(IMAGE_MANTE_1);
+            dialog.setOnPhotoCapturedListener(new CameraDialogFragment.OnPhotoCapturedListener() {
+                @Override
+                public void onPhotoCaptured(File photoFile, String comment) {
+                    Uri uri = Uri.parse(photoFile.getAbsolutePath());
+                    ima1.setImageURI(uri);
+                    comments[0] = comment;
+                    isFoto1=true;
+                }
+            });
+            dialog.show(getSupportFragmentManager(), "CameraDialogFragment");
+        }
+        else if(id == R.id.ima2){
+            dialog.setNameFhoto(IMAGE_MANTE_2);
+            dialog.setOnPhotoCapturedListener(new CameraDialogFragment.OnPhotoCapturedListener() {
+                @Override
+                public void onPhotoCaptured(File photoFile, String comment) {
+                    Uri uri = Uri.parse(photoFile.getAbsolutePath());
+                    ima2.setImageURI(uri);
+                    comments[1] = comment;
+                    isFoto2 = true;
+                }
+            });
+            dialog.show(getSupportFragmentManager(), "CameraDialogFragment");
+        }
+        else if(id == R.id.ima3){
+            dialog.setNameFhoto(IMAGE_MANTE_3);
+            dialog.setOnPhotoCapturedListener(new CameraDialogFragment.OnPhotoCapturedListener() {
+                @Override
+                public void onPhotoCaptured(File photoFile, String comment) {
+                    Uri uri = Uri.parse(photoFile.getAbsolutePath());
+                    ima3.setImageURI(uri);
+                    comments[2] = comment;
+                    isFoto3 = true;
+                }
+            });
+            dialog.show(getSupportFragmentManager(), "CameraDialogFragment");
+        }
+        else if(id == R.id.ima4){
+            dialog.setNameFhoto(IMAGE_MANTE_4);
+            dialog.setOnPhotoCapturedListener(new CameraDialogFragment.OnPhotoCapturedListener() {
+                @Override
+                public void onPhotoCaptured(File photoFile, String comment) {
+                    Uri uri = Uri.parse(photoFile.getAbsolutePath());
+                    ima4.setImageURI(uri);
+                    comments[3] = comment;
+                    isFoto4 = true;
+                }
+            });
+            dialog.show(getSupportFragmentManager(), "CameraDialogFragment");
+        }else{
+
         }
 
     }
@@ -233,8 +321,7 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
             if(insumos.getCant_desincrustante().isEmpty())
                 return false;
         }
-
-        return true;
+        return isFoto1 && isFoto2 && isFoto3 && isFoto4;
     }
 
     private void generarReporte(){
@@ -271,7 +358,12 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
             public void run() {
                 ReportMantePreven reportMantePreven = new ReportMantePreven(InsumosActivity.this);
                 reportMantePreven.setInsumos(insumos);
-                reportMantePreven.setDataManteni(UnidosApplication.getDataManteni());
+                if(equiposs.getTipo()==REPORT_TYPE_VOLQUETA){
+                    reportMantePreven.setDataManteniVolq(UnidosApplication.getDataManteni());
+                }else{
+                    reportMantePreven.setDataManteniOtros(UnidosApplication.getDataManteni());
+                }
+                reportMantePreven.setComments(comments[0],comments[1],comments[2],comments[3]);
                 reportMantePreven.setUser(UnidosApplication.getUser());
                 reportMantePreven.setManteniList(UnidosApplication.getListManteni());
                 reportMantePreven.setEquipos(equiposs);
@@ -340,4 +432,6 @@ public class InsumosActivity extends AppCompatActivity implements View.OnClickLi
         imaView.setBackground(getResources().getDrawable(R.drawable.shape_image_azul));
         imaView.setImageURI(uri);
     }
+
+
 }

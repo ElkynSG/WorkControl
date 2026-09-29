@@ -112,6 +112,91 @@
     </array>
     <!-- ============================================ -->
 
+    <!--       VOLQUETA      -->
+    <array name="vo_general">
+        <item>Lavado del equipo</item>
+        <item>Engrase general del vehículo incluyendo crucetas y cardanes (500 H)</item>
+        <item>Inspecicon de manijas y justes del cierre del capo (500H)</item>
+        <item>Inspección de estructura del vehículo (500 H)</item>
+        <item>Inspeccion de Muelles y hojas de resorte </item>
+        <item>Verificacion del sistema de autocarpado (500H)</item>
+        <item>Inspeccion del volco y cierre de la compurta y ganchos) (500H)</item>
+        <item>Inspección y ajuste de pernos  de llantas y chasis en general (500 H)</item>
+        <item>Verificación de estado de presión de llantas (500 H)</item>
+        <item>Inspección al interior de la cabina (500 H)</item>
+        <item>Verificación de indicadores de tableros (500 H)</item>
+        <item>Comprobación de funcionamiento de aire acondicionado (500 H)</item>
+        <item>Inspección estado de cinturón de seguridad  (500 H)</item>
+        <item>Inspección de ventanas, puertas, vidrios y espejos (500 H)</item>
+        <item>Limpieza de filtro del aire acondicionado (500 H)</item>
+        <item>Cambio de filtro de aire acondicionado (500H)</item>
+        <item>Revision y/o mantenimiento del sistema de A/C (500H)</item>
+    </array>
+    <array name="vo_sistemaConbustible">
+        <item>Cambio del filtro separador de agua de combustible (500 H)</item>
+        <item>Drenado de agua trampa de agua. (500H)</item>
+        <item>Verificacion del estado del tanque de combustible (500H)</item>
+    </array>
+    <array name="vo_sistemaAdmision">
+        <item>Limpieza y/o reemplazo de prefiltro de aire de motor (500 H)</item>
+        <item>Limpieza y/o reemplazo del filtro primario/secundario de aire de motor (500 H)</item>
+        <item>Inspección visual del turbo (500 H)</item>
+    </array>
+    <array name="vo_motor">
+        <item>Inspección de mangueras de aceite del motor (500 H)</item>
+        <item>Inspección y tensionado de Correas (si aplica) (500 H)</item>
+        <item>Cambio de aceite de motor y respectivo filtro (500 H)</item>
+        <item>Comprobación del nivel de aceite de motor (500 H)</item>
+        <item>Inspección del silenciador / exosto (500 H)</item>
+        <item>Inspección de estado de arranque, alternador y compresor de A/C (500 H)</item>
+    </array>
+    <array name="vo_sistemaEnfriamiento">
+        <item>Revise el nivel de refrIgerante del Motor (500H)</item>
+        <item>Inspección del estado del enfriador y/o  radiador  del motor (500 H)</item>
+        <item>Inspección del estado del enfriador del aceite hidraulico (500 H) (si aplica)</item>
+        <item>Inspección del estado del condensador de A/C  (500 H)</item>
+    </array>
+    <array name="vo_sistemaHidraulico">
+        <item>Verificación del nivel de aceite hidraulico (500 H)</item>
+        <item>Lubricación / Inspección de pasadores y cilindros de levante (500 H)</item>
+        <item>Funcionamiento y estado de cilindro hidraulico</item>
+        <item>Inspección de tubos y mangueras de cilindro hidraulico (500 H)</item>
+        <item>Revision del funcionamiento de la guaya de proteccion y tope de descarga. (500H)</item>
+        <item>Inspección de Bomba hidráulica principa, corrija fugas ( si aplica) (500 H)</item>
+        <item>Inspección de control hidráulico principal corrija fugas ( si aplica) (500 H)</item>
+        <item>Cambio de filtro primario y secundario de aceite hidráulico (5000 H)</item>
+        <item>Drenar y limpiar tanque hidráulico (5000 H)</item>
+        <item>Cambio del aceite del sistema hidráulico (5000 H)</item>
+    </array>
+    <array name="vo_ejes">
+        <item>Inspección de estado y ajuste de crucetas (500 H)</item>
+        <item>Verificacion del funcionamiento del Clutch  </item>
+        <item>Cambio del filtro y aceite de la Caja de velocidades  (500 H) </item>
+        <item>Revision y  cambio del aceite de los diferenciales (5000  H)</item>
+    </array>
+    <array name="vo_frenos">
+        <item>Verificación del freno de parqueo, calibre si es necesario (500 H)</item>
+        <item>Verificación del estado de freno de servicio (500 H)</item>
+        <item>Verificar funcionameinto de frenos  (500 H)</item>
+        <item>Revision de frenos, bandas del sistema de frenado (5000H)</item>
+    </array>
+    <array name="vo_sistemaDireccion">
+        <item>Revision de estado de terminales y Lubricación si aplica (500 H)</item>
+        <item>Revision del nivel de aceite de la direccion  (500H)</item>
+        <item>Verificacion del funcionameinto de la direccion (500H)</item>
+    </array>
+    <array name="vo_sistemaElectrico">
+        <item>Comprobación funcionamiento del limpiaparabrisas (500 H)</item>
+        <item>Comprobación de luces de trabajo y luz estroboscópica (500 H)</item>
+        <item>Inspección de funcionamiento de monitor y cámara de retroceso (500 H)</item>
+        <item>Comprobacion del funcionamiento del pito (500H)</item>
+        <item>Comprobación de funcionamiento de alarma de retroceso (500 H)</item>
+        <item>Verificación de fusibles, reemplazar los dañados (500 H)</item>
+        <item>Revisión de cables de batería y terminales (5000 H)</item>
+        <item>Verificación de estado de bateria con tester (5000 H)</item>
+    </array>
+    <!-- ============================================  -->
+
     <!--       EXCAVADORA      -->
     <array name="ex_general">
         <item>Lavado del equipo</item>
@@ -198,11 +283,18 @@
     <!-- ============================================ -->
 
     <!-- =TIPOS DE MANTENIMIENTO -->
-    <array name="tipo_mantenimiento">
+    <array name="tipo_mantenimiento_otro">
         <item>Mnto 250</item>
         <item>Mnto 1000</item>
         <item>Mnto 2000</item>
         <item>Mnto 3000</item>
+        <item>Hallazgo Preoperacional</item>
+        <item>Correctivo</item>
+    </array>
+    <!-- =TIPOS DE MANTENIMIENTO -->
+    <array name="tipo_mantenimiento_vol">
+        <item>500 H</item>
+        <item>5000 / ANUAL</item>
         <item>Hallazgo Preoperacional</item>
         <item>Correctivo</item>
     </array>

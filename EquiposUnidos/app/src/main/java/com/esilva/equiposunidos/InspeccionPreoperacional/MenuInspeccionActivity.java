@@ -42,8 +42,6 @@ public class MenuInspeccionActivity extends AppCompatActivity implements View.On
     private List<Equipos> equipos;
     private int idEquipo;
     private boolean isHora;
-    private RelativeLayout reMaq_1,reMaq_2,reMaq_3,reMaq_4,reMaq_5;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

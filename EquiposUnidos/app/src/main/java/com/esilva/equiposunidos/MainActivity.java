@@ -85,15 +85,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int PermisoStorageWrite = ContextCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE);
             int PermisoLocation = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
             int PermisoLocationCourse = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION);
+            int PermisoCamara = ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA);
             if( PermisoStorageRead == PackageManager.PERMISSION_GRANTED && PermisoStorageWrite == PackageManager.PERMISSION_GRANTED &&
-                    PermisoLocation == PackageManager.PERMISSION_GRANTED && PermisoLocationCourse == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this,"permiso staora otorgado",Toast.LENGTH_LONG);
+                    PermisoLocation == PackageManager.PERMISSION_GRANTED && PermisoLocationCourse == PackageManager.PERMISSION_GRANTED &&
+                    PermisoCamara == PackageManager.PERMISSION_GRANTED){
+                //Toast.makeText(this,"Por favor habilitar permisos",Toast.LENGTH_LONG).show();
             }else{
                 requestPermissions(new String[]{
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.CAMERA
 
                 },REQUEST_COD);
             }
@@ -136,11 +139,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = view.getId();
 
         if( id == R.id.inicio) {
-           /*if (verifyUser(view)) {
+           if (verifyUser(view)) {
                 Intent intent = new Intent(this, EnrolaInitActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-            }*/
+            }/*
 
 
 

@@ -1,6 +1,7 @@
 package com.esilva.equiposunidos.Mantenimiento;
 
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_CARGADOR;
+import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_VOLQUETA;
 import static com.esilva.equiposunidos.util.Constantes.FILE_IMAGE;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,6 +71,17 @@ public class ActiPreventivaActivity extends AppCompatActivity implements View.On
             generalAdapter.addArray("FRENOS", getResources().getStringArray(R.array.ca_frenos));
             generalAdapter.addArray("SISTEMA DE DIRECCIÓN", getResources().getStringArray(R.array.ca_sistemaDireccion));
             generalAdapter.addArray("SISTEMA ELECTRICO", getResources().getStringArray(R.array.ca_sistemaElectrico));
+        }else if(equipoSelect.getTipo() == EQUIPO_TIPO_VOLQUETA){
+            generalAdapter.addArray("GENERAL", getResources().getStringArray(R.array.vo_general));
+            generalAdapter.addArray("SISTEMA DE COMBUSTIBLE", getResources().getStringArray(R.array.vo_sistemaConbustible));
+            generalAdapter.addArray("SISTEMA DE ADMISION DE AIRE", getResources().getStringArray(R.array.vo_sistemaAdmision));
+            generalAdapter.addArray("MOTOR", getResources().getStringArray(R.array.vo_motor));
+            generalAdapter.addArray("SISTEMA DE ENFRIAMIENTO", getResources().getStringArray(R.array.vo_sistemaEnfriamiento));
+            generalAdapter.addArray("SISTEMA HIDRAULICO", getResources().getStringArray(R.array.vo_sistemaHidraulico));
+            generalAdapter.addArray("EJES FINALES Y TRANSMISION (CAJA DE VELOCIDADES)", getResources().getStringArray(R.array.vo_ejes));
+            generalAdapter.addArray("FRENOS", getResources().getStringArray(R.array.vo_frenos));
+            generalAdapter.addArray("SISTEMA DE DIRECCIÓN", getResources().getStringArray(R.array.vo_sistemaDireccion));
+            generalAdapter.addArray("SISTEMA ELECTRICO", getResources().getStringArray(R.array.vo_sistemaElectrico));
         }else{
             generalAdapter.addArray("GENERAL", getResources().getStringArray(R.array.ex_general));
             generalAdapter.addArray("SISTEMA DE COMBUSTIBLE", getResources().getStringArray(R.array.ex_sistemaConbustible));

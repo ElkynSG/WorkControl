@@ -1,5 +1,7 @@
 package com.esilva.equiposunidos.InspeccionPreoperacional;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_CARGADOR;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_EXCAVADORA;
 import static com.esilva.equiposunidos.util.Constantes.EQUIPO_TIPO_OTRO;
@@ -54,7 +56,7 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
     private EditText edObservaciones,edHorome;
     private Button btGuardar,btRegresar,btHome;
     private LinearLayout liCedula;
-    private Spinner spLugar,spSuper;
+    private Spinner spLugar,spSuper,spConductores;
     private TextView tvOperador,tvCedulaSuper,tvHorometro;
 
     private Equipos equipos;
@@ -64,8 +66,10 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
     private CustumerDialog custumerDialog;
     private boolean isHora;
     private  List<String> lugares;
-    private  List<String> tecnicos;
-    private  List<User> tecnicosUser;
+    private  List<String> stConductore;
+    private  List<String> stSupervisores;
+    private  List<User> supervisores;
+    private  List<User> conducores;
     private boolean isFirmaTec = false;
     private boolean isFirmaSuper = false;
     @Override
@@ -79,10 +83,17 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         progressDialog = new ProgressDialog(this,"Generando Reporte");
         AdminBaseDatos adminBaseDatos = new AdminBaseDatos(this);
         lugares = adminBaseDatos.luga_getAll();
-        tecnicosUser = adminBaseDatos.user_getSupervisores();
-        tecnicos = new ArrayList<String>();
-        for (User user : tecnicosUser) {
-            tecnicos.add(user.getNombre());
+        /// /   supervisores
+        supervisores = adminBaseDatos.user_getSupervisores();
+        stSupervisores = new ArrayList<String>();
+        for (User user : supervisores) {
+            stSupervisores.add(user.getNombre());
+        }
+        /// //  conductores
+        conducores = adminBaseDatos.usu_getAll();
+        stConductore = new ArrayList<String>();
+        for (User user : conducores) {
+            stConductore.add(user.getNombre());
         }
         adminBaseDatos.closeBaseDtos();
 
@@ -90,11 +101,13 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void setView() {
+        spSuper = findViewById(R.id.spDataInSuper);
+        spConductores = findViewById(R.id.spConductores);
         tvFecha  = findViewById(R.id.fechct);
         imageView = findViewById(R.id.imImaInspData);
         Uri uri = Uri.parse(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE+"/"+equipos.getFoto());
         File pathImage = new File(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE, equipos.getFoto());
-        if(pathImage.exists() == false)
+        if(!pathImage.exists())
             uri = Uri.parse(Environment.getExternalStorageDirectory()+"/"+FILE_IMAGE+"/fotico.png");
         imageView.setImageURI(uri);
 
@@ -103,6 +116,12 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         tvTitle = findViewById(R.id.tvTitleInspec);
         tvOper = findViewById(R.id.tvDataInOper);
         tvHorometro = findViewById(R.id.tvHorometro);
+
+        tvOper = findViewById(R.id.tvDataInOper);
+        tvOperador = findViewById(R.id.tvConductor);
+
+        edCedula = findViewById(R.id.edDataInCedula);
+
 
         if(equipos.getTipo() == EQUIPO_TIPO_CARGADOR)
             tvTitle.setText("INSPECCION PREOPERACIONAL\nCARGADOR");
@@ -116,28 +135,44 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
             tvHorometro.setText("Kilometraje:");
         }
 
-        tvOper = findViewById(R.id.tvDataInOper);
-        tvOperador = findViewById(R.id.spDataInOper);
+        if(equipos.getTipo() == EQUIPO_TIPO_CARGADOR || equipos.getTipo() == EQUIPO_TIPO_EXCAVADORA || equipos.getTipo() == EQUIPO_TIPO_VOLQUETA){
+            spConductores.setVisibility(GONE);
+            tvOperador.setVisibility(VISIBLE);
+            stOperador = UnidosApplication.getUser().getNombre();
+            stCedula = String.valueOf(UnidosApplication.getUser().getCedula());
+            tvOperador.setText(stOperador);
+            edCedula.setText(stCedula);
+        }else{
+            spConductores.setVisibility(VISIBLE);
+            tvOperador.setVisibility(GONE);
+            ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, stConductore);
+            adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spConductores.setAdapter(adapter1);
+            spConductores.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    stOperador = stConductore.get(i);
+                    stCedula = String.valueOf(conducores.get(i).getCedula());
+                    edCedula.setText(stCedula);
+                }
 
-        stOperador = UnidosApplication.getUser().getNombre();
-        stCedula = String.valueOf(UnidosApplication.getUser().getCedula());
-        tvOperador.setText(stOperador);
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
-        edCedula = findViewById(R.id.edDataInCedula);
-        edCedula.setText(stCedula);
+                }
+            });
+        }
 
-        spSuper = findViewById(R.id.spDataInSuper);
-        tvCedulaSuper = findViewById(R.id.tvCedulaSuper);
-        stCedulaSuper = String.valueOf(tecnicosUser.get(0).getCedula());
-        tvCedulaSuper.setText(stCedulaSuper);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, tecnicos);
+
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, stSupervisores);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spSuper.setAdapter(adapter1);
         spSuper.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                stSupervisor = tecnicos.get(i);
-                stCedulaSuper = String.valueOf(tecnicosUser.get(i).getCedula());
+                stSupervisor = stSupervisores.get(i);
+                stCedulaSuper = String.valueOf(supervisores.get(i).getCedula());
                 tvCedulaSuper.setText(stCedulaSuper);
             }
 
@@ -146,6 +181,12 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
 
             }
         });
+
+
+        tvCedulaSuper = findViewById(R.id.tvCedulaSuper);
+        stCedulaSuper = String.valueOf(supervisores.get(0).getCedula());
+        tvCedulaSuper.setText(stCedulaSuper);
+
 
 
         edObservaciones = findViewById(R.id.edDataInObserva);
@@ -230,6 +271,7 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         else if (id == R.id.btTecnico) {
             DialogFirma dialogFirma = new DialogFirma(InpeccDataActivity.this);
             dialogFirma.setNameFile(IMAGE_FIRMA_TEC);
+            dialogFirma.setTitle("Firma de operador/conductor");
             dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
                 @Override
                 public void saveImageOK() {
@@ -244,6 +286,7 @@ public class InpeccDataActivity extends AppCompatActivity implements View.OnClic
         else if (id == R.id.btSupervisor) {
             DialogFirma dialogFirma = new DialogFirma(InpeccDataActivity.this);
             dialogFirma.setNameFile(IMAGE_FIRMA_SUPER);
+            dialogFirma.setTitle("Firma de supervisor");
             dialogFirma.setListenerDialog(new DialogFirma.ListenerDialog() {
                 @Override
                 public void saveImageOK() {

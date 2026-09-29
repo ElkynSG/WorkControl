@@ -123,8 +123,8 @@ public class AdminBaseDatos {
         try {
             Cursor fila = BaseDeDatos.rawQuery(
                     "SELECT * FROM " + TABLE_USUARIO +
-                            " WHERE " +USU_CARGO+ " IN  (?, ?, ?, ?)",
-                    new String[]{"Gerente", "Lider de Mantenimiento","Coordinadora HSEQ","Inspector HSEQ"}
+                            " WHERE " +USU_CARGO+ " IN  (?,?, ?, ?, ?)",
+                    new String[]{"Gerente","Gerente ", "Lider de Mantenimiento","Coordinadora HSEQ","Inspector HSEQ"}
             );
 
             if(fila == null )

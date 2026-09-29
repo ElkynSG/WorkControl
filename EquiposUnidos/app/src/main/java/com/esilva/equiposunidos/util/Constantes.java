@@ -58,6 +58,11 @@ public class Constantes {
     public static final String IMAGE_FIRMA_TEC = "firmaTec.png";
     public static final String IMAGE_FIRMA_SUPER = "firmaSuper.png";
 
+    public static final String IMAGE_MANTE_1 = "ima1.png";
+    public static final String IMAGE_MANTE_2 = "ima2.png";
+    public static final String IMAGE_MANTE_3 = "ima3.png";
+    public static final String IMAGE_MANTE_4 = "ima4.png";
+
 
     /*   biometrica  */
     //basic event

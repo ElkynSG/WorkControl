@@ -46,6 +46,10 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
     private boolean isHora;
     private List<Equipos> ListEquipo;
     private DataManteni dataManteni;
+    private String[] manteVolqueta;
+    private ArrayAdapter<String> adapter1;
+    private ArrayAdapter<String> adapterVol;
+    private boolean isVolqueta =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,13 +76,14 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
 
         tvTecnico.setText(userVerify.getNombre());
 
-        List<String> mante = adminBaseDatos.mante_getAll();
-        mantenimientos = mante.toArray(new String[0]);
-        //mantenimientos = getResources().getStringArray(R.array.tipo_mantenimiento);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mantenimientos);
+        mantenimientos = getResources().getStringArray(R.array.tipo_mantenimiento_otro);
+        adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mantenimientos);
+        manteVolqueta = getResources().getStringArray(R.array.tipo_mantenimiento_vol);
+        adapterVol = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, manteVolqueta);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTypeMante.setAdapter(adapter1);
         spTypeMante.setOnItemSelectedListener(this);
+
+        spTypeMante.setAdapter(adapter1);
 
         ListEquipo = adminBaseDatos.equi_getAll();
         equipos = new ArrayList<String>();
@@ -117,12 +122,26 @@ public class TipoManteniActivity extends AppCompatActivity implements View.OnCli
         int id = adapterView.getId();
 
         if( id ==  R.id.spTypeMante) {
-            dataManteni.setTipoManteni(mantenimientos[i]);
+            if(isVolqueta){
+                dataManteni.setTipoManteni(manteVolqueta[i]);
+            }else{
+                dataManteni.setTipoManteni(mantenimientos[i]);
+            }
+
         }
         else if( id == R.id.spEquipo) {
+
             for (Equipos eq : ListEquipo) {
-                if (eq.getNombre().equals(equipos.get(i)))
+                if (eq.getNombre().equals(equipos.get(i))) {
                     UnidosApplication.setEquipo(eq);
+                    if(eq.getTipo() == EQUIPO_TIPO_VOLQUETA){
+                        isVolqueta = true;
+                        spTypeMante.setAdapter(adapterVol);
+                    }else{
+                        isVolqueta = false;
+                        spTypeMante.setAdapter(adapter1);
+                    }
+                }
             }
         }
         else if( id == R.id.spLugarMante) {

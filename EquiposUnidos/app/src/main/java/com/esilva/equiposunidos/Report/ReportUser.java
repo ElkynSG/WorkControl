@@ -303,17 +303,24 @@ public class ReportUser {
 
                 Log.d("DP_DLOG", "------------------------------------");
                 int contaDay=1;
+                String dataTemp= " ";
                 Registros register;
                 for (int i = 0; i < registerList.size(); i++) {
                     bWhile = true;
                     Registros registerSave = registerList.get(i);
 
                     while (bWhile) {
-                        String dateDay = fechaMes+"-"+String.format("%02d",contaDay);
                         String[] dateSpace = registerSave.getFecha_in().split(" ",-1);
+                        if(dataTemp.equals(dateSpace[0])){
+                            contaDay--;
+                        }
+
+                        String dateDay = fechaMes+"-"+String.format("%02d",contaDay);
+
                         if(dateDay.equals(dateSpace[0])) {
                             register = registerSave;
                             bWhile = false;
+
                         }else
                             register = buildRegister(dateDay);
 
@@ -375,7 +382,12 @@ public class ReportUser {
                         }
 
                         count++;
+
+                        if(!bWhile){
+                            dataTemp = dateDay;
+                        }
                         contaDay++;
+
                     }
                 }
 

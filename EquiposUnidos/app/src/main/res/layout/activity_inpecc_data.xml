@@ -102,13 +102,25 @@
                         android:text="Operador:"/>
 
                     <TextView
-                        android:id="@+id/spDataInOper"
+                        android:id="@+id/tvConductor"
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textStyle="normal"
+                        android:visibility="gone"
                         android:textColor="@color/color_logo"
                         android:text=""/>
+
+                    <Spinner
+                        android:id="@+id/spConductores"
+                        android:layout_width="300dp"
+                        android:backgroundTintMode="multiply"
+                        android:foreground="@drawable/shape_spinner"
+                        android:backgroundTint="#000"
+                        android:visibility="visible"
+                        android:layout_height="40dp" />
+
+
 
 
                 </LinearLayout>
@@ -282,7 +294,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:text="Firma del Tecnico Responsable:"
+                        android:text="Firma de operador/conductor:"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.405"
@@ -295,7 +307,7 @@
 
 
                     <TextView
-                        android:text="Firma del Supervisor Responsable:"
+                        android:text="Firma del Supervisor:"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.405"

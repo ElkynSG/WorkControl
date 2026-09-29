@@ -52,7 +52,7 @@ import java.util.List;
 public class FormRegisterInOutActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvName,tvDocument,tvPositions,tvDateHours,tvTitle;
-    private Spinner spMaquina,spAcatividad;
+    private Spinner spMaquina;
     private EditText edComment;
     private Button btEnviarForm,btRegresarForm;
     private ImageView imImageForm;
@@ -60,7 +60,7 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
     private User userVerify;
     private boolean isHora;
 
-    private List<String> machine,activities;
+    private List<String> machine;
     private AdminBaseDatos adminBaseDatos;
 
     private boolean isEntrada;
@@ -90,7 +90,7 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
             machine.add(eq.getEquipo());
         }
         machine.add("N/A");
-        activities = adminBaseDatos.act_getAll();
+
         setView();
     }
 
@@ -118,21 +118,6 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
             }
         });
 
-        spAcatividad = findViewById(R.id.spActivityForm);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, activities);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spAcatividad.setAdapter(adapter2);
-        spAcatividad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //setViewDataUser(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         edComment = findViewById(R.id.edCommentForm);
 
@@ -173,16 +158,16 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
                 registra();  // OK
                 return;
             }
-            if(Util.getCompareDate(regisLast.getFecha_in(), getFechaHora())){ // ya tiene registro de entrada del dia
+            /*if(Util.getCompareDate(regisLast.getFecha_in(), getFechaHora())){ // ya tiene registro de entrada del dia
                 showError(3);
                 return;
-            }
+            }*/
             if(regisLast.getFecha_out()!=null) { // tiene registro de salida
                 registra(); // OK
                 return;
             }else{    // NO tiene registro de salida
                 long dif = Util.getTimeDifference(regisLast.getFecha_in());
-                if(dif >= 12){         // diferencia de horas es mayo a 13
+                if(dif >= 12){         // diferencia de horas es mayor a 13
                     updateLastRegisterAuto(regisLast,"Registro de salida automatico");
                     registra();
                 }else{              // diferencia de horas es menor a 13
@@ -234,7 +219,7 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
         if(novedad != null)
             comment+= " |"+novedad;
         reg.setComentario_out(comment);
-        reg.setActividad_out(spAcatividad.getSelectedItem().toString());
+        reg.setActividad_out("--");
         reg.setEquipo_out(spMaquina.getSelectedItem().toString());
         reg.setLongitud_out(String.valueOf(longitude));
         reg.setLatitud_out(String.valueOf(latitude));
@@ -253,7 +238,7 @@ public class FormRegisterInOutActivity extends AppCompatActivity implements View
         register.setDia_mes(Integer.valueOf(fechaHora[2]));
         register.setFecha_in(fechaHora[0]);
         register.setEquipo_in(spMaquina.getSelectedItem().toString());
-        register.setActividad_in(spAcatividad.getSelectedItem().toString());
+        register.setActividad_in("---");
         register.setComentario_in(edComment.getText().toString());
         register.setLatitud_in(String.valueOf(latitude));
         register.setLongitud_in(String.valueOf(longitude));
